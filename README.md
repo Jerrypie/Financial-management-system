@@ -8,7 +8,13 @@
 
 ### Long
 
+
+
 ### Xie
+
+* 11.4 学习java基础语法、数据类型以及相关运算操作，编写几个简单的java程序并调试运行。
+
+
 
 ### Mu
 
@@ -16,7 +22,8 @@
 
 ## 遇到的问题
 
-- 11.4 (Mu) vscode java编译环境，面向对象protected理解??
+- 11.4（Mu）vscode java编译环境，面向对象protected理解??
+- 11.4（Xie）java内置类库的使用，vscode相关操作不熟练。
 
 ## 资源分享
 
