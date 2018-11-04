@@ -1,4 +1,4 @@
-# Personal Financial Management System
+﻿# Personal Financial Management System
 软件课程设计  -- HUST
 ## 工作进展
 
@@ -6,9 +6,9 @@
 
 ## 学习进展
 
-### Xie
-
 ### Long
+
+### Xie
 
 ### Mu
 
