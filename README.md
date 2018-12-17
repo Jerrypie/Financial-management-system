@@ -1,8 +1,8 @@
-﻿# Personal Financial Management System
+# Personal Financial Management System
 软件课程设计  -- HUST
 ## 工作进展
 
-
+12.17  登录注册页面 前端 v1
 
 ## 学习进展
 
@@ -19,6 +19,8 @@
 ### Mu
 
 - 11.4 java基础语法、变量、条件分支、循环、数组、字符串、正则表达式。
+
+  ​
 
 ## 遇到的问题
 
