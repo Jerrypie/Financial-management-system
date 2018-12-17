@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- 用户界面缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css">
+	<meta http-equiv="keywords" content="个人财务管理,记账系统,财务管理">
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- 自己定义的样式 -->
+	<link rel="stylesheet" type="text/css" href="css/my.css">
+	<title>注册页面</title>
+
+	<!-- js 代码再加点验证的，写到外部去 -->
+	<script language = "javascript">
+	function Checked()
+	{
+		if(myform.UserId.value == "")//如果Email为空
+		{
+			alert("您还没有填写用户名！");
+			myform.UserId.focus();
+			return false;
+		}
+		if(myform.password.value == "")//如果密码为空
+		{
+			alert("您忘记填写密码了！");
+			return false;
+		}
+	}
+</script>
+
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<!-- 看看有什么好的logo可以加，或者不加 -->
+		<!-- <img src="img/logo.jpg" class="img" > -->
+		<div class="col-md-4 col-md-offset-4 ">
+			<div class="main">
+				<h3>个人财务管理系统</h3>
+				<form class="form-horizontal" id = "form-main" onsubmit="return Checked();" action="" method="post" name="myform">
+					<!-- 用户名 -->
+				  	<div class="form-group">
+				  		<div class="input-group">
+				  				<div class="input-group-addon">
+				  					<span class="glyphicon glyphicon-user"></span>
+				  				</div>
+				    				<!-- <label for="UserId">用户名</label> -->
+				    				<input type="text" class="form-control" id="UserId" placeholder="输入用户名" name="UserId" maxlength="10">
+				    	</div>
+				  	</div>
+					<!-- 密码 -->
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">	
+								<span class="glyphicon glyphicon-lock"></span>
+							</div>
+							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="password" maxlength="20">
+							
+						</div>
+					    <!-- <label for="password">密码</label> -->
+					</div>
+
+					<!-- 再次输入密码 -->
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">	
+								<span class="glyphicon glyphicon-lock"></span>
+							</div>
+							<input type="password" class="form-control" id="password2" placeholder="请再次输入您的密码" name="password" maxlength="20">
+						</div>
+					    <!-- <label for="password">密码</label> -->
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">	
+								<span class="glyphicon glyphicon-envelope"></span>
+							</div>
+							<input type="password" class="form-control" id="email" placeholder="请输入您的邮箱" name="password" maxlength="20">
+						</div>
+					    <!-- <label for="password">密码</label> -->
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-info btn-my-login">登录</button>
+
+						<button type="reset" class="btn btn-info btn-my-res">重置</button>
+					</div>
+
+					<div class="form-group">
+							<p style="text-align: right;">已有账号？<a href="index.html">快去登录</a> </p>
+					</div>
+				</form>			    
+			</div>
+		</div>
+	</div>
+</div>
+	<p class="footer">2018 © Powered by HUST EIC.  All rights reserved.</p>
+
+</body>
+</html>

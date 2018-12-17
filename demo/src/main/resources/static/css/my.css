@@ -1,0 +1,84 @@
+body {
+	margin-top: 0%;
+}
+
+label {
+	font-size: small;
+	font-weight: bold;
+}
+
+/*主main框的样式*/
+.main {
+	margin-top: 20%;
+	border:1px solid #e8e5e6;
+	border-radius: 5%;
+	padding: 18px;
+	padding-bottom: 0px;
+	margin:center center;
+
+}
+
+.btn-my-login {
+	margin-top: 5px;
+	width: 40%;
+	height: 35px;
+	margin-left: 0%;
+}
+
+
+.btn-my-res {
+	margin-top: 5px;
+	width:40%;
+	height: 35px;
+	margin-left: 18%;
+}
+
+a {
+	font: black;
+	font-weight: bold;
+}
+/*
+.img{
+	margin: auto;
+	margin-bottom: 0%;
+	display: block;
+	width: 110px;
+}*/
+
+h3{
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 2%; 
+    font-family:Arial, Helvetica, sans-serif; 
+}
+
+#foot-text {
+	margin-right: 20px;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	font-family: "Georgia", Tahoma, Sans-Serif;
+	/*font-weight: bold;*/
+}
+
+#form-main {/*
+	border-style: solid;
+	border-color: grey;
+	border-radius: 5%;
+	border-width: 2px;*/
+	/*margin: auto;*/
+	padding: 20px;
+	padding-bottom: 5px;
+}
+
+
+.text2 {
+	text-align: right;
+	margin-right: 15px;
+}
+
+.footer{
+	margin-bottom: 25px;
+	text-align: center;
+	font-size: 13px;
+	color: #989898
+}
