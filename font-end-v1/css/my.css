@@ -1,5 +1,6 @@
 body {
 	margin-top: 0%;
+	font-size: 15px;
 }
 
 label {
@@ -9,6 +10,7 @@ label {
 
 /*主main框的样式*/
 .main {
+	font-family: Microsoft YaHei;
 	margin-top: 20%;
 	border:1px solid #e8e5e6;
 	border-radius: 5%;
@@ -60,11 +62,13 @@ h3{
 	/*font-weight: bold;*/
 }
 
-#form-main {/*
+#form-main {
+	/*
 	border-style: solid;
 	border-color: grey;
 	border-radius: 5%;
-	border-width: 2px;*/
+	border-width: 2px;
+	*/
 	/*margin: auto;*/
 	padding: 20px;
 	padding-bottom: 5px;
