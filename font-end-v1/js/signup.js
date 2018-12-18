@@ -2,12 +2,12 @@
 
 function Checked()
 {
-    var strmg = myform.UserId.value;
+ //   var strmg = myform.UserId.value;
     var pass = myform.Password.value;
     var pass2 = myform.Password2.value;
-    var eml = myform.Email.value;
+  //  var eml = myform.Email.value;
 
-    if(strmg == "")//如果用户名为空
+/*    if(strmg == "")//如果用户名为空
     {
         alert("您还没有填写用户名！");
         myform.UserId.focus();
@@ -31,6 +31,8 @@ function Checked()
         //myform.email.focus();
         return false;
     }
+*/
+
     if(pass != pass2){//判断两次输入的值是否一致，不一致则显示错误信息
         alert("两次输入的密码不一致！");
         //myform.Password2.focus();

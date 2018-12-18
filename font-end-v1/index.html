@@ -34,7 +34,7 @@
 				  					<span class="glyphicon glyphicon-user"></span>
 				  				</div>
 				    				<!-- <label for="UserId">用户名</label> -->
-				    				<input type="text" class="form-control" id="UserId" placeholder="请输入您的用户名" name="UserId" maxlength="10">
+				    				<input type="text" class="form-control" id="UserId" placeholder="请输入您的用户名" name="UserId" maxlength="10" required oninvalid="setCustomValidity('请填写用户名!')" oninput="setCustomValidity('')">
 				    	</div>
 				  	</div>
 					<!-- 密码 -->
@@ -43,7 +43,7 @@
 							<div class="input-group-addon">	
 								<span class="glyphicon glyphicon-lock"></span>
 							</div>
-							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="Password" maxlength="20">
+							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="Password" maxlength="20" required oninvalid="setCustomValidity('请填写密码!')" oninput="setCustomValidity('')">
 							
 						</div>
 					    <!-- <label for="password">密码</label> -->
