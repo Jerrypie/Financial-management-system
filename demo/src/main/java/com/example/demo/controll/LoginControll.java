@@ -13,7 +13,10 @@ public class LoginControll {
     }
 	
 	@PostMapping("/login")
-	public String hello() {
-	    return "/hello";
+	public String login(String UserId,String password) {
+		if ("xsc".equals(UserId) && "caiji".equals(password)){
+			return "/hello";
+		}
+		return "/loginError";  
 	}
 }

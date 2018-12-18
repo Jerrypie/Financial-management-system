@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldControll {
     
-	@RequestMapping("/hello")
+	@RequestMapping("/hello")	
 	public String hello() {
 	    return "Hello World!";
 	}
-	
+
+	@RequestMapping("/loginError")
+	public String loginError(){
+		return "Password is wrong! Please login again!";
+	}	
 }
