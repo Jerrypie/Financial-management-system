@@ -1,4 +1,4 @@
-package com.example.demo.controll;
+package com.example.financialmanagement.controll;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

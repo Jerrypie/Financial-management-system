@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.financialmanagement.model;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

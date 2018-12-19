@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>financial-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
@@ -30,24 +30,19 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- 热部署 -->
+		<!--热部署-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<scope>runtime</scope>
+		</dependency>
+		<!--mysql-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
-		<!-- MYSQL -->
-		<dependency>
-   			<groupId>mysql</groupId>
-   			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<!-- Spring Boot JPA -->
-		<dependency>
-   			<groupId>org.springframework.boot</groupId>
-   			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency> 
-		
 	</dependencies>
 
 	<build>

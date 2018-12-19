@@ -1,4 +1,4 @@
-package com.example.demo.controll;
+package com.example.financialmanagement.controll;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +13,8 @@ public class LoginControll {
     }
 	
 	@PostMapping("/login")
-	public String login(String UserId,String password) {
-		if ("xsc".equals(UserId) && "caiji".equals(password)){
+	public String logining(String UserId,String Password) {
+		if ("xsc".equals(UserId) && "caiji".equals(Password)){
 			return "/hello";
 		}
 		return "/loginError";  
