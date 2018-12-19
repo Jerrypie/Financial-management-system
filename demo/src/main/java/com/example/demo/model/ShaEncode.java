@@ -1,12 +1,11 @@
-package com.example.demo.bean;
+package com.example.demo.model;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 //注册为bean
-@Service
+@Repository
 //SHA加密
 public class ShaEncode {
     private final String KEY_SHA = "SHA";
