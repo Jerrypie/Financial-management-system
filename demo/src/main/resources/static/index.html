@@ -10,27 +10,11 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
+	<!----><!----><!----><!----><!----><!----><!----><!----><!---->
+
 	<!-- 自己定义的样式 -->
 	<link rel="stylesheet" type="text/css" href="css/my.css">
 	<title>登录页面</title>
-
-	<!-- js 代码再加点验证的，写到外部去 -->
-	<script language = "javascript">
-	function Checked()
-	{
-		if(myform.UserId.value == "")//如果Email为空
-		{
-			alert("您还没有填写用户名！");
-			myform.UserId.focus();
-			return false;
-		}
-		if(myform.password.value == "")//如果密码为空
-		{
-			alert("您忘记填写密码了！");
-			return false;
-		}
-	}
-</script>
 
 </head>
 <body>
@@ -42,7 +26,7 @@
 		<div class="col-md-4 col-md-offset-4 ">
 			<div class="main">
 				<h3>个人财务管理系统</h3>
-				<form class="form-horizontal" id = "form-main" onsubmit="return Checked();" action="login" method="post" name="myform">
+				<form class="form-horizontal" id = "form-main" onsubmit="return Checked();" action="" method="post" name="myform">
 					<!-- 用户名 -->
 				  	<div class="form-group">
 				  		<div class="input-group">
@@ -50,7 +34,7 @@
 				  					<span class="glyphicon glyphicon-user"></span>
 				  				</div>
 				    				<!-- <label for="UserId">用户名</label> -->
-				    				<input type="text" class="form-control" id="UserId" placeholder="输入用户名" name="UserId" maxlength="10">
+				    				<input type="text" class="form-control" id="UserId" placeholder="请输入您的用户名" name="UserId" maxlength="10" required oninvalid="setCustomValidity('请填写用户名!')" oninput="setCustomValidity('')">
 				    	</div>
 				  	</div>
 					<!-- 密码 -->
@@ -59,7 +43,7 @@
 							<div class="input-group-addon">	
 								<span class="glyphicon glyphicon-lock"></span>
 							</div>
-							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="password" maxlength="20">
+							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="Password" maxlength="20" required oninvalid="setCustomValidity('请填写密码!')" oninput="setCustomValidity('')">
 							
 						</div>
 					    <!-- <label for="password">密码</label> -->
@@ -83,6 +67,8 @@
 	</div>
 </div>
 	<p class="footer">2018 © Powered by HUST EIC.  All rights reserved.</p>
+
+	<script type="text/javascript" src="js/index.js"></script>
 
 </body>
 </html>
