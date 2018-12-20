@@ -1,4 +1,4 @@
-package com.example.financialmanagement.controll;
+package com.example.financialmanagement.controller;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserControll {
+//测试数据库用
+public class UserController {
     @Autowired  
     private UserRepository studentRepository;   
     @RequestMapping("/test")  
