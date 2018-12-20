@@ -128,7 +128,7 @@ RegisterService {
     ...//是否重名 数据库操作
   }
   
-  bool UserInsert() {
+  bool userInsert() {
     if(this.isValid()){
       ...//数据库操作
       ...
