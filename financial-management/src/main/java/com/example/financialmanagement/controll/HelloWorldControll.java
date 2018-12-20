@@ -14,5 +14,5 @@ public class HelloWorldControll {
 	@RequestMapping("/loginError")
 	public String loginError(){
 		return "Password is wrong! Please login again!";
-	}	
+	}
 }

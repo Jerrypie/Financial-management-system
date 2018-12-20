@@ -1,12 +1,14 @@
 package com.example.financialmanagement.model;
 
-import org.springframework.stereotype.Repository;
+import javax.persistence.*;
 
 //注册为bean
-@Repository
+@Entity
 //用户类
 public class User {
-    private int userid;
+    @Id
+    @GeneratedValue
+    private Integer userid;
     private String username;
     private String password;
     private String email;

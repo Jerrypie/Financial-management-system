@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SampleControll",
+            "request": "launch",
+            "mainClass": "com.example.financialmanagement.controll.SampleControll",
+            "projectName": "financial-management"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - DemoApplication",
             "request": "launch",
             "mainClass": "com.example.financialmanagement.DemoApplication",
