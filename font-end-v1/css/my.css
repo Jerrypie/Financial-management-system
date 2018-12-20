@@ -20,6 +20,23 @@ label {
 
 }
 
+.refence{
+	font-family: 宋体;
+	color:grey;
+	padding: 20px 20px 20px 20px ;
+}
+
+.block1{
+	font-size: 12px;
+	border-top-style: solid;
+	border-top-width: thin;
+	border-top-color: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: lightgray;
+	padding: 10px 10px 10px 10px;
+}
+
 .btn-my-login {
 	margin-top: 5px;
 	width: 40%;
