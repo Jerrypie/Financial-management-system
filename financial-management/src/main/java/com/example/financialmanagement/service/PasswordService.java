@@ -2,15 +2,26 @@ package com.example.financialmanagement.service;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 //注册为bean
-@Repository
+@Service
 //SHA加密
-public class ShaEncode {
+public class PasswordService {
     private final String KEY_SHA = "SHA";
+    private String password;
 
-    public String Encode(String inputStr){
+    public PasswordService() {
+      
+    }
+
+    public PasswordService(String password) {
+        super();
+        this.setPassword(password);
+        this.PasswordEncrypt(this.password);
+    }
+
+    public String PasswordEncrypt(String inputStr){
         BigInteger sha =null;
         byte[] inputData = inputStr.getBytes(); 
         try {
@@ -25,4 +36,19 @@ public class ShaEncode {
 
         return sha.toString();
     }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

@@ -86,8 +86,8 @@ Personal Financial Management System
 **密码加密：**
 
 ```
-PassWordService {
-  String PassWord
+PasswordService {
+  String passWord
   PasswordEncrypt (String ) {
     
     ...
@@ -122,14 +122,14 @@ LoginService {
 ```
 RegisterService {
   User user
-  PassWordService Encoder  
+  PassWordService encoder  
   
-  bool Isvalid() {
+  bool isValid() {
     ...//是否重名 数据库操作
   }
   
   bool UserInsert() {
-    if(this.IsValid()){
+    if(this.isValid()){
       ...//数据库操作
       ...
     }
@@ -144,9 +144,9 @@ RegisterService {
 MainService {
   User user
   //按时间查询
-  List <BasicRecord> PresentRecord(int Type) {
+  List <BasicRecord> presentRecord(int type) {
   	//查数据库，找record，返回list
-  	switch(Type){
+  	switch(type){
       case:
       	...
       case:
@@ -157,7 +157,7 @@ MainService {
   }
   
   //按类别查询
-  List <BasicRecord> PresentCategoryRecord(){
+  List <BasicRecord> presentCategoryRecord(){
     ...
   }
   
@@ -231,7 +231,7 @@ BasicRecord {
   Time recordtime //收支时间
   int value // 花的钱
   Category category //种类
-  String Other // 其他
+  String other // 其他
 }
 ```
 
