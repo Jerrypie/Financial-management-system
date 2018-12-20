@@ -10,9 +10,9 @@ public class User {
     private String username;
     private String password;
     private String email;
-    
+
     public User() {
-      
+
     }
 
     public User(String username, String password) {
@@ -20,7 +20,7 @@ public class User {
         this.setUsername(username);
         this.setPassword(password);
     }
-   
+
     public User(int userid, String username, String password) {
         super();
         this.setUserid(userid);

@@ -2,6 +2,7 @@ package com.example.financialmanagement.service;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+
 import org.springframework.stereotype.Service;
 
 //注册为bean
@@ -12,7 +13,7 @@ public class PasswordService {
     private String password;
 
     public PasswordService() {
-      
+
     }
 
     public PasswordService(String password) {
@@ -21,16 +22,15 @@ public class PasswordService {
         this.passwordEncrypt(this.password);
     }
 
-    public String passwordEncrypt(String inputStr){
-        BigInteger sha =null;
-        byte[] inputData = inputStr.getBytes(); 
+    public String passwordEncrypt(String inputStr) {
+        BigInteger sha = null;
+        byte[] inputData = inputStr.getBytes();
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance(KEY_SHA); 
+            MessageDigest messageDigest = MessageDigest.getInstance(KEY_SHA);
             messageDigest.update(inputData);
-            sha = new BigInteger(messageDigest.digest()); 
-            System.out.println("SHA加密后:" + sha.toString()); 
-        } 
-        catch (Exception e) {
+            sha = new BigInteger(messageDigest.digest());
+            System.out.println("SHA加密后:" + sha.toString());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

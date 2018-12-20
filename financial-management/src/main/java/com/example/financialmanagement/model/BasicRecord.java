@@ -1,6 +1,7 @@
 package com.example.financialmanagement.model;
 
 import java.sql.Time;
+
 import org.springframework.stereotype.Repository;
 
 //注册为bean
@@ -14,27 +15,27 @@ public class BasicRecord {
     private String other;  //备注
 
     public BasicRecord() {
-        
+
     }
 
     public BasicRecord(Time recordtime, int value) {
         super();
         this.setRecordtime(recordtime);
-        this.setValue(value);   
+        this.setValue(value);
     }
 
     public BasicRecord(int recordnum, Time recordtime, int value) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
-        this.setValue(value);   
+        this.setValue(value);
     }
 
     public BasicRecord(int recordnum, Time recordtime, int value, String category) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
-        this.setValue(value);   
+        this.setValue(value);
         this.setCategory(category);
     }
 
@@ -42,13 +43,10 @@ public class BasicRecord {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
-        this.setValue(value);   
+        this.setValue(value);
         this.setCategory(category);
         this.setOther(other);
     }
-
-
-
 
 
     /**
@@ -120,5 +118,5 @@ public class BasicRecord {
     public void setOther(String other) {
         this.other = other;
     }
-    
+
 }

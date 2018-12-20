@@ -75,6 +75,8 @@ Personal Financial Management System
 
 **主页面**：
 
+**MainController**
+
 从session中得到用户的userid，发给Service层
 
 
