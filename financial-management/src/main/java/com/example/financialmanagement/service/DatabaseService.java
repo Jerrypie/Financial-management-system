@@ -14,35 +14,35 @@ public class DatabaseService {
     @Autowired
     User user = new User();
   
-    boolean InsertDB() {
+    boolean insertDB() {
         return 1>0;
     }
     
-    boolean DeleteDB(){
+    boolean deleteDB(){
         return 1>0;
     }
     
-    boolean UpdateDB(){
+    boolean updateDB(){
         return 1>0;
     }
     
-    boolean IsFindDB(){
+    boolean isFindDB(){
         return 1>0;
     }
     
     //时间内多少条这个user的记录
-    int FindNum(Time t1, Time t2){
+    int findNum(Time t1, Time t2){
         return 1;
     }
     
-    List<BasicRecord> FindRecord(Time StartTime, Time EndTime) {
+    List<BasicRecord> findRecord(Time StartTime, Time EndTime) {
         //查数据库，找record，返回list
         List<BasicRecord> record = new ArrayList<BasicRecord>();
         return record;
     }
     
      //按类别查询
-    List<BasicRecord> FindRecord(){
+    List<BasicRecord> findRecord(){
         List<BasicRecord> record = new ArrayList<BasicRecord>();
         return record;
     }

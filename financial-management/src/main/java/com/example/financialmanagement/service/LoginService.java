@@ -13,13 +13,13 @@ public class LoginService {
     }
 
     //用户存在
-    boolean IsUserExist (){
+    boolean isUserExist (){
       return 1>0;
     }
     
     //密码匹配不匹配
-    boolean MarchPassword (){
-      encoder.PasswordEncrypt(user.getPassword());
+    boolean marchPassword (){
+      encoder.passwordEncrypt(user.getPassword());
       return 1>0;
     }
   }

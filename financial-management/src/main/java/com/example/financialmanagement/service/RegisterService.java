@@ -15,7 +15,7 @@ public class RegisterService {
         return 1>0;
     }
   
-    boolean UserInsert() {
+    boolean userInsert() {
         if(this.isValid()){
         //数据库操作
             return 1>0;

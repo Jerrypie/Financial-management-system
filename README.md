@@ -88,7 +88,7 @@ Personal Financial Management System
 ```
 PasswordService {
   String passWord
-  PasswordEncrypt (String ) {
+  passwordEncrypt (String ) {
     
     ...
     ...
@@ -103,15 +103,15 @@ PasswordService {
 ```
 LoginService {
   User user
-  PassWordService Encoder
+  PassWordService encoder
   //用户存在
-  bool IsUserExist (){
+  bool isUserExist (){
 	...
   }
   
   //密码匹配不匹配
-  bool MarchPassword (){
-    Encoder.PasswordEncrypt()
+  bool marchPassword (){
+    Encoder.passwordEncrypt()
     ...
   }
 }
@@ -170,33 +170,33 @@ MainService {
 DatabaseService {
   User user
 
-  bool InsertDB() {
+  bool insertDB() {
   	...  
   }
   
-  bool DeleteDB(){
+  bool deleteDB(){
     ...
   }
   
-  bool UpdateDB(){
+  bool updateDB(){
     ...
   }
   
-  bool IsFindDB(){
+  bool isFindDB(){
     ...
   }
   
   //时间内多少条这个user的记录
-  int FindNum(Time t1， Time t2){
+  int findNum(Time t1， Time t2){
     ...
   }
   
-  List <BasicRecord> FindRecord(Time StartTime, Time EndTime) {
+  List <BasicRecord> findRecord(Time StartTime, Time EndTime) {
   	//查数据库，找record，返回list
   }
   
    //按类别查询
-  List <BasicRecord> FindRecord(){
+  List <BasicRecord> findRecord(){
     ...
   }
  

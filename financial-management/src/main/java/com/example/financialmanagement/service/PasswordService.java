@@ -18,10 +18,10 @@ public class PasswordService {
     public PasswordService(String password) {
         super();
         this.setPassword(password);
-        this.PasswordEncrypt(this.password);
+        this.passwordEncrypt(this.password);
     }
 
-    public String PasswordEncrypt(String inputStr){
+    public String passwordEncrypt(String inputStr){
         BigInteger sha =null;
         byte[] inputData = inputStr.getBytes(); 
         try {
