@@ -10,6 +10,6 @@ public class IndexController {
     //将 / /index map到默认index.html
     @RequestMapping({"", "/", "/index"})
     public String IndexPage() {
-        return "index.html";
+        return "index";
     }
 }

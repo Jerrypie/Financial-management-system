@@ -30,7 +30,6 @@ public class UserService {
 
     //查询所有数据,返回一个list集合
     public List<User> getAll() {
-
         return userRepository.findAll();
     }
 
@@ -40,12 +39,12 @@ public class UserService {
         return op;
     }
 
+    //根据id和密码查询
     public User getByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username,password);
     }
 
-
-//
-//    public  Optional<User> getByNameAndPwd(User user) {
-//    }
+    public  User getByName(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
