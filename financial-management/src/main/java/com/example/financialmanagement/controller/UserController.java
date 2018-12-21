@@ -21,5 +21,7 @@ public class UserController {
         user.setUsername("username");
         user.setEmail("email");
         userService.save(user);
+        User u = userService.getByUsernameAndPassword("username","password");
+        System.out.println(u.getUserid());
     }
 }

@@ -39,6 +39,12 @@ public class UserService {
         Optional<User> op = userRepository.findById(id);
         return op;
     }
+
+    public User getByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username,password);
+    }
+
+
 //
 //    public  Optional<User> getByNameAndPwd(User user) {
 //    }

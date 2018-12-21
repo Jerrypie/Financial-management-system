@@ -18,7 +18,7 @@ public class LoginController {
     public String login(String UserName, String Password) {
         if(UserName != null && UserName.length() != 0
             && Password != null && Password.length() != 0){
-//
+
 //            //如果数据库中有这条记录
 //            if (){
 //

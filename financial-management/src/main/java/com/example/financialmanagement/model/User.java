@@ -1,19 +1,18 @@
 package com.example.financialmanagement.model;
 
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.List;
 
 //注册为bean实体类
 @Entity()
-@Table(name="user")
+@Table(name = "user")
 //用户类
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userid")
+    @Column(name = "userid", unique = true)
     private int userid;
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Column(name = "password")
     private String password;
@@ -21,7 +20,7 @@ public class User {
     private String email;
 
     @OneToMany
-    @JoinColumn(name="userid")
+    @JoinColumn(name = "userid")
     private List<BasicRecord> records;
 
 
