@@ -37,7 +37,5 @@ public class LoginController {
             request.setAttribute("msg",msg);
             return "index";
         }
-
-
     }
 }
