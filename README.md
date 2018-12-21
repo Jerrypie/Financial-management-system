@@ -5,29 +5,45 @@ Personal Financial Management System
 
 12.17  登录注册页面 前端 v1
 
-## 学习进展
-
-### Long
-
-* 11.4 学习和测试html的基础内容，比如标签，属性，以及html的基本样式。
-
-### Xie
-
-* 11.4 学习java基础语法、数据类型以及相关运算操作，编写几个简单的java程序并调试运行。
+12.21 登录后端开发完成
 
 
 
-### Mu
+## 项目结构
 
-- 11.4 java基础语法、变量、条件分支、循环、数组、字符串、正则表达式。
+```
+- src
+	-main
+		-java(com-example)
+			-controller 控制器模块
+				-IndexController.java 跳转主页面
+				-LogStatusController.java 控制login和logout
+				-MainController.java 主页面的控制器
+				-RegisterController.java 注册控制器
+                		-TestController.java 暂时没什么用，测试
+                		-UserController.java 暂时没什么用，测试
+			-model 模型模块
+				-BasicRecord.java 记账记录的实体类
+				-User.java 用户实体类
+				-UserRepository.java 用户Repository层，封装数据库操作
+				-BasicRecordRepository.java 记账记录Repository层，封装数据库操作
+			-service 业务层
+				-UserService.java 用户给控制器提供服务，服务层，调用Repository层
+				-BasicRecordService.java 记录的业务层
+		-resource
+			-static 静态文件
+			-templates 动态模板html文件
+	-test
+- target ：class文件
+```
 
-  ​
+
+
+
+
+
 
 ## 遇到的问题
-
-- 11.4（Mu）vscode java编译环境，面向对象protected理解??
-- 11.4（Xie）java内置类库的使用，vscode相关操作不熟练。
-- 11.4（Long) 对html的内联还有头部元素等一些标签较为生疏。
 
 ## 资源分享
 
@@ -56,10 +72,6 @@ Personal Financial Management System
 ​										->密码错了，登录失败，返回消息
 
 不存在-> 返回一个错误消息提示 跳转首页
-
-
-
-
 
 
 

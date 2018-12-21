@@ -8,6 +8,10 @@ label {
 	font-weight: bold;
 }
 
+#msgwarning {
+	color: #FF4500;
+}
+
 /*主main框的样式*/
 .main {
 	font-family: Microsoft YaHei;
@@ -86,3 +90,5 @@ h3{
 	font-size: 13px;
 	color: #989898
 }
+
+
