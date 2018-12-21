@@ -18,10 +18,10 @@ Personal Financial Management System
 			-controller 控制器模块
 				-IndexController.java 跳转主页面
 				-LogStatusController.java 控制login和logout
-				-MainController 主页面的控制器
-				-RegisterController 注册控制器
-                -TestController 暂时没什么用，测试
-                -UserController 暂时没什么用，测试
+				-MainController.java 主页面的控制器
+				-RegisterController.java 注册控制器
+                		-TestController.java 暂时没什么用，测试
+                		-UserController.java 暂时没什么用，测试
 			-model 模型模块
 				-BasicRecord.java 记账记录的实体类
 				-User.java 用户实体类
@@ -29,6 +29,7 @@ Personal Financial Management System
 				-BasicRecordRepository.java 记账记录Repository层，封装数据库操作
 			-service 业务层
 				-UserService.java 用户给控制器提供服务，服务层，调用Repository层
+				-BasicRecordService.java 记录的业务层
 		-resource
 			-static 静态文件
 			-templates 动态模板html文件
