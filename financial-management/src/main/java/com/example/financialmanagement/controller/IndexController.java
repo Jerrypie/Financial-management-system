@@ -12,4 +12,8 @@ public class IndexController {
     public String IndexPage() {
         return "index";
     }
+    @RequestMapping({"/signup"})
+    public String signupPage() {
+        return "signup";
+    }
 }
