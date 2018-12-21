@@ -18,10 +18,9 @@ public class UserController {
     @RequestMapping("/test")  
     public void getAllUsers(){
         User user = new User();
-        user.setPassword("asdfasdf");
-        user.setUsername("asdfasd");
-        user.setUserid(5);
-        user.setEmail("asdfasdfffff");
+        user.setPassword("password");
+        user.setUsername("username");
+        user.setEmail("email");
         userService.save(user);
     }  
 }

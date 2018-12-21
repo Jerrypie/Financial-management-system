@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,8 +27,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    //查询所有数据
-    public Iterable<User> getAll() {
+    //查询所有数据,返回一个list集合
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
@@ -36,7 +37,5 @@ public class UserService {
         Optional<User> op = userRepository.findById(id);
         return op;
     }
-
-
 
 }

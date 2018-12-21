@@ -7,14 +7,11 @@ import javax.persistence.*;
 @Entity()
 //用户类
 public class User {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Integer userid;
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userid;
     private String username;
-    @Column
     private String password;
-    @Column
     private String email;
 
 
