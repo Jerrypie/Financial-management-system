@@ -5,12 +5,38 @@ import com.example.financialmanagement.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Service
 public class UserService {
-    @Autowired
+    @Resource
     private UserRepository userRepository;
 
+    //保存对象
+    @Transactional
     public User save(User user) {
         return userRepository.save(user);
     }
+
+    //根据id删除对象
+    @Transactional
+    public void delete(int id){
+        userRepository.deleteById(id);
+    }
+
+    //查询所有数据
+    public Iterable<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    //根据id查询数据
+    public Optional<User> getById(Integer id) {
+        Optional<User> op = userRepository.findById(id);
+        return op;
+    }
+
+
+
 }
