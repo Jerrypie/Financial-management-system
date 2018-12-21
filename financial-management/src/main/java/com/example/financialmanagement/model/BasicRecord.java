@@ -1,19 +1,25 @@
 package com.example.financialmanagement.model;
 
-
-import org.springframework.stereotype.Repository;
-
 import java.util.Date;
 
+import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 //注册为bean
-@Repository
+@Entity()
+@Table(name="basicrecord")
 //记录类
 public class BasicRecord {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int recordnum;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date recordtime;  //收支时间
     private double value;    //花的钱
     private int category; //种类（要改类型）
     private String other;  //备注
+    
     public BasicRecord() {
 
     }

@@ -1,10 +1,12 @@
 package com.example.financialmanagement.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 //注册为bean实体类
-@Table(name="user")
 @Entity()
+@Table(name="user")
 //用户类
 public class User {
     @Id
@@ -13,6 +15,10 @@ public class User {
     private String username;
     private String password;
     private String email;
+
+    @OneToMany
+    @JoinColumn(name="userid")
+    private List<BasicRecord> records;
 
 
     public User() {
@@ -95,6 +101,15 @@ public class User {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public List<BasicRecord> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<BasicRecord> records) {
+        this.records = records;
     }
 
 }
