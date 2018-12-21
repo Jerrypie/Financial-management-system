@@ -1,37 +1,37 @@
 package com.example.financialmanagement.model;
 
-import java.sql.Time;
 
 import org.springframework.stereotype.Repository;
+
+import java.util.Date;
 
 //注册为bean
 @Repository
 //记录类
 public class BasicRecord {
     private int recordnum;
-    private Time recordtime;  //收支时间
-    private int value;    //花的钱
-    private String category; //种类（要改类型）
+    private Date recordtime;  //收支时间
+    private double value;    //花的钱
+    private int category; //种类（要改类型）
     private String other;  //备注
-
     public BasicRecord() {
 
     }
 
-    public BasicRecord(Time recordtime, int value) {
+    public BasicRecord(Date recordtime, int value) {
         super();
         this.setRecordtime(recordtime);
         this.setValue(value);
     }
 
-    public BasicRecord(int recordnum, Time recordtime, int value) {
+    public BasicRecord(int recordnum, Date recordtime, int value) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
         this.setValue(value);
     }
 
-    public BasicRecord(int recordnum, Time recordtime, int value, String category) {
+    public BasicRecord(int recordnum, Date recordtime, int value, int category) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
@@ -39,7 +39,7 @@ public class BasicRecord {
         this.setCategory(category);
     }
 
-    public BasicRecord(int recordnum, Time recordtime, int value, String category, String other) {
+    public BasicRecord(int recordnum, Date recordtime, int value, int category, String other) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
@@ -66,42 +66,42 @@ public class BasicRecord {
     /**
      * @return the recordtime
      */
-    public Time getRecordtime() {
+    public Date getRecordtime() {
         return recordtime;
     }
 
     /**
      * @param recordtime the recordtime to set
      */
-    public void setRecordtime(Time recordtime) {
+    public void setRecordtime(Date recordtime) {
         this.recordtime = recordtime;
     }
 
     /**
      * @return the value
      */
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
     /**
      * @param value the value to set
      */
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
     /**
      * @return the category
      */
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
     /**
      * @param category the category to set
      */
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
