@@ -24,11 +24,13 @@ public class UserService {
     //根据id删除对象
     @Transactional
     public void delete(int id){
+
         userRepository.deleteById(id);
     }
 
     //查询所有数据,返回一个list集合
     public List<User> getAll() {
+
         return userRepository.findAll();
     }
 
@@ -37,5 +39,7 @@ public class UserService {
         Optional<User> op = userRepository.findById(id);
         return op;
     }
-
+//
+//    public  Optional<User> getByNameAndPwd(User user) {
+//    }
 }

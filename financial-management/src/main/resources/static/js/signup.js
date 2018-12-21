@@ -2,7 +2,7 @@
 
 function Checked()
 {
- //   var strmg = myform.UserId.value;
+ //   var strmg = myform.UserName.value;
     var pass = myform.Password.value;
     var pass2 = myform.Password2.value;
   //  var eml = myform.Email.value;
@@ -10,7 +10,7 @@ function Checked()
 /*    if(strmg == "")//如果用户名为空
     {
         alert("您还没有填写用户名！");
-        myform.UserId.focus();
+        myform.UserName.focus();
         return false;
     }
     if(pass == "")//如果密码为空

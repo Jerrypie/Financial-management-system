@@ -10,10 +10,14 @@ import javax.persistence.*;
 //用户类
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userid")
     private int userid;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "email")
     private String email;
 
     @OneToMany
