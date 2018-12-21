@@ -7,7 +7,6 @@ import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
 
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +24,13 @@ public class TestController {
         userRepository.deleteAll();
 
         BasicRecord basicRecord = new BasicRecord();
+        BasicRecord basicRecord2 = new BasicRecord();
         basicRecord.setValue(10);
         basicRecord.setOther("测试1");
         basicRecordRepository.save(basicRecord);
-        basicRecord.setValue(5);
-        basicRecord.setOther("测试2");
-        basicRecordRepository.save(basicRecord);
+        basicRecord2.setValue(5);
+        basicRecord2.setOther("测试2");
+        basicRecordRepository.save(basicRecord2);
 
         User user = new User();
         user.setUsername("longshen");
@@ -43,10 +43,8 @@ public class TestController {
     }
 
     @RequestMapping("/test1")  
-    public void getAllUsers(){
-        User user = new User();
-        user.setPassword("password");
-        user.setUsername("username");
-        user.setEmail("email");
+    public List<User> getAllUsers() {
+        this.initdate();
+        return userRepository.findAll();
     }  
 }
