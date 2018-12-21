@@ -2,15 +2,19 @@ package com.example.financialmanagement.model;
 
 import javax.persistence.*;
 
-//注册为bean
-@Entity
+//注册为bean实体类
+@Table(name="user")
+@Entity()
 //用户类
 public class User {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
     private Integer userid;
+    @Column
     private String username;
+    @Column
     private String password;
+    @Column
     private String email;
 
     public User() {
