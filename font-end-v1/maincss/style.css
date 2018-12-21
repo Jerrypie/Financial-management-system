@@ -21,6 +21,17 @@ html {
 .nav .open > a:focus {
   background-color: transparent;
 }
+/* 平滑弹出侧边栏 */
+.main-sidebar{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	min-height: 100%;
+	width: 230px;
+	z-index: 810;
+	background-color: #222d32ad;/*侧边栏背景色*/
+ }
 /*-------------------------------*/
 /*           Wrappers            */
 /*-------------------------------*/
@@ -167,11 +178,11 @@ html {
   background: transparent;
   border: none;
   display: block;
-  height: 32px;
-  margin-left: 15px;
+  height: 32px;/*汉堡包高度*/
+  margin-left: 15px;/*汉堡包离左边缘距离*/
   position: fixed;
-  top: 20px;
-  width: 32px;
+  top: 20px;/*汉堡包离上边缘距离*/
+  width: 32px;/*汉堡包宽度*/
   z-index: 999;
 }
 .hamburger:hover {
@@ -209,19 +220,20 @@ html {
   -webkit-transition: all 0.35s ease-in-out;
   bottom: 0;
 }
-.hamburger.is-closed .hamb-top {
+
+.hamburger.is-closed .hamb-top {/*汉堡包的三层横线*/
   -webkit-transition: all 0.35s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgb(34, 16, 16);
   top: 5px;
 }
-.hamburger.is-closed .hamb-middle {
-  background-color: rgba(255, 255, 255, 0.7);
+.hamburger.is-closed .hamb-middle {/*汉堡包的三层横线*/
+  background-color: rgb(34, 16, 16);
   margin-top: -2px;
   top: 50%;
 }
-.hamburger.is-closed .hamb-bottom {
+.hamburger.is-closed .hamb-bottom {/*汉堡包的三层横线*/
   -webkit-transition: all 0.35s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgb(34, 16, 16);
   bottom: 5px;
 }
 .hamburger.is-closed .hamb-top,
@@ -230,26 +242,26 @@ html {
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
 .hamburger.is-open .hamb-bottom {
-  height: 4px;
+  height: 4px;/*汉堡包的厚度*/
   left: 0;
   position: absolute;
   width: 100%;
 }
-.hamburger.is-open .hamb-top {
+.hamburger.is-open .hamb-top {/*汉堡包变成的×型左斜*/
   -webkit-transform: rotate(45deg);
   -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
-  background-color: #ffffff;
+  background-color: rgb(34, 16, 16);
   margin-top: -2px;
   top: 50%;
 }
 .hamburger.is-open .hamb-middle {
-  background-color: #ffffff;
+  background-color: #0c5bd1;
   display: none;
 }
-.hamburger.is-open .hamb-bottom {
+.hamburger.is-open .hamb-bottom {/*汉堡包变成的×型右斜*/
   -webkit-transform: rotate(-45deg);
   -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
-  background-color: #ffffff;
+  background-color: rgb(34, 16, 16);
   margin-top: -2px;
   top: 50%;
 }
@@ -287,22 +299,23 @@ html {
   z-index: 1;
 }
 /* SOME DEMO STYLES - NOT REQUIRED */
+
 body,
 html {
-  background-color: #583e7e;
+  background-color: rgb(232, 248, 248);/*主页背景色*/
 }
 body h1,
 body h2,
 body h3,
 body h4 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(37, 12, 12, 0.9);
 }
 body p,
 body blockquote {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(26, 11, 11, 0.7);
 }
 body a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(49, 15, 15, 0.8);
   text-decoration: underline;
 }
 body a:hover {
