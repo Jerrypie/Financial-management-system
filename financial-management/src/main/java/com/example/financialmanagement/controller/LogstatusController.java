@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Email;
 
 @Controller
-public class LoginController {
+public class LogstatusController {
     @Resource
     public UserService userService;
 
@@ -25,6 +26,9 @@ public class LoginController {
             //验证数据库中是否有这条记录
             User user_db = userService.getByUsernameAndPassword(UserName,Password);
             if (user_db != null){
+                //如果用户存在，加入到session 中供后面使用
+                HttpSession session = request.getSession();
+                session.setAttribute("UserObj", user_db);
                 //跳转到主函数
                 return "redirect:/main";
             }else {
@@ -37,5 +41,12 @@ public class LoginController {
             request.setAttribute("msg",msg);
             return "index";
         }
+    }
+
+    //用户退出登录,return到index
+    @PostMapping("/logout.action")
+    public String logout (HttpServletRequest request){
+        request.getSession().removeAttribute("UserObj");//删除session中UserObj
+        return "index";
     }
 }
