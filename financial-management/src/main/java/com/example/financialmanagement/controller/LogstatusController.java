@@ -30,7 +30,7 @@ public class LogstatusController {
                 HttpSession session = request.getSession();
                 session.setAttribute("UserObj", user_db);
                 //跳转到主函数
-                return "redirect:/main";
+                return "main";
             }else {
                 String msg = "输入的密码或用户名有误，请重新输入";
                 request.setAttribute("msg",msg);
