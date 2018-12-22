@@ -125,3 +125,36 @@
 .sidebar-menu .treeview-menu > li.active > a, .sidebar-menu .treeview-menu > li > a:hover {
 color: #fff;/*二层链接悬停颜色*/
 }
+
+.sidebar-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  background: #1c232f;  
+  box-shadow: 0px -1px 5px #0c1119;
+  border-top: 1px solid #222b35;
+}
+.sidebar-footer > a {
+  flex-grow: 1;
+  text-align: center;
+  border-left: 1px solid #222b35;
+  border-right: 1px solid #10151d;
+  height: 30px;
+  line-height: 30px;
+  color:#9c9c9c;
+  position: relative;
+}
+.sidebar-footer > a:first-child {
+  border-left: none;
+}
+.sidebar-footer > a:last-child {
+  border-right: none;
+}
+.sidebar-footer > a:hover{
+  color: #ccc;
+}
+.sidebar-footer > a .notification {
+  position: absolute;
+  top: 0;
+}

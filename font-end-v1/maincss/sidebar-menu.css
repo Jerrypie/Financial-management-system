@@ -290,118 +290,6 @@ html {
   line-height: 44px;
 }
 /*-------------------------------*/
-/*       Hamburger-Cross         */
-/*-------------------------------*/
-.hamburger {
-  background: transparent;
-  border: none;
-  display: block;
-  height: 32px;/*汉堡包高度*/
-  margin-left: 15px;/*汉堡包离左边缘距离*/
-  position: fixed;
-  top: 20px;/*汉堡包离上边缘距离*/
-  width: 32px;/*汉堡包宽度*/
-  z-index: 999;
-}
-.hamburger:hover {
-  outline: none;
-}
-.hamburger:focus {
-  outline: none;
-}
-.hamburger:active {
-  outline: none;
-}
-.hamburger.is-closed:before {
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-transition: all 0.35s ease-in-out;
-  color: #ffffff;
-  content: '';
-  display: block;
-  font-size: 14px;
-  line-height: 32px;
-  opacity: 0;
-  text-align: center;
-  width: 100px;
-}
-.hamburger.is-closed:hover before {
-  -webkit-transform: translate3d(-100px, 0, 0);
-  -webkit-transition: all 0.35s ease-in-out;
-  display: block;
-  opacity: 1;
-}
-.hamburger.is-closed:hover .hamb-top {
-  -webkit-transition: all 0.35s ease-in-out;
-  top: 0;
-}
-.hamburger.is-closed:hover .hamb-bottom {
-  -webkit-transition: all 0.35s ease-in-out;
-  bottom: 0;
-}
-
-.hamburger.is-closed .hamb-top {/*汉堡包的三层横线*/
-  -webkit-transition: all 0.35s ease-in-out;
-  background-color: rgb(34, 16, 16);
-  top: 5px;
-}
-.hamburger.is-closed .hamb-middle {/*汉堡包的三层横线*/
-  background-color: rgb(34, 16, 16);
-  margin-top: -2px;
-  top: 50%;
-}
-.hamburger.is-closed .hamb-bottom {/*汉堡包的三层横线*/
-  -webkit-transition: all 0.35s ease-in-out;
-  background-color: rgb(34, 16, 16);
-  bottom: 5px;
-}
-.hamburger.is-closed .hamb-top,
-.hamburger.is-closed .hamb-middle,
-.hamburger.is-closed .hamb-bottom,
-.hamburger.is-open .hamb-top,
-.hamburger.is-open .hamb-middle,
-.hamburger.is-open .hamb-bottom {
-  height: 4px;/*汉堡包的厚度*/
-  left: 0;
-  position: absolute;
-  width: 100%;
-}
-.hamburger.is-open .hamb-top {/*汉堡包变成的×型左斜*/
-  -webkit-transform: rotate(45deg);
-  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
-  background-color: rgb(34, 16, 16);
-  margin-top: -2px;
-  top: 50%;
-}
-.hamburger.is-open .hamb-middle {
-  background-color: #0c5bd1;
-  display: none;
-}
-.hamburger.is-open .hamb-bottom {/*汉堡包变成的×型右斜*/
-  -webkit-transform: rotate(-45deg);
-  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
-  background-color: rgb(34, 16, 16);
-  margin-top: -2px;
-  top: 50%;
-}
-.hamburger.is-open:before {
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-transition: all 0.35s ease-in-out;
-  color: #ffffff;
-  content: '';
-  display: block;
-  font-size: 14px;
-  line-height: 32px;
-  opacity: 0;
-  text-align: center;
-  width: 100px;
-}
-.hamburger.is-open:hover before {
-  -webkit-transform: translate3d(-100px, 0, 0);
-  -webkit-transition: all 0.35s ease-in-out;
-  display: block;
-  opacity: 1;
-}
-/*-------------------------------*/
 /*          Dark Overlay         */
 /*-------------------------------*/
 .overlay {
@@ -420,7 +308,7 @@ html {
 
 body,
 html {
-  background-color: rgb(232, 248, 248);/*主页背景色*/
+  background-color: rgb(252, 252, 252);/*主页背景色*/
 }
 body h1,
 body h2,
