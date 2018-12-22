@@ -17,8 +17,12 @@ Personal Financial Management System
 - src
 	-main
 		-java(com-example)
+			-component 组件模块
+				-LoginHandlerInterceptor.java 登录检查，没有登录的用户不能访问其它资源
+			-config 配置模块
+				-MvcConfig.java 扩展spring MVC功能，设置映射和注册拦截器，除了特定的请求都拦截
 			-controller 控制器模块
-				-IndexController.java 跳转主页面
+				(已删除)-IndexController.java 跳转主页面
 				-LogStatusController.java 控制login和logout
 				-MainController.java 主页面的控制器
 				-RegisterController.java 注册控制器

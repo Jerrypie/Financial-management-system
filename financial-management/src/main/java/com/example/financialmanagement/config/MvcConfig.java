@@ -19,7 +19,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
         registry.addViewController("/main.html").setViewName("main");
     }
 
-    //注册拦截器
+    //注册拦截器，除了特定的请求都拦截
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
