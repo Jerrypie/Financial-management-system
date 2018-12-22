@@ -15,7 +15,7 @@ public class RegisterController {
     public UserService userService;
 
     //接收登录信息，return到MainController
-    @PostMapping("/registe.action")
+    @PostMapping("/register.action")
     public String login(String UserName, String Password,String Email, HttpServletRequest request) {
 
         //验证用户名和密码是否为空
@@ -28,7 +28,7 @@ public class RegisterController {
                 //如果用户存在，用户重新输入
                 String msg = "输入的用户名已存在，请重新输入";
                 request.setAttribute("msg",msg);
-                return "signup";
+                return "signup.html";
             }else {
                 //用户不存在进行注册
                 User user_new = new User();
@@ -38,12 +38,12 @@ public class RegisterController {
                 userService.save(user_new);
                 String msg = "注册成功，请登录";
                 request.setAttribute("msg",msg);
-                return "index";
+                return "index.html";
             }
         }else{
             String msg = "输入的密码或用户名为空";
             request.setAttribute("msg",msg);
-            return "signup";
+            return "signup.html";
         }
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class MainController {
 
-
     @ResponseBody
     @RequestMapping("/loginError")
     public String loginError() {

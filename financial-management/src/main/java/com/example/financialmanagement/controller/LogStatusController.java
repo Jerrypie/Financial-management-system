@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Email;
 
 @Controller
-public class LogstatusController {
+public class LogStatusController {
     @Resource
     public UserService userService;
 
@@ -29,17 +29,17 @@ public class LogstatusController {
                 //如果用户存在，加入到session 中供后面使用
                 HttpSession session = request.getSession();
                 session.setAttribute("UserObj", user_db);
-                //跳转到主函数
-                return "main";
+                //跳转到主函数,防止重复提交，重定向到主页
+                return "redirect:/main.html";
             }else {
                 String msg = "输入的密码或用户名有误，请重新输入";
                 request.setAttribute("msg",msg);
-                return "index";
+                return "index.html";
             }
         }else{
             String msg = "输入的密码或用户名为空";
             request.setAttribute("msg",msg);
-            return "index";
+            return "index.html";
         }
     }
 
@@ -47,6 +47,6 @@ public class LogstatusController {
     @PostMapping("/logout.action")
     public String logout (HttpServletRequest request){
         request.getSession().removeAttribute("UserObj");//删除session中UserObj
-        return "index";
+        return "index.html";
     }
 }
