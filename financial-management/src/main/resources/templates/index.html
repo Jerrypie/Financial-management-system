@@ -57,7 +57,7 @@
 					</div>
 
 					<div>
-							<label th:text="${#request.getAttribute('msg')}" style="color: #FF4500;" id="msgwarning"></label>
+							<p th:text="${#request.getAttribute('msg')}" th:if="${not #strings.isEmpty(msg)}" style="color: #FF4500;" ></p>
 					</div>
 
 					<div class="form-group text2">

@@ -77,6 +77,11 @@
 						<button type="reset" class="btn btn-info btn-my-res">重置</button>
 					</div>
 
+
+					<div>
+						<p th:text="${#request.getAttribute('msg')}" th:if="${not #strings.isEmpty(msg)}" style="color: #FF4500;" ></p>
+					</div>
+
 					<div class="form-group">
 							<p style="text-align: right;">已有账号？<a href="index">快去登录</a> </p>
 					</div>
