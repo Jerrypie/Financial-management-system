@@ -1,14 +1,13 @@
 package com.example.financialmanagement.model;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
 
 //注册为bean
 @Entity()
-@Table(name="basicrecord")
+@Table(name = "basicrecord")
 //记录类
 public class BasicRecord {
     @Id
@@ -19,7 +18,7 @@ public class BasicRecord {
     private double value;    //花的钱
     private int category; //种类（要改类型）
     private String other;  //备注
-    
+
     public BasicRecord() {
 
     }

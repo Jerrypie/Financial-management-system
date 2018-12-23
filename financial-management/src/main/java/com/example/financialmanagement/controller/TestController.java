@@ -1,15 +1,14 @@
 package com.example.financialmanagement.controller;
 
-import java.util.List;
-
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 //测试数据库用
@@ -19,7 +18,7 @@ public class TestController {
     @Autowired
     public UserRepository userRepository;
 
-    public void initdate(){
+    public void initdate() {
         basicRecordRepository.deleteAll();
         userRepository.deleteAll();
 
@@ -42,9 +41,9 @@ public class TestController {
         userRepository.save(user);
     }
 
-    @RequestMapping("/test1")  
+    @RequestMapping("/test1")
     public List<User> getAllUsers() {
         this.initdate();
         return userRepository.findAll();
-    }  
+    }
 }

@@ -2,7 +2,6 @@ package com.example.financialmanagement.controller;
 
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +20,7 @@ public class UserController {
         user.setUsername("username");
         user.setEmail("email");
         userService.save(user);
-        User u = userService.getByUsernameAndPassword("username","password");
+        User u = userService.getByUsernameAndPassword("username", "password");
         System.out.println(u.getUserid());
     }
 }

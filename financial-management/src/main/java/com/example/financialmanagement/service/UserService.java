@@ -3,9 +3,14 @@ package com.example.financialmanagement.service;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
 import org.springframework.stereotype.Service;
+import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +18,6 @@ import java.util.Optional;
 public class UserService {
     @Resource
     private UserRepository userRepository;
-
 
     //保存对象
     @Transactional
@@ -46,4 +50,14 @@ public class UserService {
     public User getByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    public String passwordEncrypt(String Str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        BASE64Encoder base64en = new BASE64Encoder();
+
+        //加密后的字符串
+        String newstr = base64en.encode(md5.digest(Str.getBytes(StandardCharsets.UTF_8)));
+        return newstr;
+    }
+
 }
