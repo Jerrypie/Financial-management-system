@@ -1,9 +1,9 @@
 package com.example.financialmanagement.service;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
-
-import org.springframework.stereotype.Service;
 
 //注册为bean
 @Service

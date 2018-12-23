@@ -1,10 +1,10 @@
 package com.example.financialmanagement.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainService {
     User user;
@@ -36,5 +36,5 @@ public class MainService {
         List<BasicRecord> record = new ArrayList<BasicRecord>();
         return record;
     }
-    
+
 }

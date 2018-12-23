@@ -2,7 +2,6 @@ package com.example.financialmanagement.service;
 
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,8 +23,7 @@ public class UserService {
 
     //根据id删除对象
     @Transactional
-    public void delete(int id){
-
+    public void delete(int id) {
         userRepository.deleteById(id);
     }
 
@@ -42,10 +40,10 @@ public class UserService {
 
     //根据id和密码查询
     public User getByUsernameAndPassword(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username,password);
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
-    public  User getByUsername(String username) {
+    public User getByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 }
