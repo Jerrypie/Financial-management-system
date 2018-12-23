@@ -4,6 +4,7 @@ import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +29,11 @@ public class LogStatusController {
             Password = userService.passwordEncrypt(Password);
             User user_db = userService.getByUsernameAndPassword(UserName, Password);
             if (user_db != null) {
+
                 //如果用户存在，加入到session 中供后面使用
                 HttpSession session = request.getSession();
                 session.setAttribute("UserObj", user_db);
+
                 //跳转到主函数,防止重复提交，重定向到主页
                 return "redirect:/main.html";
             } else {
@@ -46,7 +49,8 @@ public class LogStatusController {
     }
 
     //用户退出登录,return到index
-    @PostMapping("/logout.action")
+//    @PostMapping("/logout.action")
+    @RequestMapping("/logout.action")
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("UserObj");//删除session中UserObj
         return "index.html";

@@ -15,6 +15,7 @@ public class UserController {
 
     @RequestMapping("/test")
     public void getAllUsers() {
+
         User user = new User();
         user.setPassword("password");
         user.setUsername("username");
