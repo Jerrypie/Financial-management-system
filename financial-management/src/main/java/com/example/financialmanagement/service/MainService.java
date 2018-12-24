@@ -1,54 +1,49 @@
 package com.example.financialmanagement.service;
 
 import com.example.financialmanagement.model.BasicRecord;
-import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
-import com.example.financialmanagement.model.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class MainService {
-    User user;
+    private User user;
 
     @Resource
-    private UserRepository userRepository;
-
-    @Resource
-    private BasicRecordRepository basicRecordRepository;
+    private RecordService recordService;
 
 
-
-    //按时间查询
-    List<BasicRecord> presentRecord(int type) {
+    //返回按时间排序的user所有records
+    public List<BasicRecord> getAllSortedRecordsOfUser() {
         //查数据库，找record，返回list
-        switch (type) {
-            case 1: {
-                List<BasicRecord> record = new ArrayList<BasicRecord>();
-                return record;
-            }
-
-
-            case 2: {
-                List<BasicRecord> record = new ArrayList<BasicRecord>();
-                return record;
-            }
-        }
-
-        List<BasicRecord> record = new ArrayList<BasicRecord>();
-        return record;
-
-        //返回一个排序的内容
+        List<BasicRecord> records =  recordService.getAllRecordsOfUser(user.getUsername());
+        return recordService.sortByDate(records);
     }
 
     //按类别查询
-    List<BasicRecord> presentCategoryRecord() {
-        List<BasicRecord> record = new ArrayList<BasicRecord>();
-        return record;
+    public List<BasicRecord> getAllCategoryRecord(int type) {
+        List<BasicRecord> records =  recordService.getAllRecordsOfUser(user.getUsername());
+        List<BasicRecord> resRecords = new ArrayList<>();
+        for (BasicRecord basicRecord: records) {
+            if (basicRecord.getCategory() == type){
+                resRecords.add(basicRecord);
+            }
+        }
+        if(resRecords!=null) {
+            return recordService.sortByDate(resRecords);
+        }else {
+            return null;
+        }
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

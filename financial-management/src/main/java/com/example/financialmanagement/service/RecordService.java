@@ -10,24 +10,29 @@ import javax.annotation.Resource;
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RecordService {
-    User user;
-    @Resource
-    UserService userservice;
+    private User user;
 
+    @Resource
+    private UserService userservice;
+
+    //get特定user的records
     public List<BasicRecord> getAllRecordsOfUser(String username) {
         user = userservice.getByUsername(username);
         return user.getRecords();
     }
 
+    //按日期排序
     public List<BasicRecord> sortByDate(List<BasicRecord> records){
         Collections.sort(records, new DateComparetor());
         return records;
     }
 
+    //三天的记录
     public List<BasicRecord> recordsOfThreeDays(List<BasicRecord> records){
         int i = 0;
         Calendar time_end=Calendar.getInstance();
