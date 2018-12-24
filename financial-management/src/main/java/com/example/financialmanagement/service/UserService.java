@@ -3,7 +3,9 @@ package com.example.financialmanagement.service;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
 import org.springframework.stereotype.Service;
-import sun.misc.BASE64Encoder;
+
+import java.util.Base64;
+import java.util.Base64.Encoder;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -51,12 +53,15 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+
+    //字符串加密，先md5再base64
     public String passwordEncrypt(String Str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md5 = MessageDigest.getInstance("MD5");
-        BASE64Encoder base64en = new BASE64Encoder();
+
+        Encoder encoder = Base64.getEncoder();
 
         //加密后的字符串
-        String newstr = base64en.encode(md5.digest(Str.getBytes(StandardCharsets.UTF_8)));
+        String newstr = encoder.encodeToString(md5.digest(Str.getBytes(StandardCharsets.UTF_8)));
         return newstr;
     }
 
