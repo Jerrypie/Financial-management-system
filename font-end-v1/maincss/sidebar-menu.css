@@ -1,15 +1,26 @@
-.sidebar-menu {
+.sidebar-menu1 {
   list-style: none;
   margin: 0;
   padding: 0;
   background-color: #222d32; 
 }
 
-.sidebar-menu > li {
+.sidebar-menu1 > li {
   position: relative;
   margin: 0;
-  padding: 0; 
+  padding: 0;
 }
+
+/* .nav1{
+  top:0;
+  left:0;
+  right:0;
+  position: fixed;
+  height: 30px;
+  margin: 10px;
+  padding: 5px;
+  background-color: red;
+} */
 
 @media screen and (min-width: 800px) {
   .mob{
@@ -24,42 +35,42 @@
 }
 
 
-.sidebar-menu > li > a {/*侧边栏一层链接*/
+.sidebar-menu1 > li > a {/*侧边栏一层链接*/
   padding: 22px 5px 12px 15px;/*侧边栏单块宽度*/
   display: block;
   border-left: 6px solid transparent;
   color: #ebb43f; 
 }
 
-.sidebar-menu > li > a > .fa {
+.sidebar-menu1 > li > a > .fa {
   width: 20px;
   }
 
-.sidebar-menu > li:hover > a, .sidebar-menu > li.active > a {
+.sidebar-menu1 > li:hover > a, .sidebar-menu1 > li.active > a {
   color: rgb(206, 239, 241);/*鼠标悬停时文字颜色*/
   background: #2c424b;/*鼠标悬停时背景块颜色*/
   border-left-color: #436266; /*鼠标悬停时最左侧示意条颜色*/
 }
 
-.sidebar-menu > li > .treeview-menu {
+.sidebar-menu1 > li > .treeview1-menu {
   margin: 0 1px;
   background: #2c3b41; /*侧边栏二层背景块颜色*/
 }
 
-.sidebar-menu > li .label,
-.sidebar-menu > li .badge {
+.sidebar-menu1 > li .label,
+.sidebar-menu1 > li .badge {
   margin-top: 3px;
   margin-right: 5px; 
 }
 
-.sidebar-menu li.header {
+.sidebar-menu1 li.header {
   padding: 10px 25px 10px 15px;
   font-size: 20px;
   color: #e0f2fa;/*“主选单”颜色*/
   background: #1a2226;
 }
 
-.sidebar-menu li > a > .fa-angle-left {
+.sidebar-menu1 li > a > .fa-angle-left {
   width: auto;
   height: auto;
   padding: 0;
@@ -67,20 +78,20 @@
   margin-top: 3px; 
 }
 
-.sidebar-menu li.active > a > .fa-angle-left {/*旋转*/
+.sidebar-menu1 li.active > a > .fa-angle-left {/*旋转*/
   transform: rotate(-90deg); 
 }
 
-.sidebar-menu li.active > .treeview-menu {
+.sidebar-menu1 li.active > .treeview1-menu {
   display: block; 
 }
 
-.sidebar-menu a {
+.sidebar-menu1 a {
   color: #b8c7ce;
   text-decoration: none; 
 }
 
-.sidebar-menu .treeview-menu {
+.sidebar-menu1 .treeview1-menu {
   display: none;
   list-style: none;
   padding: 0;
@@ -88,31 +99,31 @@
   padding-left: 5px;/*二层文字左边距*/
 }
 
-.sidebar-menu .treeview-menu .treeview-menu {
+.sidebar-menu1 .treeview1-menu .treeview1-menu {
   padding-left: 20px; 
 }
 
-.sidebar-menu .treeview-menu > li {
+.sidebar-menu1 .treeview1-menu > li {
   margin: 0; 
 }
 
-.sidebar-menu .treeview-menu > li > a {
+.sidebar-menu1 .treeview1-menu > li > a {
   padding: 5px 5px 5px 15px;
   display: block;
   font-size: 14px;
   color: #8aa4af; /*二层文字颜色*/
 }
 
-.sidebar-menu .treeview-menu > li > a > .fa {
+.sidebar-menu1 .treeview1-menu > li > a > .fa {
   width: 20px; /*二层文字距离*/
 }
 
-.sidebar-menu .treeview-menu > li > a > .fa-angle-left,
-.sidebar-menu .treeview-menu > li > a > .fa-angle-down {
+.sidebar-menu1 .treeview1-menu > li > a > .fa-angle-left,
+.sidebar-menu1 .treeview1-menu > li > a > .fa-angle-down {
   width: auto; 
 }
 
-.sidebar-menu .treeview-menu > li.active > a, .sidebar-menu .treeview-menu > li > a:hover {
+.sidebar-menu1 .treeview1-menu > li.active > a, .sidebar-menu1 .treeview1-menu > li > a:hover {
 color: #fff;/*二层链接悬停颜色*/
 }
 

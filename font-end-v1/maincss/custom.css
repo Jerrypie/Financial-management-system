@@ -7,16 +7,19 @@
     -o-transition: all 0.3s;
     -ms-transition: all 0.3s;
     transition: all 0.3s;
+    z-index: 100;
 }
 
 /*----------------page-wrapper----------------*/
 .page-wrapper{
-    height: 100vh;
+    height: 50px;
+    z-index: 100;
 }
 
 /*----------------汉堡----------------*/
 .page-wrapper.toggled .sidebar-wrapper{
     left:0px;
+    z-index: 100;
 }
 @media screen and (min-width: 768px) {
     .page-wrapper.toggled .page-content{
@@ -27,6 +30,7 @@
 .page-wrapper.toggled #toggle-sidebar{
     position: absolute;
     color: #cacaca;/*侧边栏内汉堡颜色*/
+    z-index: 100;
 }
 
 /*----------------侧边栏----------------*/
@@ -38,6 +42,7 @@
     position: fixed;
     top: 0;
     left: -300px;/*侧边栏的宽度为300*/
+    z-index: 100;
 }
 
 
@@ -213,6 +218,7 @@
         -moz-osx-font-smoothing: grayscale;
         margin-right:10px;
         font-size: 10px;
+        
 
 
 }
@@ -280,21 +286,25 @@
     display: inline-block;
     width: 100%;
     padding-left: 0px;
+    z-index: 100;
 }
 .page-wrapper .page-content > div {
     padding: 20px 40px;
+    z-index: 100;
 }
 .page-wrapper .page-content {
     overflow-x: hidden;
+    z-index: 100;
 }
 /*---------------------外页面汉堡-------------------------*/
 #toggle-sidebar{
     position: fixed;
-    top: 13px;
+    top: 5px;
     left: 25px;
     /* color: #0f151f; */
     color: rgb(61, 62, 75);/*外页面汉堡颜色*/
     font-size: 28px;
+    z-index: 100;
 }
 
 /*----------------  Scroll bar style   --------------- */
