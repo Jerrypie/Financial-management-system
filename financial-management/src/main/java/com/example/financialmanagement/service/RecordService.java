@@ -10,21 +10,23 @@ import javax.annotation.Resource;
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RecordService {
     private User user;
+
     @Resource
     private UserService userservice;
 
-    //获取某个用户的所有记录，列表形式返回
+    //get特定user的records
     public List<BasicRecord> getAllRecordsOfUser(String username) {
         user = userservice.getByUsername(username);
         return user.getRecords();
     }
 
-    //对所给记录列表排序
+    //按日期排序
     public List<BasicRecord> sortByDate(List<BasicRecord> records){
         Collections.sort(records, new DateComparetor());
         return records;

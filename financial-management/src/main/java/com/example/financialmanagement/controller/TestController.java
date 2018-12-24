@@ -9,12 +9,14 @@ import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
+import com.example.financialmanagement.service.MainService;
 import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 // 测试数据库用
@@ -28,6 +30,11 @@ public class TestController {
     UserService longshen;
     @Resource
     RecordService recordService;
+    @Resource
+    RecordService initializeService;
+
+    @Resource
+    MainService mainService;
 
     public void initdate() {
         // basicRecordRepository.deleteAll();
@@ -82,7 +89,6 @@ public class TestController {
     //UserService返回某用户记录
     @RequestMapping("/test.103")
     public List<BasicRecord> getAllUsersRecords() {
-        this.initdate();
         user = longshen.getByUsername("longshen");
         return user.getRecords();
     }
@@ -126,5 +132,21 @@ public class TestController {
         records = recordService.recordsOfThisYear(records);
         return records;
     }
+
+
+    @RequestMapping("/test.109")
+    public List<BasicRecord> testuser(){
+        user = longshen.getByUsername("longshen");
+        mainService.setUser(user);
+        return mainService.getAllSortedRecordsOfUser();
+    }
+
+    @RequestMapping("/test.110")
+    public List<BasicRecord> testuser2(){
+        user = longshen.getByUsername("longshen");
+        mainService.setUser(user);
+        return mainService.getAllCategoryRecord(1);
+    }
+
 
 }

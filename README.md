@@ -9,6 +9,8 @@ Personal Financial Management System
 
 12.22 注册后端完成
 
+12.24 加入了**MainService**， 封装了返回按时间排序的user所有records，按类别查询，使用首先应该setUser
+
 
 
 ## 项目结构
@@ -22,7 +24,6 @@ Personal Financial Management System
 			-config 配置模块
 				-MvcConfig.java 扩展spring MVC功能，设置映射和注册拦截器，除了特定的请求都拦截
 			-controller 控制器模块
-				(已删除)-IndexController.java 跳转主页面
 				-LogStatusController.java 控制login和logout
 				-MainController.java 主页面的控制器
 				-RegisterController.java 注册控制器
@@ -34,7 +35,8 @@ Personal Financial Management System
 				-UserRepository.java 用户Repository层，封装数据库操作
 				-BasicRecordRepository.java 记账记录Repository层，封装数据库操作
 			-service 业务层
-				-PasswordService.java 提供密码加密服务（暂时不用）
+				-mainService   //主页面的服务，调用RecordService的服务
+				-RecordService   //get特定user的records    //按日期排序    //三天的记录
 				-UserService.java 用户给控制器提供服务，服务层，调用Repository层
 				-BasicRecordService.java 记录的业务层
 		-resource
