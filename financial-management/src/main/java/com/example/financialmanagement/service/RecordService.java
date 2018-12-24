@@ -13,7 +13,7 @@ import com.example.financialmanagement.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InitializeService {
+public class RecordService {
     User user;
     @Resource
     UserService userservice;

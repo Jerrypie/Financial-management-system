@@ -14,16 +14,25 @@
 <!-- 平滑弹出侧边栏 -->
 <link rel="stylesheet" href="maincss/custom.css" media="screen and (min-width: 320px) and (max-width:799px)">
 
+<link rel="stylesheet" href="assets/css/ace.min.css" />
+<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+
+<script src="assets/js/ace-extra.min.js"></script>
+
+
+
 </head>
 <body>
 	
 <!-- <script src="/demos/googlegg.js"></script> -->
 
 <div class="pc"><!--pc端的整体布局-->
-	<aside class="main-sidebar" >
-			<section  class="sidebar">
-				<ul class="sidebar-menu">
-					<li class="header">这里是用户名</li>
+	<aside class="main-sidebar1" >
+				<ul class="sidebar-menu1">
+					<li class="header1">这里是用户名</li>
 					<!--财务概览-->
 					<!--个人信息-->
 					<!--记账日历-->
@@ -36,14 +45,14 @@
 						<a href="#">
 							<span class="fa fa-th"></span> <span>财务概览</span>
 						</a>
-<!-- 						<ul class="treeview-menu">
+	<!-- 						<ul class="treeview-menu">
 							<li><a href="#"><i class="fa fa-circle-o"></i> 最近三天</a></li>
 							<li><a href="#"><i class="fa fa-circle-o"></i> 最近五天</a></li>
 							<li><a href="#"><i class="fa fa-circle-o"></i> 最近一周</a></li>
 							<li><a href="#"><i class="fa fa-circle-o"></i> 最近一月</a></li>
 						</ul> -->
 					</li>
-<!-- 					<li>
+	<!-- 					<li>
 						<a href="#">
 							<span class="glyphicon glyphicon-user"></span> <span>个人信息</span>
 						</a>
@@ -54,27 +63,19 @@
 							<!-- <small class="label pull-right label-danger">3</small> -->
 						</a>
 					</li>
-					<li class="treeview">
+					<li class="treeview1">
 						<a href="#">
 							<i class="glyphicon glyphicon-pencil"></i>
 							<span>收入支出详细</span>
-							<i class="fa fa-angle-left pull-right"></i>
 						</a>
-						<ul class="treeview-menu" style="display: none;">
-							<li><a href="#"><i class="fa fa-circle-o"></i> 工作学习</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 生活</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 娱乐</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 其它</a>
-							</li>
-						</ul>
 					</li>
-					<li class="treeview">
+					<li class="treeview1">
 						<a href="#">
 							<i class="fa fa-pie-chart"></i>
 							<span>可视化图表</span>
 							<i class="fa fa-angle-left pull-right"></i>
 						</a>
-						<ul class="treeview-menu">
+						<ul class="treeview1-menu">
 							<li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>
 							<li><a href="#"><i class="fa fa-circle-o"></i> 饼状图</a></li>
 							<li><a href="#"><i class="fa fa-circle-o"></i> 条形图</a></li>
@@ -87,128 +88,282 @@
 							<!-- <small class="label pull-right label-danger">3</small> -->
 						</a>
 					</li>
-<!-- 					<li>
+	<!-- 					<li>
 						<a href="#">
 							<span class="glyphicon glyphicon-cog"></span> <span>个人设置</span>
 						</a>
 					</li> -->
-					<li>
-						<a href="#">
-							<span class="glyphicon glyphicon-off"></span> <span>注销</span>
-						</a>
-					</li>
-					<div class="sidebar-footer">
-						<a href="#"><i class="glyphicon glyphicon-share"></i></a>
+					<div class="sidebar-footer1">
+						<!-- <a href="#"><i class="glyphicon glyphicon-share"></i></a>
 						<a href="#"><i class="glyphicon glyphicon-user"></i></a>
-						<a href="#"><i class="fa fa-gear"></i></a>
+						<a href="#"><i class="fa fa-gear"></i></a> -->
 						<a href="#"><i class="fa fa-power-off"></i></a>
 					</div>
 				</ul>
-			</section>
-	</aside>
+	</aside>		
 </div>
 
 <div id="wrapper" class="mob"><!--移动端的整体布局-->
-	<div class="page-wrapper">
+	<div class="nav1">	
+		<div class="page-wrapper">
 			<nav id="sidebar" class="sidebar-wrapper">
-			<div class="sidebar-content">
-				<a href="#" id="toggle-sidebar"><i class="fa fa-bars"></i></a>
-				<div class="sidebar-brand">
-					<a href="#">这里放用户名</a>
+				<div class="sidebar-content">
+					<a href="#" id="toggle-sidebar"><i class="fa fa-bars"></i></a>
+					<div class="sidebar-brand">
+						<a href="#">这里放用户名</a>
+					</div>
+					<ul class="sidebar-menu1">
+						<!--财务概览-->
+						<!--个人信息-->
+						<!--记账日历-->
+						<!--可视化图表-->
+						<!--收入支出详细-->
+						<!--新的项目-->
+						<!--注销-->
+						<!--设置-->
+						<li class="treeview1">
+							<a href="#">
+								<span class="fa fa-th"></span> <span>财务概览</span>
+							</a>
+						</li>
+						<!-- <li>
+							<a href="#">
+								<span class="glyphicon glyphicon-user"></span> <span>个人信息</span>
+							</a>
+						</li> -->
+						<li>
+							<a href="#">
+								<i class="fa fa-edit"></i> <span>新的项目</span>
+								<!-- <small class="label pull-right label-danger">3</small> -->
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="glyphicon glyphicon-pencil"></i>
+								<span>收入支出详细</span>
+							</a>
+							<ul class="treeview1-menu" style="display: none;">
+							</ul>
+						</li>
+						<li class="treeview1">
+							<a href="#">
+								<i class="fa fa-pie-chart"></i>
+								<span>可视化图表</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview1-menu">
+								<li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> 饼状图</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> 条形图</a></li>
+								<li><a href="#"><i class="fa fa-circle-o"></i> 更多</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-calendar"></i> <span>记账日历</span>
+								<!-- <small class="label pull-right label-danger">3</small> -->
+							</a>
+						</li>
+					</ul>       
+				</div><!-- sidebar-content  -->
+		
+				<div class="sidebar-footer">
+					<!-- <a href="#"><i class="glyphicon glyphicon-share"></i></a>
+					<a href="#"><i class="glyphicon glyphicon-user"></i></a>
+					<a href="#"><i class="fa fa-gear"></i></a> -->
+					<a href="#"><i class="fa fa-power-off"></i></a>
 				</div>
-				<div class="sidebar-search">
-					<div>                   
-						<div class="input-group">                          
-							<input type="text" class="form-control search-menu" placeholder="搜索内容...">
-							<span class="input-group-addon"><i class="fa fa-search"></i></span>
-						</div>
-					</div>                    
-				</div><!-- sidebar-search  --> 
-				<ul class="sidebar-menu">
-					<!--财务概览-->
-					<!--个人信息-->
-					<!--记账日历-->
-					<!--可视化图表-->
-					<!--收入支出详细-->
-					<!--新的项目-->
-					<!--注销-->
-					<!--设置-->
-					<li class="treeview">
-						<a href="#">
-							<span class="fa fa-th"></span> <span>财务概览</span>
-						</a>
-					</li>
-					<!-- <li>
-						<a href="#">
-							<span class="glyphicon glyphicon-user"></span> <span>个人信息</span>
-						</a>
-					</li> -->
-					<li>
-						<a href="#">
-							<i class="fa fa-edit"></i> <span>新的项目</span>
-							<!-- <small class="label pull-right label-danger">3</small> -->
-						</a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="glyphicon glyphicon-pencil"></i>
-							<span>收入支出详细</span>
-							<i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu" style="display: none;">
-							<li><a href="#"><i class="fa fa-circle-o"></i> 工作学习</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 生活</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 娱乐</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 其它</a>
-							</li>
-						</ul>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-pie-chart"></i>
-							<span>可视化图表</span>
-							<i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 饼状图</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 条形图</a></li>
-							<li><a href="#"><i class="fa fa-circle-o"></i> 更多</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-calendar"></i> <span>记账日历</span>
-							<!-- <small class="label pull-right label-danger">3</small> -->
-						</a>
-					</li>
-				</ul>       
-			</div><!-- sidebar-content  -->
-	
-			<div class="sidebar-footer">
-				<a href="#"><i class="glyphicon glyphicon-share"></i></a>
-				<a href="#"><i class="glyphicon glyphicon-user"></i></a>
-				<a href="#"><i class="fa fa-gear"></i></a>
-				<a href="#"><i class="fa fa-power-off"></i></a>
-			</div>
-		</nav><!-- sidebar-wrapper  -->
-	</div><!-- page-wrapper -->
+			</nav><!-- sidebar-wrapper  -->
+
+			
+		</div>
+	</div>
 </div>
+
+<div class="container">
+	<div class="Acontainer">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">财务概览</a>
+				</div>
+			
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">收支记录 <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">收入记账</a></li>
+						<li><a href="#">支出记账</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<br/>
+
+		<div class="padd">
+			<div class="row">
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="table-responsive">
+									<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="center">
+													<label>
+														<input type="checkbox" class="ace" />
+														<span class="lbl"></span>
+													</label>
+												</th>
+												<th>类别</th>
+												<th>金额</th>
+
+												<th>
+													<i class="icon-time bigger-110 hidden-480"></i>
+													时间
+												</th>
+												<!--<th class="hidden-480">Status</th>-->
+
+												<th>收支类别</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td class="center">
+													<label>
+														<input type="checkbox" class="ace" />
+														<span class="lbl"></span>
+													</label>
+												</td>
+
+												<td>
+													<!--<a href="#">ace.com</a>-->
+
+												</td>
+												<td>$45</td>
+												<td class="hidden-480">3,330</td>
+												<td>Feb 12</td>
+
+												<td class="hidden-480">
+													<span class="label label-sm label-warning">Expiring</span>
+												</td>
+
+												<td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+														<!--<button class="btn btn-xs btn-success">-->
+															<!--<i class="icon-ok bigger-120"></i>-->
+														<!--</button>-->
+
+														<button class="btn btn-xs btn-info">
+															<i class="icon-edit bigger-160"></i>
+														</button>
+
+
+														<button class="btn btn-xs btn-danger">
+															<i class="icon-trash bigger-160"></i>
+														</button>
+
+														<!--<button class="btn btn-xs btn-warning">-->
+															<!--<i class="icon-flag bigger-120"></i>-->
+														<!--</button>-->
+													</div>
+
+													<div class="visible-xs visible-sm hidden-md hidden-lg">
+														<div class="inline position-relative">
+															<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+																<i class="icon-cog icon-only bigger-110"></i>
+															</button>
+
+															<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																<li>
+																	<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+																		<span class="blue">
+																			<i class="icon-zoom-in bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+
+																<li>
+																	<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																		<span class="green">
+																			<i class="icon-edit bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+
+																<li>
+																	<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																		<span class="red">
+																			<i class="icon-trash bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div><!-- /.table-responsive -->
+							</div><!-- /span -->
+						</div><!-- /row -->
+
+						<div class="hr hr-18 dotted hr-double"></div>
+
+						<div class="hr hr-18 dotted hr-double"></div>
+
+					</div><!-- /.col -->
+			</div>
+		</div>
+	</div>
+</div>	
+
 
 <!--移动端的js文件-->
 <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js" type="text/javascript"></script><!--移动端汉堡按钮的打开-->
 <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
-<!-- <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<!-- <script src="assets/js//jquery.mCustomScrollbar.concat.min.js"></script> -->
+
 
 <!--总js文件-->
 <script src='mainjs/bootstrap.min.js'></script>
 <script src="mainjs/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script src="mainjs/sidebar-menu.js"></script>
 <script>
-$.sidebarMenu($('.sidebar-menu'))
+$.sidebarMenu($('.sidebar-menu1'))
 </script>
 
 
+<script type="text/javascript">
+	if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+</script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/typeahead-bs2.min.js"></script>
+
+<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/jquery.slimscroll.min.js"></script>
+<script src="assets/js/jquery.easy-pie-chart.min.js"></script>
+<script src="assets/js/jquery.sparkline.min.js"></script>
+<script src="assets/js/flot/jquery.flot.min.js"></script>
+<script src="assets/js/flot/jquery.flot.pie.min.js"></script>
+<script src="assets/js/flot/jquery.flot.resize.min.js"></script>
+<!-- ace scripts -->
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
 </body>
 </html>

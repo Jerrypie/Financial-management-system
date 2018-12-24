@@ -21,26 +21,6 @@ public class MainService {
     @Resource
     private BasicRecordRepository basicRecordRepository;
 
-    public void initdate() {
-
-        BasicRecord basicRecord = new BasicRecord();
-        basicRecord.setValue(10.5);
-        basicRecord.setCategory(1);
-        Date data = new Date();
-
-
-        basicRecord.setOther("中午吃饭");
-        basicRecordRepository.save(basicRecord);
-
-        User user = new User();
-        user.setUsername("longshen");
-        user.setPassword("nb");
-        userRepository.save(user);
-
-        List<BasicRecord> records = basicRecordRepository.findAll();
-        user.setRecords(records);
-        userRepository.save(user);
-    }
 
 
     //按时间查询
