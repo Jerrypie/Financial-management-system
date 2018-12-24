@@ -28,6 +28,21 @@ public class InitializeService {
         return records;
     }
 
+    public List<BasicRecord> recordsOfThreeDays(List<BasicRecord> records){
+        int i = 0;
+        Calendar time_end=Calendar.getInstance();
+        time_end.add(Calendar.DATE, -3);
+        
+        Collections.sort(records, new DateComparetor());
+        BasicRecord record = records.get(0);
+        while(time_end.before(record.getRecordtime())){
+            i = i + 1;
+            record = records.get(i);
+        }
+        records = records.subList(0, i);
+        return records;
+    }
+
 }
 
 class DateComparetor implements Comparator<BasicRecord> {
@@ -36,9 +51,9 @@ class DateComparetor implements Comparator<BasicRecord> {
         Calendar time1 = o1.getRecordtime();
         Calendar time2 = o2.getRecordtime();
         if(time1.after(time2)){
-            return 1;
-        }else if(time1.before(time2)){
             return -1;
+        }else if(time1.before(time2)){
+            return 1;
         }
         return 0;
     }

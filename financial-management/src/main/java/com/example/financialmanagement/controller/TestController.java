@@ -39,14 +39,14 @@ public class TestController {
         basicRecord.setValue(10);
         basicRecord.setOther("测试1");
         Calendar recordtime1 = Calendar.getInstance();
-        recordtime1.set(2017,8-1,28);
+        recordtime1.set(2018,12-1,23);
         basicRecord.setRecordtime(recordtime1);
         basicRecordRepository.save(basicRecord);
 
         basicRecord2.setValue(5);
         basicRecord2.setOther("测试2");
         Calendar recordtime2 = Calendar.getInstance();
-        recordtime2.set(2018,1-1,28);
+        recordtime2.set(2018,12-1,24);
         basicRecord2.setRecordtime(recordtime2);
         basicRecordRepository.save(basicRecord2);
 
@@ -60,38 +60,46 @@ public class TestController {
         user.setRecords(records);
         userRepository.save(user);
     }
-
-    @RequestMapping("/test.99")
+    //userRepository返回某用户记录
+    @RequestMapping("/test.100")
     public List<BasicRecord> getAll() {
         this.initdate();
         user = userRepository.findByUsername("longshen");
         return user.getRecords();
     }
-
-    @RequestMapping("/test.98")
+    //userRepository返回某用户所有数据
+    @RequestMapping("/test.101")
     public User getUser() {
         this.initdate();
         return userRepository.findByUsername("longshen");
     }
-
-    @RequestMapping("/test.95")
+    //UserService返回某用户所有数据
+    @RequestMapping("/test.102")
+    public User getAllUsers() {
+        this.initdate();
+        return longshen.getByUsername("longshen");
+    }
+    //UserService返回某用户记录
+    @RequestMapping("/test.103")
+    public List<BasicRecord> getAllUsersRecords() {
+        this.initdate();
+        user = longshen.getByUsername("longshen");
+        return user.getRecords();
+    }
+    //UserService返回某用户排序后记录
+    @RequestMapping("/test.104")
     public List<BasicRecord> getUseruser() {
         user = longshen.getByUsername("longshen");
         List<BasicRecord> records = user.getRecords();
         records = initializeService.sortByDate(records);
         return records;
     }
-
-    @RequestMapping("/test.97")
-    public User getAllUsers() {
-        this.initdate();
-        return longshen.getByUsername("longshen");
-    }
-
-    @RequestMapping("/test.101")
-    public List<BasicRecord> getAllUsersRecords() {
-        this.initdate();
+    //UserService返回某用户近三天记录
+    @RequestMapping("/test.105")
+    public List<BasicRecord> getUserThreeDay() {
         user = longshen.getByUsername("longshen");
-        return user.getRecords();
+        List<BasicRecord> records = user.getRecords();
+        records = initializeService.recordsOfThreeDays(records);
+        return records;
     }
 }
