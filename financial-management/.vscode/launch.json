@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - CalendarTest",
+            "request": "launch",
+            "mainClass": "com.example.financialmanagement.controller.CalendarTest",
+            "projectName": "financial-management"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - SampleControll",
             "request": "launch",
             "mainClass": "com.example.financialmanagement.controll.SampleControll",
