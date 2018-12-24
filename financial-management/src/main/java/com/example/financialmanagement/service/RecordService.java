@@ -14,35 +14,23 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RecordService {
-    User user;
+    private User user;
     @Resource
-    UserService userservice;
+    private UserService userservice;
 
+    //获取某个用户的所有记录，列表形式返回
     public List<BasicRecord> getAllRecordsOfUser(String username) {
         user = userservice.getByUsername(username);
         return user.getRecords();
     }
 
+    //对所给记录列表排序
     public List<BasicRecord> sortByDate(List<BasicRecord> records){
         Collections.sort(records, new DateComparetor());
         return records;
     }
 
-    public List<BasicRecord> recordsOfThreeDays(List<BasicRecord> records){
-        int i = 0;
-        Calendar time_end=Calendar.getInstance();
-        time_end.add(Calendar.DATE, -3);
-        
-        records = sortByDate(records);
-        BasicRecord record = records.get(0);
-        while(time_end.before(record.getRecordtime())){
-            i = i + 1;
-            record = records.get(i);
-        }
-        records = records.subList(0, i);
-        return records;
-    }
-
+    //查找给定时间起止内的记录，其中time_start更早，time_end更晚
     public List<BasicRecord> recordsOfSomeDays(List<BasicRecord> records,Calendar time_start,Calendar time_end){
         int i = 0;
         int j = 0;
@@ -53,20 +41,85 @@ public class RecordService {
             i = i + 1;
             record1 = records.get(i);
         }
-        //i值为
+        //i值为第一个位于时间段内记录
         j = i;
         BasicRecord record2 = records.get(j);
         while(time_start.before(record2.getRecordtime())){
             j = j + 1;
-            record2 = records.get(i);
+            record2 = records.get(j);
         }
-
+        //j值为第一个不位于时间段内记录
         records = records.subList(i, j);
         return records;
     }
 
+    //查找近三天记录
+    public List<BasicRecord> recordsOfThreeDays(List<BasicRecord> records){
+        Calendar time_end = Calendar.getInstance();
+        Calendar time_start = Calendar.getInstance();
+        time_start.add(Calendar.DATE, -3);
+        records = recordsOfSomeDays(records,time_start,time_end);
+        return records;
+    }
+    //查找本星期记录
+    public List<BasicRecord> recordsOfThisWeek(List<BasicRecord> records){
+        Calendar time_end = Calendar.getInstance();
+        Calendar time_start = Calendar.getInstance();
+        int weekday = time_start.get(Calendar.DAY_OF_WEEK);
+        int hour24 = time_start.get(Calendar.HOUR_OF_DAY);
+        int minute = time_start.get(Calendar.MINUTE);
+        int second = time_start.get(Calendar.SECOND);
+        if(weekday==1){
+            time_start.add(Calendar.DAY_OF_WEEK,-6);
+        }
+        else{
+            time_start.add(Calendar.DAY_OF_WEEK,2-weekday);
+        }
+        time_start.add(Calendar.HOUR_OF_DAY,-hour24);
+        time_start.add(Calendar.MINUTE,-minute);
+        time_start.add(Calendar.SECOND,-second);
+
+        records = recordsOfSomeDays(records,time_start,time_end);
+        return records;
+    }  
+    //查找本月记录
+    public List<BasicRecord> recordsOfThisMonth(List<BasicRecord> records){
+        Calendar time_end = Calendar.getInstance();
+        Calendar time_start = Calendar.getInstance();
+        int day = time_start.get(Calendar.DAY_OF_MONTH);
+        int hour = time_start.get(Calendar.HOUR_OF_DAY);
+        int minute = time_start.get(Calendar.MINUTE);
+        int second = time_start.get(Calendar.SECOND);
+
+        time_start.add(Calendar.DAY_OF_MONTH,1-day);
+        time_start.add(Calendar.HOUR_OF_DAY,-hour);
+        time_start.add(Calendar.MINUTE,-minute);
+        time_start.add(Calendar.SECOND,-second);
+
+        records = recordsOfSomeDays(records,time_start,time_end);
+        return records;
+    }
+
+    //查找本年记录
+    public List<BasicRecord> recordsOfThisYear(List<BasicRecord> records){
+        Calendar time_end = Calendar.getInstance();
+        Calendar time_start = Calendar.getInstance();
+        int day = time_start.get(Calendar.DAY_OF_YEAR);
+        int hour = time_start.get(Calendar.HOUR_OF_DAY);
+        int minute = time_start.get(Calendar.MINUTE);
+        int second = time_start.get(Calendar.SECOND);
+
+        time_start.add(Calendar.DAY_OF_YEAR,1-day);
+        time_start.add(Calendar.HOUR_OF_DAY,-hour);
+        time_start.add(Calendar.MINUTE,-minute);
+        time_start.add(Calendar.SECOND,-second);
+
+        records = recordsOfSomeDays(records,time_start,time_end);
+        return records;
+    }
 }
 
+//比较器，日期最新的排前面
 class DateComparetor implements Comparator<BasicRecord> {
     @Override
     public int compare(BasicRecord o1, BasicRecord o2) {

@@ -1,23 +1,23 @@
 package com.example.financialmanagement.controller;
 
+import java.util.Calendar;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
-import com.example.financialmanagement.service.InitializeService;
+import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Calendar;
-import java.util.List;
-
-import javax.annotation.Resource;
-
 @RestController
-//测试数据库用
+// 测试数据库用
 public class TestController {
     @Autowired
     public BasicRecordRepository basicRecordRepository;
@@ -27,7 +27,7 @@ public class TestController {
     @Resource
     UserService longshen;
     @Resource
-    InitializeService initializeService;
+    RecordService recordService;
 
     public void initdate() {
         // basicRecordRepository.deleteAll();
@@ -91,7 +91,7 @@ public class TestController {
     public List<BasicRecord> getUseruser() {
         user = longshen.getByUsername("longshen");
         List<BasicRecord> records = user.getRecords();
-        records = initializeService.sortByDate(records);
+        records = recordService.sortByDate(records);
         return records;
     }
     //UserService返回某用户近三天记录
@@ -99,7 +99,32 @@ public class TestController {
     public List<BasicRecord> getUserThreeDay() {
         user = longshen.getByUsername("longshen");
         List<BasicRecord> records = user.getRecords();
-        records = initializeService.recordsOfThreeDays(records);
+        records = recordService.recordsOfThreeDays(records);
         return records;
     }
+    //UserService返回某用户本星期记录
+    @RequestMapping("/test.106")
+    public List<BasicRecord> getUserWeek() {
+        user = longshen.getByUsername("longshen");
+        List<BasicRecord> records = user.getRecords();
+        records = recordService.recordsOfThisWeek(records);
+        return records;
+    }
+    //UserService返回某用户本月记录
+    @RequestMapping("/test.107")
+    public List<BasicRecord> getUserMonth() {
+        user = longshen.getByUsername("longshen");
+        List<BasicRecord> records = user.getRecords();
+        records = recordService.recordsOfThisMonth(records);
+        return records;
+    }
+    //UserService返回某用户本年记录
+    @RequestMapping("/test.108")
+    public List<BasicRecord> getUserYear() {
+        user = longshen.getByUsername("longshen");
+        List<BasicRecord> records = user.getRecords();
+        records = recordService.recordsOfThisYear(records);
+        return records;
+    }
+
 }
