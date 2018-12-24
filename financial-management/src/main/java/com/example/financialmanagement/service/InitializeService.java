@@ -33,13 +33,35 @@ public class InitializeService {
         Calendar time_end=Calendar.getInstance();
         time_end.add(Calendar.DATE, -3);
         
-        Collections.sort(records, new DateComparetor());
+        records = sortByDate(records);
         BasicRecord record = records.get(0);
         while(time_end.before(record.getRecordtime())){
             i = i + 1;
             record = records.get(i);
         }
         records = records.subList(0, i);
+        return records;
+    }
+
+    public List<BasicRecord> recordsOfSomeDays(List<BasicRecord> records,Calendar time_start,Calendar time_end){
+        int i = 0;
+        int j = 0;
+        records = sortByDate(records);
+
+        BasicRecord record1 = records.get(0);
+        while(time_end.before(record1.getRecordtime())){
+            i = i + 1;
+            record1 = records.get(i);
+        }
+        //i值为
+        j = i;
+        BasicRecord record2 = records.get(j);
+        while(time_start.before(record2.getRecordtime())){
+            j = j + 1;
+            record2 = records.get(i);
+        }
+
+        records = records.subList(i, j);
         return records;
     }
 
