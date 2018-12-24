@@ -3,6 +3,8 @@ package com.example.financialmanagement.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+
+import java.util.Calendar;
 import java.util.Date;
 
 //注册为bean
@@ -13,8 +15,8 @@ public class BasicRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int recordnum;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date recordtime;  //收支时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Calendar recordtime;  //收支时间
     private double value;    //花的钱
     private int category; //种类（要改类型）
     private String other;  //备注
@@ -23,20 +25,20 @@ public class BasicRecord {
 
     }
 
-    public BasicRecord(Date recordtime, int value) {
+    public BasicRecord(Calendar recordtime, int value) {
         super();
         this.setRecordtime(recordtime);
         this.setValue(value);
     }
 
-    public BasicRecord(int recordnum, Date recordtime, int value) {
+    public BasicRecord(int recordnum, Calendar recordtime, int value) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
         this.setValue(value);
     }
 
-    public BasicRecord(int recordnum, Date recordtime, int value, int category) {
+    public BasicRecord(int recordnum, Calendar recordtime, int value, int category) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
@@ -44,7 +46,7 @@ public class BasicRecord {
         this.setCategory(category);
     }
 
-    public BasicRecord(int recordnum, Date recordtime, int value, int category, String other) {
+    public BasicRecord(int recordnum, Calendar recordtime, int value, int category, String other) {
         super();
         this.setRecordnum(recordnum);
         this.setRecordtime(recordtime);
@@ -71,14 +73,14 @@ public class BasicRecord {
     /**
      * @return the recordtime
      */
-    public Date getRecordtime() {
+    public Calendar getRecordtime() {
         return recordtime;
     }
 
     /**
      * @param recordtime the recordtime to set
      */
-    public void setRecordtime(Date recordtime) {
+    public void setRecordtime(Calendar recordtime) {
         this.recordtime = recordtime;
     }
 
