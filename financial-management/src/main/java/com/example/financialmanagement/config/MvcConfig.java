@@ -9,11 +9,6 @@ import org.springframework.web.servlet.config.annotation.*;
 public class MvcConfig implements WebMvcConfigurer {
 
     @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-
-    }
-
-    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
@@ -23,18 +18,17 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/main.html").setViewName("main");
     }
 
-
     //注册拦截器，除了特定的请求都拦截
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/index.html","/","/index","/signup","/login.action","/*.action","/test.*","/static/**");
-//        WebMvcConfigurer.super.addInterceptors(registry);
+        LoginHandlerInterceptor loginHandlerInterceptor = new LoginHandlerInterceptor();
+        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
+                .excludePathPatterns( "/static/**" ,  "/index.html","/","/index","/signup","/login.action","/test","/*.action","/test.*");
     }
+
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
-
 }

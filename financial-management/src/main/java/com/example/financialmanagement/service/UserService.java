@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 public class UserService {
     @Resource
-    private UserRepository userRepository;
+    public UserRepository userRepository;
 
     //保存对象
     @Transactional
@@ -33,28 +33,33 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    @Transactional
     //查询所有数据,返回一个list集合
     public List<User> getAll() {
         return userRepository.findAll();
     }
 
     //根据id查询数据
+    @Transactional
     public Optional<User> getById(Integer id) {
         Optional<User> op = userRepository.findById(id);
         return op;
     }
 
     //根据id和密码查询
+    @Transactional
     public User getByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password);
     }
 
+    @Transactional
     public User getByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
 
     //字符串加密，先md5再base64
+    @Transactional
     public String passwordEncrypt(String Str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md5 = MessageDigest.getInstance("MD5");
 
