@@ -20,6 +20,8 @@ public class TestController {
     public BasicRecordRepository basicRecordRepository;
     @Autowired
     public UserRepository userRepository;
+    User user;
+    UserService longshen;
 
     public void initdate() {
         basicRecordRepository.deleteAll();
@@ -45,6 +47,7 @@ public class TestController {
         User user = new User();
         user.setUsername("longshen");
         user.setPassword("nb");
+        user.setEmail("longshen@qq.com");
         userRepository.save(user);
 
         List<BasicRecord> records = basicRecordRepository.findAll();
@@ -52,10 +55,29 @@ public class TestController {
         userRepository.save(user);
     }
 
-    @RequestMapping("/test.100")
+    @RequestMapping("/test.99")
+    public List<BasicRecord> getAll() {
+        this.initdate();
+        user = userRepository.findByUsername("longshen");
+        return user.getRecords();
+    }
+
+    @RequestMapping("/test.98")
+    public User getUser() {
+        this.initdate();
+        return userRepository.findByUsername("longshen");
+    }
+
+    @RequestMapping("/test.97")
     public User getAllUsers() {
         this.initdate();
-        UserService longshen = new UserService();
         return longshen.getByUsername("longshen");
+    }
+
+    @RequestMapping("/test.101")
+    public List<BasicRecord> getAllUsersRecords() {
+        this.initdate();
+        user = longshen.getByUsername("longshen");
+        return user.getRecords();
     }
 }
