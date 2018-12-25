@@ -7,10 +7,7 @@ import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -61,8 +58,8 @@ public class MainController {
         return "main.html";
     }
 
-    @PostMapping("/addUser.action")
-    public void addBasicRecord(@RequestParam("inValue")  double value,
+    @RequestMapping(value = "/addUser.action", method = RequestMethod.POST)
+    public void addBasicRecord(  @RequestParam("inValue")  double value,
                                  @RequestParam("inTime") String Originrecordtime,
                                  @RequestParam("inType") int category,
                                  @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
