@@ -50,8 +50,7 @@ public class MainController {
         model.addAttribute("dateFormat",dateformat);
 
         System.out.println("一共有"+recordsList.size()+"个records");
-
-        return "main.html";
+        return "main2.html";
     }
 
 }
