@@ -59,28 +59,38 @@ public class MainController {
     }
 
     @RequestMapping(value = "/addUser.action", method = RequestMethod.POST)
-    public void addBasicRecord(  @RequestParam("inValue")  double value,
+    public String addBasicRecord(  @RequestParam("inValue")  double value,
                                  @RequestParam("inTime") String Originrecordtime,
                                  @RequestParam("inType") int category,
                                  @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
 
         System.out.println(value);
-//        BasicRecord basicRecord = new BasicRecord();
-//        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = StrParse.parse(Originrecordtime);
-//        Calendar recordtime = Calendar.getInstance();
-//        recordtime.setTime(date);
-//
-//        basicRecord.setRecordtime(recordtime);
-//        basicRecord.setValue(value);
-//        basicRecord.setCategory(category);
-//        basicRecord.setOther(other);
-//
-//        //取出用户
-//        HttpSession session =  request.getSession();
-//        user = (User) session.getAttribute("UserObj");
-//        user.addRecords(basicRecord);
+        System.out.println(Originrecordtime);
+        System.out.println(category);
+        System.out.println(other);
+
+
+        BasicRecord basicRecord = new BasicRecord();
+        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = StrParse.parse(Originrecordtime);
+        Calendar recordtime = Calendar.getInstance();
+        recordtime.setTime(date);
+
+        basicRecord.setRecordtime(recordtime);
+        basicRecord.setValue(value);
+        basicRecord.setCategory(category);
+        basicRecord.setOther(other);
+
+
+        //取出用户
+        HttpSession session =  request.getSession();
+        user = (User) session.getAttribute("UserObj");
+        user.addRecords(basicRecord);
+
+
+        recordService.updateByOneRecord(basicRecord);
 //        return "main.html";
+        return "redirect:/main";
     }
 
 }
