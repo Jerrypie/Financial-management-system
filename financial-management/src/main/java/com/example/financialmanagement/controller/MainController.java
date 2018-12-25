@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +54,20 @@ public class MainController {
         model.addAttribute("dateFormat",dateformat);
 
         System.out.println("一共有"+recordsList.size()+"个records");
-        return "main2.html";
+        return "main.html";
+    }
+
+    public String addBasicRecord(Calendar recordtime, double value, int category, String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        BasicRecord basicRecord = new BasicRecord();
+        basicRecord.setRecordtime(recordtime);
+        basicRecord.setValue(value);
+        basicRecord.setCategory(category);
+        basicRecord.setOther(other);
+        //取出用户
+        HttpSession session =  request.getSession();
+        user = (User) session.getAttribute("UserObj");
+        user.addRecords(basicRecord);
+        return "main.html";
     }
 
 }
