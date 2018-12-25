@@ -32,23 +32,19 @@ public class RecordService {
 
     //对记录为收入或支出分类，income为1时返回收入，其他值返回支出
     public List<BasicRecord> sortIncomeOrExpenditure(List<BasicRecord> records,int income){
-        int i = 0;
-        BasicRecord record1 = records.get(0);
-        int i_max = records.size();
+        
         List<BasicRecord> records_out = new ArrayList<BasicRecord>();
         if(income == 1){
-            for(i=0;i<i_max;i++){
-                record1 = records.get(i);
-                if(record1.getValue()>=0){
-                    records_out.add(record1);
+            for (BasicRecord basicRecord: records){
+                if(basicRecord.getValue()>=0){
+                    records_out.add(basicRecord);
                 }
             }
         }
         else{
-            for(i=0;i<i_max;i++){
-                record1 = records.get(i);
-                if(record1.getValue()<0){
-                    records_out.add(record1);
+            for (BasicRecord basicRecord: records){
+                if(basicRecord.getValue()<0){
+                    records_out.add(basicRecord);
                 }
             }
         }
