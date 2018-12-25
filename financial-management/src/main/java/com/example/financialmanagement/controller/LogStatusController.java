@@ -35,7 +35,7 @@ public class LogStatusController {
                 session.setAttribute("UserObj", user_db);
 
                 //跳转到主函数,防止重复提交，重定向到主页
-                return "redirect:/main.html";
+                return "redirect:/main";
             } else {
                 String msg = "输入的密码或用户名有误，请重新输入";
                 request.setAttribute("msg", msg);
