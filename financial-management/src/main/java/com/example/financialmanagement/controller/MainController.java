@@ -62,12 +62,16 @@ public class MainController {
     }
 
     @PostMapping("/addUser.action")
-    public void addBasicRecord(@RequestParam("inValue")  double value,
-                                 @RequestParam("inTime") String Originrecordtime,
-                                 @RequestParam("inType") int category,
-                                 @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
+    public String addBasicRecord( String inValue,
+                                  String inTime,
+                                  String inType,
+                                  String inOther, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
 
-        System.out.println(value);
+        System.out.println(inValue);
+        System.out.println(inTime);
+        System.out.println(inType);
+        System.out.println(inOther);
+        return "main.html";
 //        BasicRecord basicRecord = new BasicRecord();
 //        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
 //        Date date = StrParse.parse(Originrecordtime);
