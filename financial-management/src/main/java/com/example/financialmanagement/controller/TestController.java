@@ -43,17 +43,17 @@ public class TestController {
         BasicRecord basicRecord = new BasicRecord();
         BasicRecord basicRecord2 = new BasicRecord();
 
-        basicRecord.setValue(10);
-        basicRecord.setOther("测试1");
+        basicRecord.setValue(-2);
+        basicRecord.setOther("测试5");
         Calendar recordtime1 = Calendar.getInstance();
-        recordtime1.set(2018,12-1,23);
+        recordtime1.set(2018,12-1,25);
         basicRecord.setRecordtime(recordtime1);
         basicRecordRepository.save(basicRecord);
 
-        basicRecord2.setValue(5);
-        basicRecord2.setOther("测试2");
+        basicRecord2.setValue(-5);
+        basicRecord2.setOther("测试6");
         Calendar recordtime2 = Calendar.getInstance();
-        recordtime2.set(2018,12-1,24);
+        recordtime2.set(2018,12-1,16);
         basicRecord2.setRecordtime(recordtime2);
         basicRecordRepository.save(basicRecord2);
 
@@ -130,6 +130,15 @@ public class TestController {
         user = longshen.getByUsername("longshen");
         List<BasicRecord> records = user.getRecords();
         records = recordService.recordsOfThisYear(records);
+        return records;
+    }
+
+    //UserService返回某用户收入记录
+    @RequestMapping("/test.118")
+    public List<BasicRecord> getUserRecordsSort() {
+        user = longshen.getByUsername("longshen");
+        List<BasicRecord> records = user.getRecords();
+        records = recordService.sortIncomeOrExpenditure(records,0);
         return records;
     }
 

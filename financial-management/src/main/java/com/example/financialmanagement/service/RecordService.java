@@ -1,5 +1,6 @@
 package com.example.financialmanagement.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +27,31 @@ public class RecordService {
         return user.getRecords();
     }
 
+    //对记录为收入或支出分类，income为1时返回收入，其他值返回支出
+    public List<BasicRecord> sortIncomeOrExpenditure(List<BasicRecord> records,int income){
+        int i = 0;
+        BasicRecord record1 = records.get(0);
+        int i_max = records.size();
+        List<BasicRecord> records_out = new ArrayList<BasicRecord>();
+        if(income == 1){
+            for(i=0;i<i_max;i++){
+                record1 = records.get(i);
+                if(record1.getValue()>=0){
+                    records_out.add(record1);
+                }
+            }
+        }
+        else{
+            for(i=0;i<i_max;i++){
+                record1 = records.get(i);
+                if(record1.getValue()<0){
+                    records_out.add(record1);
+                }
+            }
+        }
+        return records_out;
+    }
+
     //按日期排序
     public List<BasicRecord> sortByDate(List<BasicRecord> records){
         Collections.sort(records, new DateComparetor());
@@ -36,19 +62,20 @@ public class RecordService {
     public List<BasicRecord> recordsOfSomeDays(List<BasicRecord> records,Calendar time_start,Calendar time_end){
         int i = 0;
         int j = 0;
+        int i_max = records.size();
         records = sortByDate(records);
 
         BasicRecord record1 = records.get(0);
-        while(time_end.before(record1.getRecordtime())){
-            i = i + 1;
+        while(time_end.before(record1.getRecordtime()) && i<i_max){
             record1 = records.get(i);
+            i = i + 1;
         }
         //i值为第一个位于时间段内记录
         j = i;
         BasicRecord record2 = records.get(j);
-        while(time_start.before(record2.getRecordtime())){
-            j = j + 1;
+        while(time_start.before(record2.getRecordtime()) && j<i_max){
             record2 = records.get(j);
+            j = j + 1;
         }
         //j值为第一个不位于时间段内记录
         records = records.subList(i, j);

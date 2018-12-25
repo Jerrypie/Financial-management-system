@@ -44,11 +44,7 @@ public class MainService {
             }
         }
 
-        if(resRecords!=null) {
-            return recordService.sortByDate(resRecords);
-        }else {
-            return null;
-        }
+        return recordService.sortByDate(resRecords);
     }
 
     public User getUser() {
