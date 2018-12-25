@@ -21,10 +21,4 @@ public class MainController {
     @Resource
     private MainService mainService;
 
-
-    @ResponseBody
-    @RequestMapping("/loginError")
-    public String loginError() {
-        return "Password is wrong! Please login again!";
-    }
 }
