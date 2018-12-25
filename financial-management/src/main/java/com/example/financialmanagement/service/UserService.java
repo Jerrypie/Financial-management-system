@@ -1,5 +1,6 @@
 package com.example.financialmanagement.service;
 
+import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.model.UserRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,12 @@ public class UserService {
     @Transactional
     public User save(User user) {
         return userRepository.save(user);
+    }
+    //关联记录
+    public void addRecords(User user, BasicRecord record) {
+        List<BasicRecord> records = user.getRecords();
+        records.add(record);
+        user.setRecords(records);
     }
 
     //根据id删除对象

@@ -58,33 +58,40 @@ public class MainController {
         return "main.html";
     }
 
-    @PostMapping("/addUser.action")
-    public String addBasicRecord( String inValue,
-                                  String inTime,
-                                  String inType,
-                                  String inOther, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
+    @RequestMapping(value = "/addUser.action", method = RequestMethod.POST)
+    public String addBasicRecord(  @RequestParam("inValue")  double value,
+                                 @RequestParam("inTime") String Originrecordtime,
+                                 @RequestParam("inType") int category,
+                                 @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
 
-        System.out.println(inValue);
-        System.out.println(inTime);
-        System.out.println(inType);
-        System.out.println(inOther);
-        return "main.html";
-//        BasicRecord basicRecord = new BasicRecord();
-//        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = StrParse.parse(Originrecordtime);
-//        Calendar recordtime = Calendar.getInstance();
-//        recordtime.setTime(date);
-//
-//        basicRecord.setRecordtime(recordtime);
-//        basicRecord.setValue(value);
-//        basicRecord.setCategory(category);
-//        basicRecord.setOther(other);
-//
-//        //取出用户
-//        HttpSession session =  request.getSession();
-//        user = (User) session.getAttribute("UserObj");
-//        user.addRecords(basicRecord);
+        System.out.println(value);
+        System.out.println(Originrecordtime);
+        System.out.println(category);
+        System.out.println(other);
+
+
+        BasicRecord basicRecord = new BasicRecord();
+        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = StrParse.parse(Originrecordtime);
+        Calendar recordtime = Calendar.getInstance();
+        recordtime.setTime(date);
+
+        basicRecord.setRecordtime(recordtime);
+        basicRecord.setValue(value);
+        basicRecord.setCategory(category);
+        basicRecord.setOther(other);
+        recordService.updateByOneRecord(basicRecord);
+
+        //取出用户
+        HttpSession session =  request.getSession();
+        User user0 = (User) session.getAttribute("UserObj");
+
+        user = userService.getByUsername(user0.getUsername());
+        
+        user.addRecords(basicRecord);
+        userService.save(user);
 //        return "main.html";
+        return "redirect:/main";
     }
 
 }
