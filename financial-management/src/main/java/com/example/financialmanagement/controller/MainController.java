@@ -7,7 +7,9 @@ import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -16,8 +18,10 @@ import javax.servlet.http.HttpSession;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -57,17 +61,29 @@ public class MainController {
         return "main.html";
     }
 
-    public String addBasicRecord(Calendar recordtime, double value, int category, String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        BasicRecord basicRecord = new BasicRecord();
-        basicRecord.setRecordtime(recordtime);
-        basicRecord.setValue(value);
-        basicRecord.setCategory(category);
-        basicRecord.setOther(other);
-        //取出用户
-        HttpSession session =  request.getSession();
-        user = (User) session.getAttribute("UserObj");
-        user.addRecords(basicRecord);
-        return "main.html";
+    @PostMapping("/addUser.action")
+    public void addBasicRecord(@RequestParam("inValue")  double value,
+                                 @RequestParam("inTime") String Originrecordtime,
+                                 @RequestParam("inType") int category,
+                                 @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
+
+        System.out.println(value);
+//        BasicRecord basicRecord = new BasicRecord();
+//        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = StrParse.parse(Originrecordtime);
+//        Calendar recordtime = Calendar.getInstance();
+//        recordtime.setTime(date);
+//
+//        basicRecord.setRecordtime(recordtime);
+//        basicRecord.setValue(value);
+//        basicRecord.setCategory(category);
+//        basicRecord.setOther(other);
+//
+//        //取出用户
+//        HttpSession session =  request.getSession();
+//        user = (User) session.getAttribute("UserObj");
+//        user.addRecords(basicRecord);
+//        return "main.html";
     }
 
 }

@@ -18,7 +18,7 @@
 }
 .Acontainer{
   position: absolute;
-  left: 180px;
+  left: 179px;
   right:0;
   height: 100%;
   min-height: 100%;
@@ -27,7 +27,7 @@
 
 
 .main-sidebar{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	height: 100%;
