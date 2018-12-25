@@ -14,6 +14,26 @@
 <!-- 平滑弹出侧边栏 -->
 <link rel="stylesheet" href="../static/maincss/custom1.css" media="screen and (min-width: 320px) and (max-width:799px)">
 <link rel="stylesheet" href="../static/maincss/bootstrapdatetimepicker.min.css">
+<!--<script src="../static/mainjs/choose.js" ></script>-->
+
+<script type="text/javascript">
+	//页面加载的时候,所有的复选框都是未选中的状态
+	function chooseAllOrNot(){
+		var chElt=document.getElementById("chooseAll");
+		var checkedElt=chElt.checked;
+		 console.log(checkedElt)
+		var allCheck=document.getElementsByClassName("chooseRecord");
+		if(checkedElt){
+			for(var i=0;i<allCheck.length;i++){
+				allCheck[i].checked=true;
+			}
+		}else{
+			for(var i=0;i<allCheck.length;i++){
+				allCheck[i].checked=false;
+			}
+		}
+	}
+</script>
 
 </head>
 <body>
@@ -136,8 +156,9 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th class="" style="text-align:left;"><input type="checkbox"
-																					   id="all">&nbsp;全选</th>
+										<th class="" style="text-align:left;">
+											<input type="checkbox" id="chooseAll" onclick="chooseAllOrNot();">&nbsp;全选
+										</th>
 										<th class="">编号</th>
 										<th>收支备注</th>
 										<th>金额</th>
@@ -150,7 +171,9 @@
 								<!-- 表格中的数据 -->
 								<tbody id="tableData">
 									<tr class="active" th:each="record:${records}">
-										<td class=""><input type="checkbox"></td>
+										<td>
+											<input type="checkbox" class="chooseRecord">
+										</td>
 										<td th:text="${record.getRecordnum()}"></td>
 										<td th:text="${record.getOther()}">2</td>
 										<td th:text="${record.getValue()}">3</td>
@@ -171,12 +194,12 @@
                             <br/>
                             <div class="input-group input-group-md form-group">
                                 <span class="input-group-addon" id="in-value">收入金额</span>
-                                <input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  required>
+                                <input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
                             </div>
                             <br/>
                             <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
                                 <span class="input-group-addon">收入时间</span>
-                                <input class="form-control" size="16" type="text" name="inTime" value="" placeholder="请在这里填入时间" required>
+                                <input class="form-control" size="16" type="text" name="inTime" value="" placeholder="请在这里填入时间: 2018-01-04" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                             </div>
@@ -184,7 +207,14 @@
 							<br/>
 							<div class="input-group input-group-md form-group">
 								<span class="input-group-addon" id="">收入类型</span>
-								<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">
+								<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
+								<select name="inType" class="form-control">
+	                                <option value=5>学习</option>
+	                                <option value=4>生活</option>
+	                                <option value=3>娱乐</option>
+	                                <option value=2>网购</option>
+	                                <option value=1>电子</option>
+    	                        </select>
 							</div>
 							<br/>
 							<div class="input-group input-group-md form-group">
@@ -209,39 +239,50 @@
 
 					<!--支出-->
 					<div id="menu2" class="tab-pane fade">
-						<form action="">
-                        <div class="col-md-6">
-                            <br/>
-                            <div class="input-group input-group-md form-group">
-                                <span class="input-group-addon" id="out-value">支出金额</span>
-                                <input type="text" class="form-control" placeholder="请在这里填入金额" aria-describedby="sizing-addon1" required>
-                            </div>
-                            <br/>
-                            <div class="input-group date form_date col-md-12" data-date-format="dd MM yyyy" data-link-field="dtp_input1">
-                                <span class="input-group-addon">支出时间</span>
-                                <input class="form-control" size="16" type="text" value="" placeholder="请选择时间" required>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                            </div>
-                            <br/><br/>
-                            <div class="input-group input-group-md form-group">
-                                <span class="input-group-addon" id="sizing-addon1" >内容备注</span>
-                                <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="请填入备注信息(可选)">
-                            </div>
-                            <br/>
-
-                            <input type="hidden" id="dtp_input1" value="" /><br/>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-md-offset-3">
-                                        <button type="submit" class="btn btn-info btn-lg">添加</button>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3 col-md-offset-1">
-                                        <button type="reset" class="btn btn-info btn-lg">重置</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<form class="" method="post" action="addUser.action">
+							<div class="col-md-6">
+								<br/>
+								<div class="input-group input-group-md form-group">
+									<span class="input-group-addon" id="outvalue">收入金额</span>
+									<input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
+								</div>
+								<br/>
+								<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+									<span class="input-group-addon">收入时间</span>
+									<input class="form-control" size="16" type="text" name="inTime" value="" placeholder="请在这里填入时间: 2018-01-04" required>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+								</div>
+								<br/>
+								<br/>
+								<div class="input-group input-group-md form-group">
+									<span class="input-group-addon">收入类型</span>
+									<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
+									<select name="inType" class="form-control">
+		                                <option value=5>学习</option>
+		                                <option value=4>生活</option>
+		                                <option value=3>娱乐</option>
+		                                <option value=2>网购</option>
+		                                <option value=1>电子</option>
+	    	                        </select>
+								</div>
+								<br/>
+								<div class="input-group input-group-md form-group">
+									<span class="input-group-addon">内容备注</span>
+									<input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="请在这里填入内容备注（可选）" name="inOther">
+								</div>
+								<br/>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-xs-6 col-md-3 col-md-offset-3">
+											<button type="submit" class="btn btn-info btn-lg">添加</button>
+										</div>
+										<div class="col-xs-6 col-md-3 col-md-offset-1">
+											<button type="reset" class="btn btn-info btn-lg">重置</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</form>
 					</div>
                     <!--end menu 2-->
@@ -252,7 +293,6 @@
 	</div>
 </div>
 
-
 <!--移动端的js文件-->
 <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js" type="text/javascript"></script><!--移动端汉堡按钮的打开-->
 <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
@@ -261,14 +301,14 @@
 
 <!--总js文件-->
 <script src='../static/mainjs/bootstrap.min.js'></script>
-<script src="../mainjs/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="../mainjs/sidebar-menu.js"></script>
+<script src="../static/mainjs/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="../static/mainjs/sidebar-menu.js"></script>
 <script>
 	$.sidebarMenu($('.sidebar-menu'))
 </script>
 
-<script type="text/javascript" src="../mainjs/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="../mainjs/bootstrap-datetimepicker.fr.js"></script>
+<script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.fr.js"></script>
 
 <!-- 时间插件 -->
 <script type="text/javascript">
@@ -304,6 +344,10 @@
 		forceParse: 0
     });
 </script>
+
+
+
+
 
 </body>
 </html>

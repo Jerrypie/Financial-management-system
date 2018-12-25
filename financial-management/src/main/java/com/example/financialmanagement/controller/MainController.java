@@ -64,12 +64,6 @@ public class MainController {
                                  @RequestParam("inType") int category,
                                  @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
 
-        System.out.println(value);
-        System.out.println(Originrecordtime);
-        System.out.println(category);
-        System.out.println(other);
-
-
         BasicRecord basicRecord = new BasicRecord();
         SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
         Date date = StrParse.parse(Originrecordtime);
@@ -81,16 +75,13 @@ public class MainController {
         basicRecord.setCategory(category);
         basicRecord.setOther(other);
         recordService.updateByOneRecord(basicRecord);
-
         //取出用户
         HttpSession session =  request.getSession();
         User user0 = (User) session.getAttribute("UserObj");
 
         user = userService.getByUsername(user0.getUsername());
-        
         user.addRecords(basicRecord);
         userService.save(user);
-//        return "main.html";
         return "redirect:/main";
     }
 

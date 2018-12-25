@@ -24,6 +24,10 @@ public class RecordService {
     @Resource
     private BasicRecordRepository basicRecordRepository;
 
+    public void save(BasicRecord basicRecord) {
+        basicRecordRepository.save(basicRecord);
+    }
+
     //get特定user的records
     public List<BasicRecord> getAllRecordsOfUser(String username) {
         user = userservice.getByUsername(username);
