@@ -81,16 +81,16 @@ public class RecordService {
         records = sortByDate(records);
 
         BasicRecord record1 = records.get(0);
-        while(time_end.before(record1.getRecordtime()) && i<i_max){
-            record1 = records.get(i);
+        while(time_end.before(record1.getRecordtime()) && i<i_max-1){
             i = i + 1;
+            record1 = records.get(i);
         }
         //i值为第一个位于时间段内记录
         j = i;
         BasicRecord record2 = records.get(j);
-        while(time_start.before(record2.getRecordtime()) && j<i_max){
-            record2 = records.get(j);
+        while(time_start.before(record2.getRecordtime()) && j<i_max-1){
             j = j + 1;
+            record2 = records.get(j);
         }
         //j值为第一个不位于时间段内记录
         records = records.subList(i, j);
