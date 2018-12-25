@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.example.financialmanagement.model.BasicRecord;
+import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class RecordService {
 
     @Resource
     private UserService userservice;
+    @Resource
+    private BasicRecordRepository basicRecordRepository;
 
     //get特定user的records
     public List<BasicRecord> getAllRecordsOfUser(String username) {
@@ -50,6 +53,18 @@ public class RecordService {
             }
         }
         return records_out;
+    }
+
+    //按记录id删除某条记录
+    public boolean deleteByRecordnum(int recordnum){
+        basicRecordRepository.deleteById(recordnum);
+        return true;
+    }
+
+    //修改保存某条记录
+    public boolean updateByOneRecord(BasicRecord basicRecord){
+        basicRecordRepository.save(basicRecord);
+        return true;
     }
 
     //按日期排序

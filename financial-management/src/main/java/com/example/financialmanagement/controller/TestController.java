@@ -51,7 +51,8 @@ public class TestController {
         basicRecordRepository.save(basicRecord);
 
         basicRecord2.setValue(-5);
-        basicRecord2.setOther("测试6");
+        basicRecord2.setRecordnum(63);
+        basicRecord2.setOther("测试8");
         Calendar recordtime2 = Calendar.getInstance();
         recordtime2.set(2018,12-1,16);
         basicRecord2.setRecordtime(recordtime2);
