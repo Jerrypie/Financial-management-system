@@ -115,4 +115,8 @@ public class User {
         this.records = records;
     }
 
+    public void addRecords(BasicRecord record) {
+        this.records.add(record);
+    }
+
 }
