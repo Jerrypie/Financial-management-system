@@ -20,10 +20,7 @@ public class User {
     private String email;
 
     @OneToMany
-    @JoinColumn(name = "userid")
     private List<BasicRecord> records;
-
-
     public User() {
 
     }

@@ -21,6 +21,10 @@ public class BasicRecord {
     private int category; //种类（要改类型）
     private String other;  //备注
 
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
+
     public BasicRecord() {
 
     }
