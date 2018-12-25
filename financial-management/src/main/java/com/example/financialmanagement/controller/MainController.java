@@ -41,11 +41,6 @@ public class MainController {
         //从session 中取出User
         HttpSession session =  request.getSession();
         user = (User) session.getAttribute("UserObj");
-
-        //debug
-//        System.out.println(user.getUsername());
-
-        //调用mainservice
         mainService.setUser(user);
         List<BasicRecord> recordsList = mainService.getAllSortedRecordsOfUser();
 
@@ -54,15 +49,14 @@ public class MainController {
         model.addAttribute("records",recordsList);
         model.addAttribute("dateFormat",dateformat);
 
-        System.out.println("一共有"+recordsList.size()+"个records");
         return "main.html";
     }
 
-    @RequestMapping(value = "/addUser.action", method = RequestMethod.POST)
-    public String addBasicRecord(  @RequestParam("inValue")  double value,
+    @RequestMapping(value = "/addIncomeRecordOfUser.action", method = RequestMethod.POST)
+    public String addIncomeBasicRecord(  @RequestParam("inValue")  double value,
                                  @RequestParam("inTime") String Originrecordtime,
                                  @RequestParam("inType") int category,
-                                 @RequestParam("inOther") String other, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException, ParseException {
+                                 @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
 
         BasicRecord basicRecord = new BasicRecord();
         SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
@@ -85,4 +79,13 @@ public class MainController {
         return "redirect:/main";
     }
 
-}
+    @RequestMapping(value = "/addOutcomeRecordOfUser.action", method = RequestMethod.POST)
+    public String addOutcomeBasicRecord(  @RequestParam("inValue")  double value,
+                                         @RequestParam("inTime") String Originrecordtime,
+                                         @RequestParam("inType") int category,
+                                         @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
+        return addIncomeBasicRecord(-value,Originrecordtime,category,other,request);
+    }
+
+
+    }//end controller
