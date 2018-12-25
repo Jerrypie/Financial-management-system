@@ -2,10 +2,12 @@ package com.example.financialmanagement.service;
 
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -23,6 +25,15 @@ public class MainService {
         return recordService.sortByDate(records);
     }
 
+    //按records的一定范围日期取出
+
+    public  List<BasicRecord> getALLSortedOfTime(Calendar TimeStart, Calendar TimeEnd){
+        List<BasicRecord> records =  recordService.getAllRecordsOfUser(user.getUsername());
+        records = recordService.recordsOfSomeDays(records, TimeStart, TimeEnd);
+        return recordService.sortByDate(records);
+    }
+
+
     //按类别查询
     public List<BasicRecord> getAllCategoryRecord(int type) {
         List<BasicRecord> records =  recordService.getAllRecordsOfUser(user.getUsername());
@@ -32,6 +43,7 @@ public class MainService {
                 resRecords.add(basicRecord);
             }
         }
+
         if(resRecords!=null) {
             return recordService.sortByDate(resRecords);
         }else {

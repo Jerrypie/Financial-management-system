@@ -148,5 +148,18 @@ public class TestController {
         return mainService.getAllCategoryRecord(1);
     }
 
+    @RequestMapping("/test.115")
+    public List<BasicRecord> test111() {
+        user = longshen.getByUsername("longshen");
+        Calendar c1= Calendar.getInstance();
+        Calendar c2= Calendar.getInstance();
+        mainService.setUser(user);
+        c1.set(2016,11,1);
+        c2.set(2018, 12 , 26);
+        return mainService.getALLSortedOfTime(c1,c2);
+    }
+
+
+
 
 }
