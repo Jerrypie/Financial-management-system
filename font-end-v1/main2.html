@@ -14,6 +14,8 @@
 <!-- 平滑弹出侧边栏 -->
 <link rel="stylesheet" href="maincss/custom1.css" media="screen and (min-width: 320px) and (max-width:799px)">
 
+<link rel="stylesheet" href="maincss/bootstrap-pager.css">
+
 <link rel="stylesheet" href="maincss/bootstrap-datetimepicker.min.css">
 
 </head>
@@ -132,34 +134,79 @@
 					<div id="home" class="tab-pane fade in active">
 						<!--<h3>收支概览</h3>-->
 						<form class="" action="" method="post">
-							<table class="table">
-								<thead>
-									<tr>
-										<th class="" style="text-align:left;"><input type="checkbox"
-																					   id="all">&nbsp;全选</th>
-										<th class="">编号</th>
-										<th>收支备注</th>
-										<th>金额</th>
-										<th>收支日期</th>
-										<th>收支类型</th>
-										<th>操作</th>
-									</tr>
-								</thead>
+                            <div id="page-container-static-normal">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="" style="text-align:left;"><input type="checkbox" name="allChecked" id="all" onclick="DoCheck()">&nbsp;全选</th>
+                                        <th class="">编号</th>
+                                        <th>收支备注</th>
+                                        <th>金额</th>
+                                        <th>收支日期</th>
+                                        <th>收支类型</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
 
-								<!-- 表格中的数据 -->
-								<tbody id="tableData">
-									<tr class="active" th:each="record:${records}">
-										<td class=""><input type="checkbox"></td>
-										<td th:text="${record.getRecordnum()}"></td>
-										<td th:text="${record.getOther()}">2</td>
-										<td th:text="${record.getValue()}">3</td>
-										<td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
-										<td th:text="${record.getCategory()}">5</td>
-										<td>6</td>
-									</tr>
-								</tbody>
-							</table>
-
+                                    <!-- 表格中的数据 -->
+                                    <tbody id="tableData">
+                                        <tr class="active" th:each="record:${records}">
+                                            <td class=""><input type="checkbox"  name="choose"></td>
+                                            <td th:text="${record.getRecordnum()}"></td>
+                                            <td th:text="${record.getOther()}">2</td>
+                                            <td th:text="${record.getValue()}">3</td>
+                                            <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
+                                            <td th:text="${record.getCategory()}">5</td>
+                                            <td>6</td>
+                                        </tr>
+                                        <tr class="active" th:each="record:${records}">
+                                            <td class=""><input type="checkbox"  name="choose"></td>
+                                            <td th:text="${record.getRecordnum()}"></td>
+                                            <td th:text="${record.getOther()}">2</td>
+                                            <td th:text="${record.getValue()}">3</td>
+                                            <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
+                                            <td th:text="${record.getCategory()}">5</td>
+                                            <td>6</td>
+                                        </tr>
+                                        <tr class="active" th:each="record:${records}">
+                                            <td class=""><input type="checkbox"  name="choose"></td>
+                                            <td th:text="${record.getRecordnum()}"></td>
+                                            <td th:text="${record.getOther()}">2</td>
+                                            <td th:text="${record.getValue()}">3</td>
+                                            <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
+                                            <td th:text="${record.getCategory()}">5</td>
+                                            <td>6</td>
+                                        </tr>
+                                        <tr class="active" th:each="record:${records}">
+                                            <td class=""><input type="checkbox"  name="choose"></td>
+                                            <td th:text="${record.getRecordnum()}"></td>
+                                            <td th:text="${record.getOther()}">2</td>
+                                            <td th:text="${record.getValue()}">3</td>
+                                            <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
+                                            <td th:text="${record.getCategory()}">5</td>
+                                            <td>6</td>
+                                        </tr>
+                                        <tr class="active" th:each="record:${records}">
+                                            <td class=""><input type="checkbox"  name="choose"></td>
+                                            <td th:text="${record.getRecordnum()}"></td>
+                                            <td th:text="${record.getOther()}">2</td>
+                                            <td th:text="${record.getValue()}">3</td>
+                                            <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
+                                            <td th:text="${record.getCategory()}">5</td>
+                                            <td>6</td>
+                                        </tr>
+                                        <tr class="active" th:each="record:${records}">
+                                            <td class=""><input type="checkbox" name="choose"></td>
+                                            <td th:text="${record.getRecordnum()}"></td>
+                                            <td th:text="${record.getOther()}">2</td>
+                                            <td th:text="${record.getValue()}">3</td>
+                                            <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
+                                            <td th:text="${record.getCategory()}">5</td>
+                                            <td>6</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 						</form>
 					</div>
 
@@ -172,7 +219,7 @@
                                 <input type="text" class="form-control" placeholder="请在这里填入金额" aria-describedby="sizing-addon1" required>
                             </div>
                             <br/>
-                            <div class="input-group date form_date col-md-12" data-date-format="dd MM yyyy" data-link-field="dtp_input1">
+                            <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
                                 <span class="input-group-addon">收入时间</span>
                                 <input class="form-control" size="16" type="text" value="" placeholder="请在这里填入时间" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -207,7 +254,7 @@
                                 <input type="text" class="form-control" placeholder="请在这里填入金额" aria-describedby="sizing-addon1" required>
                             </div>
                             <br/>
-                            <div class="input-group date form_date col-md-12" data-date-format="dd MM yyyy" data-link-field="dtp_input1">
+                            <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
                                 <span class="input-group-addon">支出时间</span>
                                 <input class="form-control" size="16" type="text" value="" placeholder="请选择时间" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -218,7 +265,6 @@
                                 <span class="input-group-addon" id="sizing-addon1" >内容备注</span>
                                 <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="请填入备注信息(可选)">
                             </div>
-                            <br/>
 
                             <input type="hidden" id="dtp_input1" value="" /><br/>
                             <div class="form-group">
@@ -232,6 +278,7 @@
                                 </div>
                             </div>
                         </div>
+
 					</div>
                     <!--end menu 2-->
 
@@ -240,6 +287,7 @@
 		</div>
 	</div>
 </div>
+
 
 
 <!--移动端的js文件-->
@@ -258,6 +306,8 @@
 
 <script type="text/javascript" src="mainjs/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="mainjs/bootstrap-datetimepicker.fr.js"></script>
+<!--<script type="text/javascript" src="mainjs/bootstrap-datetimepicker.zh-CN.js"></script>-->
+<script src="mainjs/bootstrap-pager.js"></script>
 
 <!-- 时间插件 -->
 <script type="text/javascript">
@@ -292,6 +342,50 @@
 		maxView: 1,
 		forceParse: 0
     });
+</script>
+
+<!--复选框全选-->
+<script type="text/javascript">
+    function DoCheck()
+    {
+        var ch=document.getElementsByName("choose");
+        if(document.getElementsByName("allChecked")[0].checked==true)
+        {
+            for(var i=0;i<ch.length;i++)
+            {
+                ch[i].checked=true;
+            }
+        }else{
+            for(var i=0;i<ch.length;i++)
+            {
+                ch[i].checked=false;
+            }
+        }
+    }
+</script>
+
+<!--分页面栏-->
+<script>
+    //静态演示
+    $("#page-container-static-normal").page({
+        count:100,
+        theme:"normal"
+    });
+    $("#page-container-static-normal").on("pageChanged",function (event,params) {
+        console.log(params);
+        $(this).data("page").refresh(params);
+    })
+
+    //静态  大型图标样式
+    $("#page-container-static-big").page({
+        count:100,
+        maxPage:7,
+        theme:"big"
+    });
+    $("#page-container-static-big").on("pageChanged",function (event,params) {
+        console.log(params);
+        $(this).data("page").refresh(params);
+    })
 </script>
 
 </body>
