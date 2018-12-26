@@ -37,6 +37,15 @@ public class RecordService {
         return user.getRecords();
     }
 
+    //计算所给记录的支出的总和
+    public Double getTotalValueOfRecords(List<BasicRecord> records) {
+        Double totalvalue = (double) 0;
+        for (BasicRecord basicRecord: records){
+            totalvalue = totalvalue + basicRecord.getValue();
+        }
+        return totalvalue;
+    }
+
     //对记录为收入或支出分类，income为1时返回收入，其他值返回支出
     public List<BasicRecord> sortIncomeOrExpenditure(List<BasicRecord> records,int income){
         
