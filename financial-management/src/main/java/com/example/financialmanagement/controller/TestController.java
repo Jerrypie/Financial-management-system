@@ -177,11 +177,4 @@ public class TestController {
         return mainService.getALLSortedOfTime(c1,c2);
     }
 
-    @RequestMapping("/test.121")
-    public PageList test121() {
-
-        return mainService.dividePage(1,"澄神牛逼",5);
-
-    }
-
 }

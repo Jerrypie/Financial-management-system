@@ -55,26 +55,10 @@ public class MainService {
         return recordService.sortByDate(resRecords);
     }
 
-    //分页查询服务,返回PageList
-    public PageList dividePage(int currentPage, String username, int PageSize) {
-        PageList pageList = new PageList();
-        List<BasicRecord> records = this.getAllSortedRecordsByusername(username);
-        pageList.setPageSize(PageSize);
-        pageList.setstart((currentPage - 1) * pageList.getPageSize());
-
-        //共有多少条数据
-        int RecordNumber = records.size();
-
-        pageList.setCurrentPage(currentPage);
-        pageList.setTotalPage(RecordNumber % PageSize == 0 ? RecordNumber / PageSize : RecordNumber / PageSize + 1);
-        pageList.setDataList(records.subList(pageList.getstart(),
-                RecordNumber - pageList.getstart() > PageSize ? pageList.getstart() + PageSize : RecordNumber));
-        return pageList;
-    }
-
-    // //对所给记录进行分页
-    // public PageList getPage(List<BasicRecord> records, int currentPage, int PageSize) {
+    // //分页查询服务,返回PageList
+    // public PageList dividePage(int currentPage, String username, int PageSize) {
     //     PageList pageList = new PageList();
+    //     List<BasicRecord> records = this.getAllSortedRecordsByusername(username);
     //     pageList.setPageSize(PageSize);
     //     pageList.setstart((currentPage - 1) * pageList.getPageSize());
 
@@ -87,6 +71,22 @@ public class MainService {
     //             RecordNumber - pageList.getstart() > PageSize ? pageList.getstart() + PageSize : RecordNumber));
     //     return pageList;
     // }
+
+    //对所给记录进行分页,返回PageList
+    public PageList getPage(List<BasicRecord> records, int currentPage, int PageSize) {
+        PageList pageList = new PageList();
+        pageList.setPageSize(PageSize);
+        pageList.setstart((currentPage - 1) * pageList.getPageSize());
+
+        //共有多少条数据
+        int RecordNumber = records.size();
+
+        pageList.setCurrentPage(currentPage);
+        pageList.setTotalPage(RecordNumber % PageSize == 0 ? RecordNumber / PageSize : RecordNumber / PageSize + 1);
+        pageList.setDataList(records.subList(pageList.getstart(),
+                RecordNumber - pageList.getstart() > PageSize ? pageList.getstart() + PageSize : RecordNumber));
+        return pageList;
+    }
 
 
     public User getUser() {

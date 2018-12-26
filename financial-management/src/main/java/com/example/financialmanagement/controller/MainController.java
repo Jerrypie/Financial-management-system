@@ -43,7 +43,8 @@ public class MainController {
         mainService.setUser(user);
 
         //默认加载第一页
-        PageList pageList = mainService.dividePage(1,user.getUsername(),3);
+        List<BasicRecord> allrecords = mainService.getAllSortedRecordsByusername(user.getUsername());
+        PageList pageList = mainService.getPage(allrecords,1,3);
         model.addAttribute("pageList", pageList);
         return "main.html";
     }
