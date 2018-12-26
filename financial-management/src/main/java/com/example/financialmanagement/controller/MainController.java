@@ -7,6 +7,7 @@ import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,6 +83,19 @@ public class MainController {
                                         @RequestParam("inType") int category,
                                         @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
         return addIncomeBasicRecord(-value, Originrecordtime, category, other, request);
+    }
+
+    @RequestMapping(value = "/deleteRecordOfUser.action", method = RequestMethod.POST)
+    public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception{
+        int i= 0;
+        for (int recordnum : records) {
+            System.out.print(i);
+            i = i + 1;
+            System.out.println(recordnum);
+            recordService.deleteByRecordnum(recordnum);
+        }
+        System.out.println("**********************************************");
+        return "redirect:/main";
     }
 
 

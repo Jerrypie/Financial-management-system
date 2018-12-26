@@ -135,7 +135,7 @@
 				<div class="tab-content">
 					<div id="home" class="tab-pane fade in active">
 						<!--<h3>收支概览</h3>-->
-						<form class="" action="" method="post">
+						<form class="" action="/deleteRecordOfUser.action" method="post">
 							<table class="table">
 								<thead>
 									<tr>
@@ -155,7 +155,7 @@
 								<tbody id="tableData">
 									<tr class="active" th:each="record:${records}">
 										<td>
-											<input type="checkbox" class="chooseRecord">
+											<input type="checkbox" name="inRecords" class="chooseRecord" th:value="${record.getRecordnum()}">
 										</td>
 										<td th:text="${record.getRecordnum()}"></td>
 										<td th:text="${record.getOther()}">2</td>
