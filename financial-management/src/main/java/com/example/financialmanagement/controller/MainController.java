@@ -40,7 +40,8 @@ public class MainController {
         HttpSession session = request.getSession();
         user = (User) session.getAttribute("UserObj");
         mainService.setUser(user);
-        List<BasicRecord> recordsList = mainService.getAllSortedRecordsOfUser();
+        List<BasicRecord> recordsList = mainService.divdePage(4,user.getUsername(),5).getDataList();
+//        List<BasicRecord> recordsList = mainService.getAllSortedRecordsOfUser();
 
         //设置日期格式
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
