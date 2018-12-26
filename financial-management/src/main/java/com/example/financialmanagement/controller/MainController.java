@@ -7,20 +7,17 @@ import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class MainController {
@@ -39,24 +36,24 @@ public class MainController {
     @RequestMapping("/main")
     public String MainPage(HttpServletRequest request, Model model) {
         //从session 中取出User
-        HttpSession session =  request.getSession();
+        HttpSession session = request.getSession();
         user = (User) session.getAttribute("UserObj");
         mainService.setUser(user);
         List<BasicRecord> recordsList = mainService.getAllSortedRecordsOfUser();
 
         //设置日期格式
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-        model.addAttribute("records",recordsList);
-        model.addAttribute("dateFormat",dateformat);
+        model.addAttribute("records", recordsList);
+        model.addAttribute("dateFormat", dateformat);
 
         return "main.html";
     }
 
     @RequestMapping(value = "/addIncomeRecordOfUser.action", method = RequestMethod.POST)
-    public String addIncomeBasicRecord(  @RequestParam("inValue")  double value,
-                                 @RequestParam("inTime") String Originrecordtime,
-                                 @RequestParam("inType") int category,
-                                 @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
+    public String addIncomeBasicRecord(@RequestParam("inValue") double value,
+                                       @RequestParam("inTime") String Originrecordtime,
+                                       @RequestParam("inType") int category,
+                                       @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
 
         BasicRecord basicRecord = new BasicRecord();
         SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,7 +67,7 @@ public class MainController {
         basicRecord.setOther(other);
         recordService.updateByOneRecord(basicRecord);
         //取出用户
-        HttpSession session =  request.getSession();
+        HttpSession session = request.getSession();
         User user0 = (User) session.getAttribute("UserObj");
 
         user = userService.getByUsername(user0.getUsername());
@@ -80,12 +77,12 @@ public class MainController {
     }
 
     @RequestMapping(value = "/addOutcomeRecordOfUser.action", method = RequestMethod.POST)
-    public String addOutcomeBasicRecord(  @RequestParam("inValue")  double value,
-                                         @RequestParam("inTime") String Originrecordtime,
-                                         @RequestParam("inType") int category,
-                                         @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
-        return addIncomeBasicRecord(-value,Originrecordtime,category,other,request);
+    public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
+                                        @RequestParam("inTime") String Originrecordtime,
+                                        @RequestParam("inType") int category,
+                                        @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
+        return addIncomeBasicRecord(-value, Originrecordtime, category, other, request);
     }
 
 
-    }//end controller
+}//end controller

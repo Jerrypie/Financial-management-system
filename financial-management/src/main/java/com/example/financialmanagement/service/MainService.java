@@ -4,6 +4,7 @@ import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class MainService {
 
         return recordService.sortByDate(resRecords);
     }
+
+
 
     public User getUser() {
         return user;

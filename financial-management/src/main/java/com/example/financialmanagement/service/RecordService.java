@@ -7,12 +7,15 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.Basic;
 
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -161,6 +164,13 @@ public class RecordService {
         records = recordsOfSomeDays(records,time_start,time_end);
         return records;
     }
+
+    //分页查询
+    public Page<BasicRecord> findAll(Pageable pageable) {
+        return basicRecordRepository.findAll(pageable);
+    }
+
+
 }
 
 //比较器，日期最新的排前面
