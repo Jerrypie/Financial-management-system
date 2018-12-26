@@ -129,12 +129,14 @@ public class MainController {
 
     @RequestMapping(value = "/deleteRecordOfUser.action", method = RequestMethod.POST)
     public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception{
-        int i= 0;
-        for (int recordnum : records) {
-            System.out.print(i);
-            i = i + 1;
-            System.out.println(recordnum);
-            recordService.deleteByRecordnum(recordnum);
+        if (records != null){
+            int i= 0;
+            for (int recordnum : records) {
+                System.out.print(i);
+                i = i + 1;
+                System.out.println(recordnum);
+                recordService.deleteByRecordnum(recordnum);
+            }
         }
         return "redirect:/main";
     }

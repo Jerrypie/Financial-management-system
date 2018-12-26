@@ -29,19 +29,18 @@
 					<li class="header" th:text="${#session.getAttribute('UserObj').getUsername()}"></li>
 					<li>
 						<a href="#">
-							<span class="fa fa-th"></span> <span>财务概览</span>
-						</a>
-
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-edit"></i> <span>新的项目</span>
+							<span class="active fa fa-th"></span> <span>财务管理</span>
 						</a>
 					</li>
+					<!--<li>-->
+						<!--<a href="#">-->
+							<!--<i class="fa fa-edit"></i> <span>新的项目</span>-->
+						<!--</a>-->
+					<!--</li>-->
 					<li class="treeview">
 						<a href="#">
 							<i class="glyphicon glyphicon-pencil"></i>
-							<span>收入支出</span>
+							<span>收支统计</span>
 						</a>
 					</li>
 					<li class="treeview">
@@ -70,14 +69,14 @@
 
 <div id="wrapper" class="mob"><!--移动端的整体布局-->
 	<div class="page-wrapper">
-			<nav id="sidebar" class="sidebar-wrapper">
+		<nav id="sidebar" class="sidebar-wrapper">
 			<div class="sidebar-content">
 				<a href="#" id="toggle-sidebar"><i class="fa fa-bars"></i></a>
 				<div class="sidebar-brand">
 					<a href="#">这里放用户名</a>
 				</div>
 				<ul class="sidebar-menu">
-					<li class="treeview">
+					<li>
 						<a href="#">
 							<span class="fa fa-th"></span> <span>财务概览</span>
 						</a>
@@ -158,7 +157,7 @@
 								<tbody id="tableData">
 									<tr class="active" th:each="record:${pageList.getDataList()}">
 										<td>
-											<input type="checkbox" name="inRecords" class="chooseRecord" th:value="${record.getRecordnum()}">
+											<input type="checkbox" name="inRecords" onclick="deleteJudge();" class="chooseRecord" th:value="${record.getRecordnum()}">
 										</td>
 										<td th:text="${record.getRecordnum()}"></td>
 										<td th:text="${record.getOther()}">2</td>
@@ -198,9 +197,10 @@
                             </div>
 
 							<div class="form-group">
-								<button class="btn btn-danger" type="submit">删除</button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-								<button class="btn btn-info" type="reset">重置</button>
+								<button th:if="${ pageList.getDataList().size() != 0}" disabled="disabled" class="btn btn-danger" type="submit" id="deleteBtn">删除</button>
+								<button th:if="${ pageList.getDataList().size() == 0}" class="btn btn-danger" type="submit" disabled="false">删除</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn btn-primary" type="reset">重置</button>
 							</div>
 						</form>
 					</div>
@@ -365,10 +365,5 @@
 </script>
 
 <!--分页面栏-->
-
-
-
-
-
 </body>
 </html>

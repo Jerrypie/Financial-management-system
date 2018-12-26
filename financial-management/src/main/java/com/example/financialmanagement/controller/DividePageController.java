@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class DividePage {
+public class DividePageController {
 
     @Resource
     private MainService mainService;

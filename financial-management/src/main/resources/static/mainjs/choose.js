@@ -13,4 +13,21 @@ function chooseAllOrNot(){
             allCheck[i].checked=false;
         }
     }
+    deleteJudge();
+}
+
+function deleteJudge() {
+    var allCheck=document.getElementsByClassName("chooseRecord");
+    var flag = 0;
+    for (var i=0;i<allCheck.length;i++){
+        if (allCheck[i].checked){
+            flag = 1;
+        }
+    }
+
+    if (flag) {
+        document.getElementById("deleteBtn").disabled = false;
+    } else {
+        document.getElementById("deleteBtn").disabled = true;
+    }
 }
