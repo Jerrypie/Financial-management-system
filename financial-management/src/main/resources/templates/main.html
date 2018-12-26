@@ -136,6 +136,8 @@
 
 					<div id="home" class="tab-pane fade in active">
 						<!--<h3>收支概览</h3>-->
+
+
 						<form class="" action="/deleteRecordOfUser.action" method="post">
 							<table class="table">
 								<thead>
@@ -172,16 +174,12 @@
                                     <li><a href="/dividePage.action?currentPage=1">首页</a></li>
                                     <!-- 上一页 -->
                                     <li th:class="${pageList.getCurrentPage()==1}?'disabled' : ''">
-                                        <a th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()-1}}" class="page-link">
+                                        <a th:if="${pageList.getCurrentPage()!=1}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()-1}}" class="page-link">
                                             <span aria-hidden="true">上一页</span>
                                         </a>
+										<span aria-hidden="true" th:if="${pageList.getCurrentPage()==1}">上一页</span>
                                     </li>
 
-                                    <!--<li class="active"><a href="#">1</a></li>-->
-                                    <!--<li class="disabled"><a href="#">2</a></li>-->
-                                    <!--<li><a href="#">3</a></li>-->
-                                    <!--<li><a href="#">4</a></li>-->
-                                    <!--<li><a href="#">5</a></li>-->
                                     <div th:if="${(pageList.getTotalPage() le 10) and (pageList.getTotalPage() gt 0)}" th:remove="tag">
                                         <div th:each="pagenum : ${#numbers.sequence(1,pageList.getTotalPage())}" th:remove="tag">
                                             <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/dividePage.action?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
@@ -190,14 +188,14 @@
 
                                     <!--下一页-->
                                     <li th:class="${pageList.getCurrentPage()==pageList.getTotalPage()}?'disabled' : ''">
-                                        <a th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
+                                        <a th:if="${pageList.getCurrentPage()!=pageList.getTotalPage()}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
                                             <span aria-hidden="true">下一页</span>
                                         </a>
+
+										<span th:if="${pageList.getCurrentPage()==pageList.getTotalPage()}" aria-hidden="true">下一页</span>
                                     </li>
                                 </ul>
                             </div>
-
-
 
 							<div class="form-group">
 								<button class="btn btn-danger" type="submit">删除</button>
