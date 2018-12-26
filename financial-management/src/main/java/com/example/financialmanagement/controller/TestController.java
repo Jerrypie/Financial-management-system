@@ -6,10 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.Basic;
 
-import com.example.financialmanagement.model.BasicRecord;
-import com.example.financialmanagement.model.BasicRecordRepository;
-import com.example.financialmanagement.model.User;
-import com.example.financialmanagement.model.UserRepository;
+import com.example.financialmanagement.model.*;
 import com.example.financialmanagement.service.MainService;
 import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
@@ -179,4 +176,12 @@ public class TestController {
         c2.set(2018, 12 , 26);
         return mainService.getALLSortedOfTime(c1,c2);
     }
+
+    @RequestMapping("/test.121")
+    public PageList test121() {
+
+        return mainService.divdePage(1,"澄神牛逼",5);
+
+    }
+
 }
