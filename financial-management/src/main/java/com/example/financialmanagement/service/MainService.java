@@ -56,7 +56,7 @@ public class MainService {
     }
 
     //分页查询服务,返回PageList
-    public PageList divdePage(int currentPage, String username, int PageSize) {
+    public PageList dividePage(int currentPage, String username, int PageSize) {
         PageList pageList = new PageList();
         List<BasicRecord> records = this.getAllSortedRecordsByusername(username);
         pageList.setPageSize(PageSize);

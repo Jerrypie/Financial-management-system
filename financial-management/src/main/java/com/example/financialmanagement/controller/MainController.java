@@ -1,6 +1,7 @@
 package com.example.financialmanagement.controller;
 
 import com.example.financialmanagement.model.BasicRecord;
+import com.example.financialmanagement.model.PageList;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.service.MainService;
 import com.example.financialmanagement.service.RecordService;
@@ -40,14 +41,10 @@ public class MainController {
         HttpSession session = request.getSession();
         user = (User) session.getAttribute("UserObj");
         mainService.setUser(user);
- //       List<BasicRecord> recordsList = mainService.divdePage(4,user.getUsername(),5).getDataList();
-        List<BasicRecord> recordsList = mainService.getAllSortedRecordsOfUser();
 
-        //设置日期格式
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-        model.addAttribute("records", recordsList);
-        model.addAttribute("dateFormat", dateformat);
-
+        //默认加载第一页
+        PageList pageList = mainService.dividePage(1,user.getUsername(),3);
+        model.addAttribute("pageList", pageList);
         return "main.html";
     }
 
@@ -95,7 +92,6 @@ public class MainController {
             System.out.println(recordnum);
             recordService.deleteByRecordnum(recordnum);
         }
-        System.out.println("**********************************************");
         return "redirect:/main";
     }
 

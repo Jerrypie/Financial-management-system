@@ -180,7 +180,7 @@ public class TestController {
     @RequestMapping("/test.121")
     public PageList test121() {
 
-        return mainService.divdePage(1,"澄神牛逼",5);
+        return mainService.dividePage(1,"澄神牛逼",5);
 
     }
 

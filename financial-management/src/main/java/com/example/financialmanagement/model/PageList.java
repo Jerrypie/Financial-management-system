@@ -6,8 +6,8 @@ public class PageList {
     private Integer currentPage;//当前页
     private int pageSize;//每页显示记录条数
     private int totalPage;//总页数
-    private List<BasicRecord> dataList;//每页显示的数据
-    private int start;//开始数据
+    private List<BasicRecord> dataList;//每页的record list
+    private int start;//开始数据标号
 
     public Integer getCurrentPage() {
         return currentPage;

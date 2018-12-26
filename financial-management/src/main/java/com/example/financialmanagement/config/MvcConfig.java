@@ -24,7 +24,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         LoginHandlerInterceptor loginHandlerInterceptor = new LoginHandlerInterceptor();
         registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
-                .excludePathPatterns( "/static/**" ,"/error**",  "/index.html","/","/index","/signup","/login.action","/test","/*.action","/test.**");
+                .excludePathPatterns( "/dividePage.**" ,"/static/**" ,"/error**",  "/index.html","/","/index","/signup","/login.action","/test","/*.action","/test.**");
     }
 
 
