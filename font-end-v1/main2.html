@@ -34,15 +34,10 @@
 						</a>
 
 					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-edit"></i> <span>新的项目</span>
-						</a>
-					</li>
 					<li class="treeview">
 						<a href="#">
 							<i class="glyphicon glyphicon-pencil"></i>
-							<span>收入支出</span>
+							<span>财务分析</span>
 						</a>
 					</li>
 					<li class="treeview">
@@ -83,16 +78,10 @@
 							<span class="fa fa-th"></span> <span>财务概览</span>
 						</a>
 					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-edit"></i> <span>新的项目</span>
-							<!-- <small class="label pull-right label-danger">3</small> -->
-						</a>
-					</li>
 					<li class="treeview">
 						<a href="#">
 							<i class="glyphicon glyphicon-pencil"></i>
-							<span>收入支出</span>
+							<span>财务分析</span>
 						</a>
 					</li>
 					<li class="treeview">
@@ -207,14 +196,27 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </form>
 
-							<div class="form-group">
-								<button class="btn btn-danger" type="submit">删除</button>
-								<button class="btn btn-info" type="reset">重置</button>
-							</div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#myModal">删除</button>
+                        </div>
 
-
-						</form>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">删除条目</h4>
+                                    </div>
+                                    <div class="modal-body">您确定要删除？</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-primary">确定</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div>
+                        </div>
 					</div>
 
 					<!--收入-->
@@ -315,6 +317,8 @@
 <script type="text/javascript" src="mainjs/bootstrap-datetimepicker.fr.js"></script>
 <!--<script type="text/javascript" src="mainjs/bootstrap-datetimepicker.zh-CN.js"></script>-->
 <script src="mainjs/bootstrap-pager.js"></script>
+
+
 
 <!-- 时间插件 -->
 <script type="text/javascript">
