@@ -123,7 +123,7 @@
 					<div id="home" class="tab-pane fade in active">
 						<!--<h3>收支概览</h3>-->
 						<form class="" action="" method="post">
-                            <div id="page-container-static-normal">
+                            <!--<div id="page-container-static-normal">-->
                                 <table class="table">
                                     <thead>
                                     <tr>
@@ -146,7 +146,11 @@
                                             <td th:text="${record.getValue()}">3</td>
                                             <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
                                             <td th:text="${record.getCategory()}">5</td>
-                                            <td>6</td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-trash" style="font-size: 25px;" data-toggle="modal" data-target="#myModal1"></span>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-edit" style="font-size: 25px;" data-toggle="modal" data-target="#myModal2"></span>
+                                            </td>
                                         </tr>
                                         <tr class="active" th:each="record:${records}">
                                             <td class=""><input type="checkbox"  name="choose"></td>
@@ -155,7 +159,11 @@
                                             <td th:text="${record.getValue()}">3</td>
                                             <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
                                             <td th:text="${record.getCategory()}">5</td>
-                                            <td>6</td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-trash" style="font-size: 25px;" data-toggle="modal" data-target="#myModal1"></span>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-edit" style="font-size: 25px;" data-toggle="modal" data-target="#myModal2"></span>
+                                            </td>
                                         </tr>
                                         <tr class="active" th:each="record:${records}">
                                             <td class=""><input type="checkbox"  name="choose"></td>
@@ -164,7 +172,11 @@
                                             <td th:text="${record.getValue()}">3</td>
                                             <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
                                             <td th:text="${record.getCategory()}">5</td>
-                                            <td>6</td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-trash" style="font-size: 25px;" data-toggle="modal" data-target="#myModal1"></span>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-edit" style="font-size: 25px;" data-toggle="modal" data-target="#myModal2"></span>
+                                            </td>
                                         </tr>
                                         <tr class="active" th:each="record:${records}">
                                             <td class=""><input type="checkbox"  name="choose"></td>
@@ -173,7 +185,11 @@
                                             <td th:text="${record.getValue()}">3</td>
                                             <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
                                             <td th:text="${record.getCategory()}">5</td>
-                                            <td>6</td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-trash" style="font-size: 25px;" data-toggle="modal" data-target="#myModal1"></span>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-edit" style="font-size: 25px;" data-toggle="modal" data-target="#myModal2"></span>
+                                            </td>
                                         </tr>
                                         <tr class="active" th:each="record:${records}">
                                             <td class=""><input type="checkbox"  name="choose"></td>
@@ -182,7 +198,11 @@
                                             <td th:text="${record.getValue()}">3</td>
                                             <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
                                             <td th:text="${record.getCategory()}">5</td>
-                                            <td>6</td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-trash" style="font-size: 25px;" data-toggle="modal" data-target="#myModal1"></span>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-edit" style="font-size: 25px;" data-toggle="modal" data-target="#myModal2"></span>
+                                            </td>
                                         </tr>
                                         <tr class="active" th:each="record:${records}">
                                             <td class=""><input type="checkbox" name="choose"></td>
@@ -191,18 +211,18 @@
                                             <td th:text="${record.getValue()}">3</td>
                                             <td th:text="${dateFormat.format(record.getRecordtime().getTime())}">4</td>
                                             <td th:text="${record.getCategory()}">5</td>
-                                            <td>6</td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-trash" style="font-size: 25px;" data-toggle="modal" data-target="#myModal1"></span>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="glyphicon glyphicon-edit" style="font-size: 25px;" data-toggle="modal" data-target="#myModal2"></span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
+                            <!--</div>-->
                         </form>
 
-                        <div class="form-group">
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#myModal">删除</button>
-                        </div>
-
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -210,6 +230,37 @@
                                         <h4 class="modal-title" id="myModalLabel">删除条目</h4>
                                     </div>
                                     <div class="modal-body">您确定要删除？</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-primary">确定</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div>
+                        </div>
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">修改条目</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="row">
+                                            <div class="form-group col-xs-12 col-md-6">
+                                                <input type="text" placeholder="金额" id="addusrname" class="form-control" />
+                                            </div>
+                                            <div class="form-group col-xs-12 col-md-6">
+                                                <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                                                    <input class="form-control" size="16" type="text" value="" placeholder="时间" required>
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-xs-12 col-md-12">
+                                                <input type="text" placeholder="备忘" id="addusrname" class="form-control" />
+                                            </div>
+                                        </form>
+                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                         <button type="button" class="btn btn-primary">确定</button>
