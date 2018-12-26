@@ -123,7 +123,7 @@ public class RecordService {
             time_start.add(Calendar.DAY_OF_WEEK,2-weekday);
         }
         time_start.add(Calendar.HOUR_OF_DAY,-hour24);
-        time_start.add(Calendar.MINUTE,-minute);
+        time_start.add(Calendar.MINUTE,-minute-1);
         time_start.add(Calendar.SECOND,-second);
 
         records = recordsOfSomeDays(records,time_start,time_end);
@@ -140,7 +140,7 @@ public class RecordService {
 
         time_start.add(Calendar.DAY_OF_MONTH,1-day);
         time_start.add(Calendar.HOUR_OF_DAY,-hour);
-        time_start.add(Calendar.MINUTE,-minute);
+        time_start.add(Calendar.MINUTE,-minute-1);
         time_start.add(Calendar.SECOND,-second);
 
         records = recordsOfSomeDays(records,time_start,time_end);
@@ -158,7 +158,7 @@ public class RecordService {
 
         time_start.add(Calendar.DAY_OF_YEAR,1-day);
         time_start.add(Calendar.HOUR_OF_DAY,-hour);
-        time_start.add(Calendar.MINUTE,-minute);
+        time_start.add(Calendar.MINUTE,-minute-1);
         time_start.add(Calendar.SECOND,-second);
 
         records = recordsOfSomeDays(records,time_start,time_end);
