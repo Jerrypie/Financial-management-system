@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="sidebar">
+    <div class="pc"><!--pc端的整体布局-->
+        <aside class="main-sidebar" >
+            <section  class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header" th:text="${#session.getAttribute('UserObj').getUsername()}"></li>
+                    <li>
+                        <a href="#">
+                            <span class="active fa fa-th"></span> <span>财务管理</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span>分类统计</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>可视化图表</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 饼状图</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 条形图</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 更多</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/logout.action" onclick="if(confirm('确认退出吗？')==false) return false;">
+                            <span class="glyphicon glyphicon-off"></span> <span>退出登录</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+
+    <div id="wrapper" class="mob"><!--移动端的整体布局-->
+        <div class="page-wrapper">
+            <nav id="sidebar" class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <a href="#" id="toggle-sidebar"><i class="fa fa-bars"></i></a>
+                    <div class="sidebar-brand">
+                        <a href="#" th:text="${#session.getAttribute('UserObj').getUsername()}">这里放用户名</a>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-th"></span> <span>财务概览</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>新的项目</span>
+                                <!-- <small class="label pull-right label-danger">3</small> -->
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                <span>收入支出</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-pie-chart"></i>
+                                <span>可视化图表</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> 饼状图</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> 条形图</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> 更多</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/logout.action" onclick="if(confirm('确认退出吗？')==false) return false;">
+                                <i class="glyphicon glyphicon-off"></i><span>退出登录</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- sidebar-content  -->
+            </nav><!-- sidebar-wrapper  -->
+        </div><!-- page-wrapper -->
+    </div>
+</div>
+
+</body>
+</html>
