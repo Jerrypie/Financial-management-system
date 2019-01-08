@@ -20,7 +20,41 @@ import java.util.Optional;
 @Service
 public class UserService {
     @Resource
-    public UserRepository userRepository;
+    private UserRepository userRepository;
+
+    //用户注册
+    public String[] registerUser(String username, String password, String email)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        String[] msg = new String[2];
+        //验证用户名和密码是否为空
+        if (username != null && username.length() != 0
+                && password != null && password.length() != 0) {
+
+            //验证数据库中是否有这条记录
+            User user_db = this.getByUsername(username);
+            if (user_db != null) {
+                //如果用户存在，用户重新输入
+                msg[0] = "signup";
+                msg[1] = "输入的用户名已存在，请重新输入";
+                return msg;
+            } else {
+                //用户不存在进行注册
+                User user_new = new User();
+                user_new.setUsername(username);
+                password = this.passwordEncrypt(password);
+                user_new.setPassword(password);
+                user_new.setEmail(email);
+                this.save(user_new);
+                msg[0] = "redirect:/index";
+                msg[1] = "注册成功，请登录";
+                return msg;
+            }
+        } else {
+            msg[0] = "signup";
+            msg[1] = "输入的密码或用户名为空";
+            return msg;
+        }
+    }
 
     //保存对象
     @Transactional

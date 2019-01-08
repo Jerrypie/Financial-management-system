@@ -1,3 +1,61 @@
+// package com.example.financialmanagement.controller;
+
+// import java.io.UnsupportedEncodingException;
+// import java.security.NoSuchAlgorithmException;
+
+// import javax.annotation.Resource;
+// import javax.servlet.http.HttpServletRequest;
+
+// import com.example.financialmanagement.service.UserService;
+
+// import org.springframework.stereotype.Controller;
+// import org.springframework.ui.Model;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
+
+// @Controller
+// public class MainController {
+//     @Resource
+//     private UserService userservice;
+	
+// 	@GetMapping("/")
+// 	public String root() {
+// 		return "redirect:/index";
+// 	}
+	
+// 	@GetMapping("/index")
+// 	public String index() {
+// 		return "index";
+// 	}
+
+// 	@GetMapping("/login")
+// 	public String login() {
+// 		return "login";
+// 	}
+
+// 	@GetMapping("/login-error")
+// 	public String loginError(Model model) {
+// 		model.addAttribute("loginError", true);
+// 		model.addAttribute("errorMsg", "登录失败，用户名或者密码错误！");
+// 		return "login";
+// 	}
+	
+// 	@GetMapping("/register")
+// 	public String register() {
+// 		return "register";
+//     }
+    
+//     @PostMapping("/register.action")
+// 	public String registerUser(String UserName, String Password, String Email, HttpServletRequest request)
+//             throws NoSuchAlgorithmException, UnsupportedEncodingException {
+//         String[] msg = new String[2];
+//         msg = userservice.registerUser(UserName, Password, Email);
+//         request.setAttribute("msg", msg[1]);
+// 		return msg[0];
+// 	}
+	
+// }
+
 package com.example.financialmanagement.controller;
 
 import com.example.financialmanagement.model.BasicRecord;
@@ -16,6 +74,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +95,16 @@ public class MainController {
     private MainService mainService;
 
     private User user;
+
+        
+    @PostMapping("/register.action")
+	public String registerUser(String UserName, String Password, String Email, HttpServletRequest request)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        String[] msg = new String[2];
+        msg = userService.registerUser(UserName, Password, Email);
+        request.setAttribute("msg", msg[1]);
+		return msg[0];
+	}
 
     @RequestMapping("/main")
     public String MainPage(HttpServletRequest request, Model model) {
