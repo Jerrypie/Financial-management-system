@@ -9,6 +9,8 @@ import java.util.Base64;
 import java.util.Base64.Encoder;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -36,7 +38,6 @@ public class UserService {
                 //如果用户存在，用户重新输入
                 msg[0] = "signup";
                 msg[1] = "输入的用户名已存在，请重新输入";
-                return msg;
             } else {
                 //用户不存在进行注册
                 User user_new = new User();
@@ -47,13 +48,42 @@ public class UserService {
                 this.save(user_new);
                 msg[0] = "redirect:/index";
                 msg[1] = "注册成功，请登录";
-                return msg;
             }
         } else {
             msg[0] = "signup";
             msg[1] = "输入的密码或用户名为空";
-            return msg;
         }
+        return msg;
+    }
+
+    //用户登录
+    public String[] login(String username, String password, HttpServletRequest request) 
+            throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        
+        String[] msg = new String[2];
+        //验证用户名和密码是否为空
+        if (username != null && username.length() != 0
+                && password != null && password.length() != 0) {
+
+            //验证数据库中是否有这条记录
+            password = this.passwordEncrypt(password);
+            User user_db = this.getByUsernameAndPassword(username, password);
+            if (user_db != null) {
+
+                //如果用户存在，加入到session 中供后面使用
+                HttpSession session = request.getSession();
+                session.setAttribute("UserObj", user_db);
+                msg[0] = "redirect:/main";
+                msg[1] = "登录成功";
+            } else {
+                msg[0] = "index.html";
+                msg[1] = "输入的密码或用户名有误，请重新输入";
+            }
+        } else {
+            msg[0] = "index.html";
+            msg[1] = "输入的密码或用户名为空";
+        }
+        return msg;
     }
 
     //保存对象
