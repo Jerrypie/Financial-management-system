@@ -11,13 +11,13 @@
             <section  class="sidebar">
                 <ul class="sidebar-menu">
                     <li class="header" th:text="${#session.getAttribute('UserObj').getUsername()}"></li>
-                    <li>
-                        <a href="#">
-                            <span class="active fa fa-th"></span> <span>财务管理</span>
+                    <li class="active" th:class="${activeUri == 'main.html' ? 'active' : ''}">
+                        <a href="/main">
+                            <span class="fa fa-th"></span> <span>财务管理</span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
+                    <li class="treeview" th:class="${activeUri == 'classStatic.html'} ? 'active' : ''">
+                        <a href="/classStatic.html">
                             <i class="glyphicon glyphicon-pencil"></i>
                             <span>分类统计</span>
                         </a>

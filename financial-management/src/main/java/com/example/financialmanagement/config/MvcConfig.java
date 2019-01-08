@@ -17,6 +17,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/signup.html").setViewName("signup");
         registry.addViewController("/main.html").setViewName("main");
         registry.addViewController("/404.html").setViewName("error");
+        registry.addViewController("/classStatic.html").setViewName("classStatic");
+
     }
 
     //注册拦截器，除了特定的请求都拦截
@@ -24,7 +26,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         LoginHandlerInterceptor loginHandlerInterceptor = new LoginHandlerInterceptor();
         registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
-                .excludePathPatterns( "/dividePage.**" ,"/static/**" ,"/error**",  "/index.html","/","/index","/signup","/login.action","/test","/*.action","/test.**");
+                .excludePathPatterns( "/classStatic",  "/dividePage.**" ,"/static/**" ,"/error**",  "/index.html","/","/index","/signup","/login.action","/test","/*.action","/test.**");
     }
 
 

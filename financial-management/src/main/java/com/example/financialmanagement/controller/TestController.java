@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.persistence.Basic;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.example.financialmanagement.model.*;
 import com.example.financialmanagement.service.MainService;
@@ -79,7 +81,6 @@ public class TestController {
     //userRepository返回某用户记录
     @RequestMapping("/test.100")
     public List<BasicRecord> getAll() {
-        this.initdate();
         user = userRepository.findByUsername("longshen");
         return user.getRecords();
     }
@@ -176,5 +177,6 @@ public class TestController {
         c2.set(2018, 12 , 26);
         return mainService.getALLSortedOfTime(c1,c2);
     }
+
 
 }

@@ -65,17 +65,17 @@ register:注册页面
 		email
 		
 main:
-	-/main:GET获取该用户按时间排序的所有记录
-	-/main/mianPage:GET获取某一分页记录
+	-/main:GET获取该用户按时间排序的所有记录,概览页面
+	-/main/mainPage/:GET获取某一分页记录
 		currentPage
 		
-	-/main/findByCategory:GET获取该用户某支出类型所有记录
+	-/main/category:GET获取该用户某支出类型所有记录
 		(int) category:前端维护映射，保持一致就行
 	-/main/categoryPage:GET获取支出类型某一分页记录
 		(int) category：前端维护映射，保持一致就行
 		currentPage
 		
-	-/main/findByTime:GET获取该用户某一段时间的所有记录
+	-/main/Time:GET获取该用户某一段时间的所有记录
 		(int) inTime
 			1：近三天
 			2：本周
@@ -89,31 +89,33 @@ main:
 			4：本年
 		currentPage
 	
-	-/main/findIncomeOrOutcome:GET获取支出或收入记录
-		（int）income
-			1：收入
-			0：支出
-	-/main/IncomeOrOutcomePage:GET获取支出或收入记录
-		（int）income
-			1：收入
-			0：支出
+	-/main/Income:GET获取支出或收入记录
+    	
+	-/main/Outcome:GET获取支出或收入记录
+
+			
+	-/main/IncomePage:GET获取支出或收入记录
+		currentPage
+
+	-/main/OutcomePage:GET获取支出或收入记录
 		currentPage
 		
-	-/main/addIncomeRecord:POST增加一条收入记录
-		recordtime:收支时间
-    	value:花的钱
-    	category:种类
-    	other:备注
-    -/main/addOutcomeRecord:POST增加一条支出记录
+	-/main/Income:POST增加一条收入记录
 		recordtime:收支时间
     	value:花的钱
     	category:种类
     	other:备注
     	
-    -/main/deleteRecord:POST删除一条记录
+    -/main/Outcome:POST增加一条支出记录
+		recordtime:收支时间
+    	value:花的钱
+    	category:种类
+    	other:备注
+    	
+    -/main/deleteRecord: POST删除一条记录
     	recordnum：需删除的记录id
     	
-    -/main/changeRecord:POST修改某一条记录
+    -/main/changeRecord: POST修改某一条记录
     	recordnum:记录的id
     	recordtime:收支时间
     	value:花的钱
