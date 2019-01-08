@@ -51,7 +51,74 @@ Personal Financial Management System
 ## API
 
 ```
-
+login:登录页面
+	-/login:GET获取登录页面
+	-/login:POST登录
+		username
+		password
+		
+register:注册页面
+	-/register:GET获取注册页面
+	-/register:POST注册
+		username
+		password
+		email
+		
+main:
+	-/main:GET获取该用户按时间排序的所有记录
+	-/main/mianPage:GET获取某一分页记录
+		currentPage
+		
+	-/main/findByCategory:GET获取该用户某支出类型所有记录
+		(int) category:前端维护映射，保持一致就行
+	-/main/categoryPage:GET获取支出类型某一分页记录
+		(int) category：前端维护映射，保持一致就行
+		currentPage
+		
+	-/main/findByTime:GET获取该用户某一段时间的所有记录
+		(int) inTime
+			1：近三天
+			2：本周
+			3：本月
+			4：本年
+	-/main/timePage:GET获取时间段内某一分页记录
+		(int) inTime
+			1：近三天
+			2：本周
+			3：本月
+			4：本年
+		currentPage
+	
+	-/main/findIncomeOrOutcome:GET获取支出或收入记录
+		（int）income
+			1：收入
+			0：支出
+	-/main/IncomeOrOutcomePage:GET获取支出或收入记录
+		（int）income
+			1：收入
+			0：支出
+		currentPage
+		
+	-/main/addIncomeRecord:POST增加一条收入记录
+		recordtime:收支时间
+    	value:花的钱
+    	category:种类
+    	other:备注
+    -/main/addOutcomeRecord:POST增加一条支出记录
+		recordtime:收支时间
+    	value:花的钱
+    	category:种类
+    	other:备注
+    	
+    -/main/deleteRecord:POST删除一条记录
+    	recordnum：需删除的记录id
+    	
+    -/main/changeRecord:POST修改某一条记录
+    	recordnum:记录的id
+    	recordtime:收支时间
+    	value:花的钱
+    	category:种类
+    	other:备注
 ```
 
 
