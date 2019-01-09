@@ -1,24 +1,21 @@
 package com.example.financialmanagement.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.service.MainService;
 import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class MainController {
@@ -41,11 +38,11 @@ public class MainController {
         String[] msg = new String[2];
         msg = userService.registerUser(UserName, Password, Email);
         request.setAttribute("msg", msg[1]);
-		return msg[0];
+        return msg[0];
     }
 
     @GetMapping("/register")
-    public String registerPage(){
+    public String registerPage() {
         return "register.html";
     }
 
@@ -57,8 +54,9 @@ public class MainController {
         String[] msg = new String[2];
         msg = userService.login(UserName, Password, request);
         request.setAttribute("msg", msg[1]);
-		return msg[0];
+        return msg[0];
     }
+
     //退出登录
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
@@ -67,7 +65,7 @@ public class MainController {
     }
 
     //输入日期的String格式，输出Calendar格式的日期
-    private Calendar DateTransform(String Originrecordtime) throws Exception{
+    private Calendar DateTransform(String Originrecordtime) throws Exception {
         SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
         Date date = StrParse.parse(Originrecordtime);
         Calendar recordtime = Calendar.getInstance();
@@ -98,31 +96,33 @@ public class MainController {
     }
 
     @PostMapping(value = "/main/record")
-    public String updateRecord( @RequestParam("mod_value") double value,
-                                @RequestParam("mod_time") String Originrecordtime,
-                                @RequestParam("mod_cal") int category,
-                                @RequestParam("mod_other") String other,
-                                @RequestParam("mod_id") int id,
-                                HttpServletRequest request
-                                ) throws Exception {
-            BasicRecord record = recordService.getByRecordId(id);
-            System.out.println(record.getRecordnum()+record.getRecordtime().toString()+record.getOther()+record.getValue());
+    public String updateRecord(@RequestParam("mod_value") double value,
+                               @RequestParam("mod_time") String Originrecordtime,
+                               @RequestParam("mod_cal") int category,
+                               @RequestParam("mod_other") String other,
+                               @RequestParam("mod_id") int id,
+                               HttpServletRequest request
+    ) throws Exception {
+        BasicRecord record = recordService.getByRecordId(id);
+        System.out.println(record.getRecordnum() + record.getRecordtime().toString() + record.getOther() + record.getValue());
 
-            record.setCategory(category);
-            record.setRecordtime(DateTransform(Originrecordtime));
-            record.setOther(other);
-            record.setValue(value);
-            record.setRecordnum(id);
-            recordService.updateByOneRecord(record);
+        record.setCategory(category);
+        record.setRecordtime(DateTransform(Originrecordtime));
+        record.setOther(other);
+        record.setValue(value);
+        record.setRecordnum(id);
+        recordService.updateByOneRecord(record);
 //        System.out.println(record.getRecordnum()+record.getRecordtime().toString()+record.getOther()+record.getValue());
-            return "redirect:/main";
+        return "redirect:/main";
     }
 
 
-//    @DeleteMapping(value = "/main/record/{recordId}")
-//    public String deleteRecord(@PathVariable("")int recordId){
-//        recordService.deleteByRecordnum(recordId);
-//    }
+    @RequestMapping(value = "/main/record/{recordId}")
+    public String deleteRecord(@PathVariable("id") int recordId) {
+        System.out.println(recordId);
+        recordService.deleteByRecordnum(recordId);
+        return "redirect:/main";
+    }
 
     @PostMapping(value = "/addOutcomeRecordOfUser.action")
     public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
@@ -133,9 +133,9 @@ public class MainController {
     }
 
     @RequestMapping(value = "/deleteRecordOfUser.action", method = RequestMethod.POST)
-    public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception{
-        if (records != null){
-            int i= 0;
+    public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception {
+        if (records != null) {
+            int i = 0;
             for (int recordnum : records) {
                 System.out.print(i);
                 i = i + 1;

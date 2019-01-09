@@ -263,17 +263,24 @@
 			$("#modal_val").val(a.prev().prev().text());
 			$("#modal_time").val(a.prev().prev().prev().text());
 			$("#mod_id").val( $(this).attr('id') );
-			console.log($(this).attr('id'));
+			// console.log($(this).attr('id'));
 		});
 
-		// $(".btn_delete").click(function () {
-		// 	var id = $(this).attr('value');
-		//
-		// 	var a=confirm("是否删除?");
-		// 	.ajax({
-		// 		url:"/main/record/",
-		// 	})
-		// });
+		$(".btn_delete").click(function () {
+			var id = $(this).attr('value');
+
+			var a=confirm("是否删除?");
+			if(a){
+			  $.ajax({
+				  type: "delete",
+				  url:"/main/record/"+id,
+				  success: function (result) {
+					  alert(result.msg);
+				  }
+				})
+			}
+
+		});
 	});
 
 </script>
