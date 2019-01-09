@@ -10,6 +10,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/classStatic.html").setViewName("classStatic");
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/index.html").setViewName("index");
@@ -18,7 +19,6 @@ public class MvcConfig implements WebMvcConfigurer {
 //        registry.addViewController("/signup.html").setViewName("signup");
         registry.addViewController("/main.html").setViewName("main");
         registry.addViewController("/404.html").setViewName("error");
-        registry.addViewController("/classStatic.html").setViewName("classStatic");
 
     }
 

@@ -63,5 +63,10 @@ public class MainController {
         request.getSession().removeAttribute("UserObj");//删除session中UserObj
         return "index.html";
     }
+
+    @GetMapping("/classStatic")
+    public String classPage(){
+        return "classStatic";
+    }
     
 }//end controller
