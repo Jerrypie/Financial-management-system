@@ -18,13 +18,13 @@ import com.example.financialmanagement.service.UserService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-//测试数据库用
 public class UserController {
     @Resource
     private UserService userService;
@@ -51,47 +51,127 @@ public class UserController {
         return "main.html";
     }
 
-    // 按类别查询
-    @RequestMapping("/type")
-    public String EachTypePage(@RequestParam("inType") int type, HttpServletRequest request, Model model) {
-        // 从session 中取出User
-        HttpSession session = request.getSession();
-        user = (User) session.getAttribute("UserObj");
-        mainService.setUser(user);
-
-        //默认加载第一页
-        List<BasicRecord> records = mainService.getAllCategoryRecord(type);
-        PageList pageList = mainService.getPage(records,1,3);
-        model.addAttribute("pageList", pageList);
-        return "main.html";
-    }
     
-    //按时间查询
-    @RequestMapping("/time")
-    public String EachTimePage(@RequestParam("inTime") int time,HttpServletRequest request, Model model) {
-        //从session 中取出User
-        HttpSession session = request.getSession();
-        user = (User) session.getAttribute("UserObj");
-        mainService.setUser(user);
-        List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
-        RecordService recordService = new RecordService();
-
-        if(time == 1){
-            records = recordService.recordsOfThreeDays(records);
-        }
-        else if(time == 2 ){
-            records = recordService.recordsOfThisWeek(records);
-        }
-        else if(time == 3){
-            records = recordService.recordsOfThisMonth(records);
-        }
-        else if(time == 4){
-            records = recordService.recordsOfThisYear(records);
-        }
-
-        PageList pageList = mainService.getPage(records,1,3);
-        model.addAttribute("pageList", pageList);
-        return "main.html";
+    //输入日期的String格式，输出Calendar格式的日期
+    private Calendar DateTransform(String Originrecordtime) throws Exception {
+        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = StrParse.parse(Originrecordtime);
+        Calendar recordtime = Calendar.getInstance();
+        recordtime.setTime(date);
+        return recordtime;
     }
+
+    //添加收入
+    @PostMapping(value = "/addIncomeRecordOfUser.action")
+    public String addIncomeBasicRecord(@RequestParam("inValue") double value,
+                                       @RequestParam("inTime") String Originrecordtime,
+                                       @RequestParam("inType") int category,
+                                       @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
+
+        BasicRecord basicRecord = new BasicRecord();
+        basicRecord.setRecordtime(DateTransform(Originrecordtime));
+        basicRecord.setValue(value);
+        basicRecord.setCategory(category);
+        basicRecord.setOther(other);
+        recordService.updateByOneRecord(basicRecord);
+        //取出用户
+        HttpSession session = request.getSession();
+        User user0 = (User) session.getAttribute("UserObj");
+
+        user = userService.getByUsername(user0.getUsername());
+        user.addRecords(basicRecord);
+        userService.save(user);
+        return "redirect:/main";
+    }
+
+    //修改记录
+    @PostMapping(value = "/main/record")
+    public String updateRecord(@RequestParam("mod_value") double value,
+                               @RequestParam("mod_time") String Originrecordtime,
+                               @RequestParam("mod_cal") int category,
+                               @RequestParam("mod_other") String other,
+                               @RequestParam("mod_id") int id,
+                               HttpServletRequest request
+    ) throws Exception {
+        BasicRecord record = recordService.getByRecordId(id);
+        System.out.println(record.getRecordnum() + record.getRecordtime().toString() + record.getOther() + record.getValue());
+
+        record.setCategory(category);
+        record.setRecordtime(DateTransform(Originrecordtime));
+        record.setOther(other);
+        record.setValue(value);
+        record.setRecordnum(id);
+        recordService.updateByOneRecord(record);
+//        System.out.println(record.getRecordnum()+record.getRecordtime().toString()+record.getOther()+record.getValue());
+        return "redirect:/main";
+    }
+
+    //添加支出
+    @PostMapping(value = "/addOutcomeRecordOfUser.action")
+    public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
+                                        @RequestParam("inTime") String Originrecordtime,
+                                        @RequestParam("inType") int category,
+                                        @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
+        return addIncomeBasicRecord(-value, Originrecordtime, category, other, request);
+    }
+
+    //删除记录
+    @RequestMapping(value = "/deleteRecordOfUser.action", method = RequestMethod.POST)
+    public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception {
+        if (records != null) {
+            int i = 0;
+            for (int recordnum : records) {
+                System.out.print(i);
+                i = i + 1;
+//                System.out.println(recordnum);
+                recordService.deleteByRecordnum(recordnum);
+            }
+        }
+        return "redirect:/main";
+    }
+
+
+    // // 按类别查询
+    // @RequestMapping("/type")
+    // public String EachTypePage(@RequestParam("inType") int type, HttpServletRequest request, Model model) {
+    //     // 从session 中取出User
+    //     HttpSession session = request.getSession();
+    //     user = (User) session.getAttribute("UserObj");
+    //     mainService.setUser(user);
+
+    //     //默认加载第一页
+    //     List<BasicRecord> records = mainService.getAllCategoryRecord(type);
+    //     PageList pageList = mainService.getPage(records,1,3);
+    //     model.addAttribute("pageList", pageList);
+    //     return "main.html";
+    // }
+    
+    // //按时间查询
+    // @RequestMapping("/time")
+    // public String EachTimePage(@RequestParam("inTime") int time,HttpServletRequest request, Model model) {
+    //     //从session 中取出User
+    //     HttpSession session = request.getSession();
+    //     user = (User) session.getAttribute("UserObj");
+    //     mainService.setUser(user);
+    //     List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
+    //     RecordService recordService = new RecordService();
+
+    //     if(time == 1){
+    //         records = recordService.recordsOfThreeDays(records);
+    //     }
+    //     else if(time == 2 ){
+    //         records = recordService.recordsOfThisWeek(records);
+    //     }
+    //     else if(time == 3){
+    //         records = recordService.recordsOfThisMonth(records);
+    //     }
+    //     else if(time == 4){
+    //         records = recordService.recordsOfThisYear(records);
+    //     }
+
+    //     PageList pageList = mainService.getPage(records,1,3);
+    //     model.addAttribute("pageList", pageList);
+    //     return "main.html";
+    // }
 
 }

@@ -55,6 +55,27 @@ public class MainService {
         return recordService.sortByDate(resRecords);
     }
 
+    //按收入或支出查询，
+    public List<BasicRecord> getAllValueRecord(int income) {
+        List<BasicRecord> records = recordService.getAllRecordsOfUser(user.getUsername());
+        List<BasicRecord> incomeRecords = new ArrayList<>();
+        List<BasicRecord> outcomeRecords = new ArrayList<>();
+        for (BasicRecord basicRecord : records) {
+            if (basicRecord.getValue() >= 0) {
+                incomeRecords.add(basicRecord);
+            }else{
+                outcomeRecords.add(basicRecord);
+            }
+        }
+        if(income == 1){
+            records = incomeRecords;
+        }else if(income == 0){
+            records = outcomeRecords;
+        }
+
+        return records;
+    }
+
     // //分页查询服务,返回PageList
     // public PageList dividePage(int currentPage, String username, int PageSize) {
     //     PageList pageList = new PageList();
