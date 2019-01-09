@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -126,7 +127,7 @@ public class MainDataController {
 
         return records;
     }
-
+    //返回本月收入支出和
     @GetMapping("/main/record/totalValue")
     public double[] getTotalValue( HttpServletRequest request) {
         double[] totalvalue = new double[2];
@@ -143,6 +144,41 @@ public class MainDataController {
 
         totalvalue[0] = recordService.getTotalValueOfRecords(income);
         totalvalue[1] = recordService.getTotalValueOfRecords(outcome);
+
+        return totalvalue;
+    }
+
+    //返回某一年每月收入支出
+    @GetMapping("/main/record/everyMonth")
+    public double[] getTotalValueOfMonth( @RequestParam("year") int year, HttpServletRequest request) {
+        double[] totalvalue = new double[24];
+        int i;
+        List<BasicRecord> income = new ArrayList<BasicRecord>();
+        List<BasicRecord> outcome = new ArrayList<BasicRecord>();
+        List<BasicRecord> month = new ArrayList<BasicRecord>();
+        Calendar timestart = Calendar.getInstance();
+        Calendar timeend = Calendar.getInstance();
+        timestart.set(year, 0, 1, 0, 0, 0);
+        timestart.add(Calendar.MINUTE,-1);
+        timeend.set(year, 1, 1, 0, 0, 0);
+        timeend.add(Calendar.MINUTE,-1);
+
+        //从session 中取出User
+        HttpSession session = request.getSession();
+        user = (User) session.getAttribute("UserObj");
+        mainService.setUser(user);
+        List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
+        RecordService recordService = new RecordService();
+        for(i = 0; i < 12; i++ ){
+            month = recordService.recordsOfSomeDays(records, timestart, timeend);
+            timeend.add(Calendar.MONTH,+1);
+            timestart.add(Calendar.MONTH,+1);
+            income = recordService.sortIncomeOrExpenditure(month, 1);
+            outcome = recordService.sortIncomeOrExpenditure(month, 0);
+
+            totalvalue[i] = recordService.getTotalValueOfRecords(income);
+            totalvalue[i+12] = recordService.getTotalValueOfRecords(outcome);
+        }
 
         return totalvalue;
     }
