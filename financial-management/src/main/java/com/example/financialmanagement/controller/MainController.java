@@ -2,6 +2,7 @@ package com.example.financialmanagement.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,6 +66,15 @@ public class MainController {
         return "index.html";
     }
 
+    //输入日期的String格式，输出Calendar格式的日期
+    private Calendar DateTransform(String Originrecordtime) throws Exception{
+        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = StrParse.parse(Originrecordtime);
+        Calendar recordtime = Calendar.getInstance();
+        recordtime.setTime(date);
+        return recordtime;
+    }
+
     @PostMapping(value = "/addIncomeRecordOfUser.action")
     public String addIncomeBasicRecord(@RequestParam("inValue") double value,
                                        @RequestParam("inTime") String Originrecordtime,
@@ -72,12 +82,7 @@ public class MainController {
                                        @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
 
         BasicRecord basicRecord = new BasicRecord();
-        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = StrParse.parse(Originrecordtime);
-        Calendar recordtime = Calendar.getInstance();
-        recordtime.setTime(date);
-
-        basicRecord.setRecordtime(recordtime);
+        basicRecord.setRecordtime(DateTransform(Originrecordtime));
         basicRecord.setValue(value);
         basicRecord.setCategory(category);
         basicRecord.setOther(other);
@@ -96,12 +101,28 @@ public class MainController {
     public String updateRecord( @RequestParam("mod_value") double value,
                                 @RequestParam("mod_time") String Originrecordtime,
                                 @RequestParam("mod_cal") int category,
-                                @RequestParam("mod_other") String other, HttpServletRequest request) throws Exception {
-        System.out.println("*asdfasdfasdfsdf");
-        return "redirect:/main";
+                                @RequestParam("mod_other") String other,
+                                @RequestParam("mod_id") int id,
+                                HttpServletRequest request
+                                ) throws Exception {
+            BasicRecord record = recordService.getByRecordId(id);
+            System.out.println(record.getRecordnum()+record.getRecordtime().toString()+record.getOther()+record.getValue());
+
+            record.setCategory(category);
+            record.setRecordtime(DateTransform(Originrecordtime));
+            record.setOther(other);
+            record.setValue(value);
+            record.setRecordnum(id);
+            recordService.updateByOneRecord(record);
+//        System.out.println(record.getRecordnum()+record.getRecordtime().toString()+record.getOther()+record.getValue());
+            return "redirect:/main";
     }
 
 
+//    @DeleteMapping(value = "/main/record/{recordId}")
+//    public String deleteRecord(@PathVariable("")int recordId){
+//        recordService.deleteByRecordnum(recordId);
+//    }
 
     @PostMapping(value = "/addOutcomeRecordOfUser.action")
     public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
@@ -118,7 +139,7 @@ public class MainController {
             for (int recordnum : records) {
                 System.out.print(i);
                 i = i + 1;
-                System.out.println(recordnum);
+//                System.out.println(recordnum);
                 recordService.deleteByRecordnum(recordnum);
             }
         }
