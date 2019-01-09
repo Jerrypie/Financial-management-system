@@ -25,26 +25,6 @@ public class MainController {
 
     @Resource
     private MainService mainService;
-    	
-	// @GetMapping("/")
-	// public String root() {
-	// 	return "redirect:/index";
-	// }
-	
-	// @GetMapping("/index")
-	// public String index() {
-	// 	return "index";
-	// }
-
-	// @GetMapping("/login")
-	// public String login() {
-	// 	return "login";
-	// }
-	
-	// @GetMapping("/register")
-	// public String register() {
-	// 	return "register";
-    // }
 
     // 注册
     @PostMapping("/register.action")
@@ -56,16 +36,16 @@ public class MainController {
 		return msg[0];
     }
     //登录
-    @PostMapping("/login.action")
+    @PostMapping("/login")
     public String login(String UserName, String Password, HttpServletRequest request)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
         String[] msg = new String[2];
         msg = userService.login(UserName, Password, request);
         request.setAttribute("msg", msg[1]);
 		return msg[0];
-    }    
+    }
     //退出登录
-    @RequestMapping("/logout.action")
+    @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("UserObj");//删除session中UserObj
         return "index.html";
