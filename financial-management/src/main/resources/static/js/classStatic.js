@@ -6,9 +6,22 @@ $(function () {
     var OutcomeTable = new outTableInit();
     OutcomeTable.Init();
 
-    var timeTable = new timeTableInit();
-
-    $("")
+    $("#btn_query").on('click',function () {
+        var startTime = $("#startTime").val();
+        var endTime   = $("#endTime").val();
+        var start = new Date(startTime);
+        var end = new Date(endTime);
+        if (start > end){
+            alert("开始日期不能超过截止日期");
+            return false;
+        }else{
+            console.log(startTime);
+            console.log(endTime);
+            $("#timeTable").bootstrapTable('destroy');
+            var timeTable = new timeTableInit();
+            timeTable.Init();
+        }
+    });
 
 
 });
@@ -145,7 +158,6 @@ function dateFormatter(value, row, index) {
     return formattedDate.getFullYear()
         +'-' + ('0' + (formattedDate.getMonth()+1)).slice(-2)
         +'-' + ('0' + formattedDate.getDate()).slice(-2);
-    // return (y +"-" + m +"-"+ d);
 }
 
 
@@ -153,8 +165,8 @@ var timeTableInit = function () {
     var timeObj = new Object();
     //初始化Table
     timeObj.Init = function () {
-        $('#outcomeTable').bootstrapTable({
-            url: '/main/record/value',         //请求后台的URL（*）
+        $('#timeTable').bootstrapTable({
+            url: '/main/record/someTime',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             // toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -162,7 +174,7 @@ var timeTableInit = function () {
             pagination: true,                   //是否显示分页（*）
             sortable: false,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
-            queryParams: {income: 0},//传递参数（*）
+            queryParams: timeObj.queryParams(),//传递参数（*）
             sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber:1,                       //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
@@ -200,14 +212,14 @@ var timeTableInit = function () {
     };
 
     //得到查询的参数
-    timeObj.queryParams = function (params) {
-        var temp = {
-
+    timeObj.queryParams = function () {
+        return {
+            timestart: $("#startTime").val(),
+            timeend: $("#endTime").val()
         };
-        return temp;
     };
 
-    return oTableInit;
+    return timeObj;
 };
 
 

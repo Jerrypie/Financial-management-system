@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="">
 
 <head th:replace="~{fragment/header :: header}">
+
+
 </head>
 <link rel="stylesheet" th:href="@{/static/table/bootstrap-table.css}">
 
@@ -38,7 +40,7 @@
                                     <div class="form-group">
                                         <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
                                             <!--<span class="input-group-addon">收入时间</span>-->
-                                            <input class="form-control" size="16" type="text" placeholder="起始日期" required>
+                                            <input id="startTime" class="form-control" size="16" type="text" placeholder="起始日期" required>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                         </div>
@@ -47,13 +49,13 @@
                                     <div class="form-group">
                                         <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
                                             <!--<span class="input-group-addon">收入时间</span>-->
-                                            <input class="form-control" size="16" type="text" placeholder="终止日期" required>
+                                            <input id="endTime" class="form-control" size="16" type="text" placeholder="终止日期" required>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                         </div>
                                     </div>
 
-                                    <button id="btn_query" class="btn btn-primary">查询</button>
+                                    <button type="button" id="btn_query" class="btn btn-primary">查询</button>
                                 </form>
                             </div>
                         </div>

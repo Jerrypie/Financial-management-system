@@ -98,7 +98,7 @@ public class MainDataController {
                                             HttpServletRequest request) throws Exception {
 
         Calendar timestart = DateTransform(startrecordtime);
-        Calendar timeend = DateTransform(startrecordtime);
+        Calendar timeend = DateTransform(endrecordtime);
         timestart.add(Calendar.MINUTE,-1);
         timeend.add(Calendar.MINUTE,1);
 
