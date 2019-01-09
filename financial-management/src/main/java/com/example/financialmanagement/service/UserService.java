@@ -36,7 +36,7 @@ public class UserService {
             User user_db = this.getByUsername(username);
             if (user_db != null) {
                 //如果用户存在，用户重新输入
-                msg[0] = "signup";
+                msg[0] = "register";
                 msg[1] = "输入的用户名已存在，请重新输入";
             } else {
                 //用户不存在进行注册
@@ -50,7 +50,7 @@ public class UserService {
                 msg[1] = "注册成功，请登录";
             }
         } else {
-            msg[0] = "signup";
+            msg[0] = "register";
             msg[1] = "输入的密码或用户名为空";
         }
         return msg;

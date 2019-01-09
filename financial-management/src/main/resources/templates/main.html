@@ -201,7 +201,7 @@
 		</div><!-- /.modal-content -->
 	</div>
 </div>
-<form class="row">
+<form class="row" method="post" action="/main/record">
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -212,18 +212,18 @@
 			<div class="modal-body">
 
 					<div class="form-group col-xs-12 col-md-6">
-						<input type="text" placeholder="金额" id="modal_val" class="form-control" />
+						<input type="number" name="mod_value" step="0.01" placeholder="金额" id="modal_val" class="form-control"  required/>
 					</div>
 					<div class="form-group col-xs-12 col-md-6">
 						<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
-							<input class="form-control" size="16" type="text" id="modal_time" placeholder="时间" required>
+							<input class="form-control" size="16" name="mod_time" type="text" id="modal_time" placeholder="时间" required>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 						</div>
 					</div>
 					<div class="form-group col-xs-12 col-md-6">
 						<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
-						<select name="inType" class="form-control" id="modal_ca">
+						<select class="form-control" id="modal_ca" name="mod_cal">
                                 <option value=5>学习</option>
                                 <option value=4>生活</option>
                                 <option value=3>娱乐</option>
@@ -232,7 +232,7 @@
                         </select>
 					</div>
 					<div class="form-group col-xs-12 col-md-6">
-						<input id="modal_other" type="text" placeholder="备忘" class="form-control" />
+						<input id="modal_other" type="text" name="mod_other" placeholder="备忘" class="form-control" />
 					</div>
 				</form>
 			</div>
@@ -260,9 +260,6 @@
 			$("#modal_ca").val(a.prev().text());
 			$("#modal_val").val(a.prev().prev().text());
 			$("#modal_time").val(a.prev().prev().prev().text());
-
-
-			// console.log($(this).parent().prev().text());
 		});
 	});
 </script>
