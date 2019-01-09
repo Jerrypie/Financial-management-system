@@ -66,6 +66,7 @@ var incomeTableInit = function () {
                 field: 'value',
                 title: '金额'
             }, {
+                formatter: otherFormatter,
                 field: 'category',
                 title: '类型'
             }, {
@@ -127,6 +128,7 @@ var outTableInit = function () {
                 formatter: outcomeFormatter,
                 title: '金额'
             }, {
+                formatter: otherFormatter,
                 field: 'category',
                 title: '类型'
             }, {
@@ -202,6 +204,7 @@ var timeTableInit = function () {
                 formatter: outcomeFormatter,
                 title: '金额'
             }, {
+                formatter: otherFormatter,
                 field: 'category',
                 title: '类型'
             }, {
@@ -222,6 +225,30 @@ var timeTableInit = function () {
     return timeObj;
 };
 
+function otherFormatter(value) {
+    var otherstr;
+    switch (value) {
+        case 1:
+            otherstr = "网购";
+            break;
+        case 2:
+            otherstr = "餐饮";
+            break;
+        case 3:
+            otherstr = "娱乐";
+            break;
+        case 4:
+            otherstr = "生活";
+            break;
+        case 5:
+            otherstr = "学习";
+            break;
+        default:
+            otherstr = "其他";
+    }
+
+    return otherstr;
+}
 
 function outcomeFormatter(value, row, index){
     return -value;
