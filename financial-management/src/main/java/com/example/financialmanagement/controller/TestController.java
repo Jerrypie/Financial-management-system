@@ -183,11 +183,11 @@ public class TestController {
     }
 
     @PostMapping(value = "/main/record/1")
-    public int deleteRecord(@RequestParam("id") int recordId) {
+    public boolean deleteRecord(@RequestParam("id") int recordId) {
         System.out.println(recordId);
-        recordService.deleteByRecordnum(recordId);
-        return recordId;
+        return recordService.deleteByRecordnum(recordId);
     }
+
 
 
 

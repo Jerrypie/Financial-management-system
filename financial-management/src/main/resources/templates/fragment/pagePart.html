@@ -26,14 +26,15 @@
             </div>
 
             <!--下一页-->
-            <li th:class="${pageList.getCurrentPage()==pageList.getTotalPage()}?'disabled' : ''">
-                <a th:if="${pageList.getCurrentPage()!=pageList.getTotalPage()}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
+            <li th:class="${pageList.getCurrentPage()==pageList.getTotalPage() or pageList.TotalPage == 0 }?'disabled' : ''">
+                <a th:if="${ (pageList.getCurrentPage()!=pageList.getTotalPage()) and pageList.TotalPage != 0}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
                     <span aria-hidden="true">下一页</span>
                 </a>
-
-                <span th:if="${pageList.getCurrentPage()==pageList.getTotalPage()}" aria-hidden="true">下一页</span>
+                <span th:if="${(pageList.getCurrentPage()==pageList.getTotalPage()) or pageList.TotalPage ==0}" aria-hidden="true">下一页</span>
             </li>
-            <li><a th:href="@{ '/dividePage.action?currentPage='+${pageList.getTotalPage()}}">尾页</a></li>
+
+            <li><a th:if="${ pageList.TotalPage != 0 }" th:href="@{ '/dividePage.action?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
+            <li th:class="disabled"><span th:if="${ pageList.TotalPage == 0 }">尾页</span></li>
         </ul>
 
         <!--处理页数大于7的情况-->
@@ -110,7 +111,8 @@
                 <span th:if="${pageList.getCurrentPage()==pageList.getTotalPage()}" aria-hidden="true">下一页</span>
             </li>
 
-            <li><a th:href="@{ '/dividePage.action?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
+            <li><a th:if="${ pageList.TotalPage != 0 }" th:href="@{ '/dividePage.action?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
+            <li><span th:if="${ pageList.TotalPage == 0 }">尾页</span></li>
         </ul>
 
     </div>
