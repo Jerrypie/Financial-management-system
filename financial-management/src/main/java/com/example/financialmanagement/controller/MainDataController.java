@@ -134,27 +134,12 @@ public class MainDataController {
         HttpSession session = request.getSession();
         user = (User) session.getAttribute("UserObj");
         mainService.setUser(user);
-        List<BasicRecord> income = mainService.getAllValueRecord(1);
-        List<BasicRecord> outcome = mainService.getAllValueRecord(0);
+        List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
         RecordService recordService = new RecordService();
 
-        int time = 3;
-        if(time == 1){
-            income = recordService.recordsOfThreeDays(income);
-            outcome = recordService.recordsOfThreeDays(outcome);
-        }
-        else if(time == 2 ){
-            income = recordService.recordsOfThisWeek(income);
-            outcome = recordService.recordsOfThisWeek(outcome);
-        }
-        else if(time == 3){
-            income = recordService.recordsOfThisMonth(income);
-            outcome = recordService.recordsOfThisMonth(outcome);
-        }
-        else if(time == 4){
-            income = recordService.recordsOfThisYear(income);
-            outcome = recordService.recordsOfThisYear(outcome);
-        }
+        records = recordService.recordsOfThisMonth(records);
+        List<BasicRecord> income = recordService.sortIncomeOrExpenditure(records, 1);
+        List<BasicRecord> outcome = recordService.sortIncomeOrExpenditure(records, 0);
 
         totalvalue[0] = recordService.getTotalValueOfRecords(income);
         totalvalue[1] = recordService.getTotalValueOfRecords(outcome);
