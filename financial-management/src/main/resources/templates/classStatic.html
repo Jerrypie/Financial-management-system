@@ -1,11 +1,103 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="">
 
 <head th:replace="~{fragment/header :: header}">
 </head>
+<link rel="stylesheet" th:href="@{/static/table/bootstrap-table.css}">
 
 <body>
-<div th:replace="~{fragment/sidebar :: sidebar(activeUri='classStatic.html')}">
+<div th:replace="~{fragment/sidebar :: sidebar(activeUri='classStatic.html')}"></div>
 
+<div class="Acontainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <h3>个人财务管理系统</h3>
+                <br>
+
+                <!--顶部栏-->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#income">收入查询</a></li>
+                    <li><a data-toggle="tab" href="#outcome">支出查询</a></li>
+                    <li><a data-toggle="tab" href="#time">按日期查询</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="income" class="tab-pane fade in active">
+                        <table id="incomeTable"></table>
+                    </div>
+                    <div id="outcome" class="tab-pane fade">
+                        <table id="outcomeTable"></table>
+                    </div>
+
+                    <div id="time" class="tab-pane fade">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">按日期查询</div>
+                            <div class="panel-body">
+                                <form id="formSearch" class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                                            <!--<span class="input-group-addon">收入时间</span>-->
+                                            <input class="form-control" size="16" type="text" placeholder="起始日期" required>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                                            <!--<span class="input-group-addon">收入时间</span>-->
+                                            <input class="form-control" size="16" type="text" placeholder="终止日期" required>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                        </div>
+                                    </div>
+
+                                    <button id="btn_query" class="btn btn-primary">查询</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <table id="timeTable"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/table/bootstrap-table.js}"></script>
+<script th:src="@{/static/table/bootstrap-table-zh-CN.js}"></script>
+<script th:src="@{/static/js/classStatic.js}"></script>
+
+
+<!--bootstrap 时钟-->
+<script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.fr.js"></script>
+<script src="../static/mainjs/choose.js" ></script>
+
+<!-- 时间插件 -->
+
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>
+
+<script>
+    $.sidebarMenu($('.sidebar-menu'))
+</script>
+<script src="../static/mainjs/sidebar-menu.js"></script>
 </body>
+
 </html>

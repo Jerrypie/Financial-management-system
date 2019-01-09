@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 
-<head th:replace="~{fragment/header :: header}">
+<head th:insert="~{fragment/header :: header}">
 </head>
 <body>
 <!--侧边栏-->
@@ -185,22 +185,6 @@
 	</div>
 </div>
 
-
-<!--<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-	<!--<div class="modal-dialog">-->
-		<!--<div class="modal-content">-->
-			<!--<div class="modal-header">-->
-				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-				<!--<h4 class="modal-title" id="myModalLabel">删除条目</h4>-->
-			<!--</div>-->
-			<!--<div class="modal-body">您确定要删除？</div>-->
-			<!--<div class="modal-footer">-->
-				<!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
-				<!--<button type="button" class="btn btn-primary">确定</button>-->
-			<!--</div>-->
-		<!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-	<!--</div>-->
-<!--</div>-->
 <form class="row" method="post" action="/main/record">
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -249,11 +233,6 @@
 
 <script src="../static/js/jquery.min.js" type="text/javascript"></script>
 <script src='../static/bootstrap/js/bootstrap.min.js'></script>
-
-<script>
-	$.sidebarMenu($('.sidebar-menu'))
-</script>
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".btn_edit").click(function(){
@@ -297,41 +276,42 @@
 <!--bootstrap 时钟-->
 <script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.fr.js"></script>
-	<script src="../static/mainjs/choose.js" ></script>
-
-	<!-- 时间插件 -->
-	<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-		weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-	$('.form_date').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	$('.form_time').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
-    });
+<!-- 时间插件 -->
+<script type="text/javascript">
+$('.form_datetime').datetimepicker({
+	//language:  'fr',
+	weekStart: 1,
+	todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	forceParse: 0,
+	showMeridian: 1
+});
+$('.form_date').datetimepicker({
+	language:  'fr',
+	weekStart: 1,
+	todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 2,
+	forceParse: 0
+});
+$('.form_time').datetimepicker({
+	language:  'fr',
+	weekStart: 1,
+	todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 1,
+	minView: 0,
+	maxView: 1,
+	forceParse: 0
+});
+</script>
+<script>
+	$.sidebarMenu($('.sidebar-menu'))
 </script>
 <script src="../static/mainjs/sidebar-menu.js"></script>
 
