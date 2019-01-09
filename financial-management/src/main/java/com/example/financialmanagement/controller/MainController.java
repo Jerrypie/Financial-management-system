@@ -117,12 +117,12 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "/main/record/{recordId}")
-    public String deleteRecord(@PathVariable("id") int recordId) {
-        System.out.println(recordId);
-        recordService.deleteByRecordnum(recordId);
-        return "redirect:/main";
-    }
+    // @RequestMapping(value = "/main/record/{recordId}")
+    // public String deleteRecord(@PathVariable("id") int recordId) {
+    //     System.out.println(recordId);
+    //     recordService.deleteByRecordnum(recordId);
+    //     return "redirect:/main";
+    // }
 
     @PostMapping(value = "/addOutcomeRecordOfUser.action")
     public String addOutcomeBasicRecord(@RequestParam("inValue") double value,

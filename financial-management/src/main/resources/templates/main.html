@@ -272,8 +272,10 @@
 			var a=confirm("是否删除?");
 			if(a){
 			  $.ajax({
-				  type: "delete",
-				  url:"/main/record/"+id,
+				  type: "post",
+				  url:"/main/record/1",
+				  dataType: "json",
+				  data:{id},
 				  success: function (result) {
 					  alert(result.msg);
 				  }

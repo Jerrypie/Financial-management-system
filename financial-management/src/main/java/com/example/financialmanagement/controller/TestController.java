@@ -19,7 +19,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -177,6 +181,14 @@ public class TestController {
         c2.set(2018, 12 , 26);
         return mainService.getALLSortedOfTime(c1,c2);
     }
+
+    @PostMapping(value = "/main/record/1")
+    public int deleteRecord(@RequestParam("id") int recordId) {
+        System.out.println(recordId);
+        recordService.deleteByRecordnum(recordId);
+        return recordId;
+    }
+
 
 
 }
