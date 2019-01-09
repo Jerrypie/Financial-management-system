@@ -274,9 +274,12 @@
 			if(a){
 			  $.ajax({
 				  type: "post",
-				  url:"/main/record/1",
+				  url:"/main/record",
 				  dataType: "json",
-				  data:{"id":id},
+				  data:{
+				  	'_method':'delete',
+				  	"id":id
+				  },
 				  success: function (result) {
 					  // console.log(th.attr('value'));
 					  th.parent().parent().remove();

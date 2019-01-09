@@ -116,29 +116,6 @@ public class MainController {
         return "redirect:/main";
     }
 
-
-//<<<<<<< Updated upstream
-//    // @RequestMapping(value = "/main/record/{recordId}")
-//    // public String deleteRecord(@PathVariable("id") int recordId) {
-//    //     System.out.println(recordId);
-//    //     recordService.deleteByRecordnum(recordId);
-//    //     return "redirect:/main";
-//    // }
-//=======
-//    @PostMapping(value = "/main/recordDel")
-//    @ResponseBody
-//    public Object deleteRecord(@RequestParam int id) {
-//        System.out.println(id);
-//        if(recordService.deleteByRecordnum(id)){
-//            return "true";
-//        }else{
-//            return "false";
-//        }
-//
-//    }
-//>>>>>>> Stashed changes
-
-
     @PostMapping(value = "/addOutcomeRecordOfUser.action")
     public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
                                         @RequestParam("inTime") String Originrecordtime,

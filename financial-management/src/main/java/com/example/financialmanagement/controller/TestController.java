@@ -182,13 +182,5 @@ public class TestController {
         return mainService.getALLSortedOfTime(c1,c2);
     }
 
-    @PostMapping(value = "/main/record/1")
-    public boolean deleteRecord(@RequestParam("id") int recordId) {
-        System.out.println(recordId);
-        return recordService.deleteByRecordnum(recordId);
-    }
-
-
-
 
 }
