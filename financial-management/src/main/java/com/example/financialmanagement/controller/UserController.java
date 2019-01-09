@@ -46,7 +46,7 @@ public class UserController {
 
         // 默认加载第一页
         List<BasicRecord> allrecords = mainService.getAllSortedRecordsByusername(user.getUsername());
-        PageList pageList = mainService.getPage(allrecords, 1, 3);
+        PageList pageList = mainService.getPage(allrecords, 1, 10);
         model.addAttribute("pageList", pageList);
         return "main.html";
     }
@@ -94,52 +94,4 @@ public class UserController {
         return "main.html";
     }
 
-    @RequestMapping(value = "/addIncomeRecordOfUser.action", method = RequestMethod.POST)
-    public String addIncomeBasicRecord(@RequestParam("inValue") double value,
-                                       @RequestParam("inTime") String Originrecordtime,
-                                       @RequestParam("inType") int category,
-                                       @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
-
-        BasicRecord basicRecord = new BasicRecord();
-        SimpleDateFormat StrParse = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = StrParse.parse(Originrecordtime);
-        Calendar recordtime = Calendar.getInstance();
-        recordtime.setTime(date);
-
-        basicRecord.setRecordtime(recordtime);
-        basicRecord.setValue(value);
-        basicRecord.setCategory(category);
-        basicRecord.setOther(other);
-        recordService.updateByOneRecord(basicRecord);
-        //取出用户
-        HttpSession session = request.getSession();
-        User user0 = (User) session.getAttribute("UserObj");
-
-        user = userService.getByUsername(user0.getUsername());
-        user.addRecords(basicRecord);
-        userService.save(user);
-        return "redirect:/main";
-    }
-
-    @RequestMapping(value = "/addOutcomeRecordOfUser.action", method = RequestMethod.POST)
-    public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
-                                        @RequestParam("inTime") String Originrecordtime,
-                                        @RequestParam("inType") int category,
-                                        @RequestParam("inOther") String other, HttpServletRequest request) throws Exception {
-        return addIncomeBasicRecord(-value, Originrecordtime, category, other, request);
-    }
-
-    @RequestMapping(value = "/deleteRecordOfUser.action", method = RequestMethod.POST)
-    public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception{
-        if (records != null){
-            int i= 0;
-            for (int recordnum : records) {
-                System.out.print(i);
-                i = i + 1;
-                System.out.println(recordnum);
-                recordService.deleteByRecordnum(recordnum);
-            }
-        }
-        return "redirect:/main";
-    }
 }

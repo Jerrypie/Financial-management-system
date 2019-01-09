@@ -1,13 +1,10 @@
 package com.example.financialmanagement.service;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.persistence.Basic;
+import javax.transaction.Transactional;
 
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.BasicRecordRepository;
@@ -46,7 +43,14 @@ public class RecordService {
         return totalvalue;
     }
 
+    @Transactional
+    public BasicRecord getByRecordId(Integer id) {
+        Optional<BasicRecord> op = basicRecordRepository.findById(id);
+        return op.get();
+    }
+
     //对记录为收入或支出分类，income为1时返回收入，其他值返回支出
+    @Transactional
     public List<BasicRecord> sortIncomeOrExpenditure(List<BasicRecord> records,int income){
         
         List<BasicRecord> records_out = new ArrayList<BasicRecord>();
@@ -68,12 +72,14 @@ public class RecordService {
     }
 
     //按记录id删除某条记录
+    @Transactional
     public boolean deleteByRecordnum(int recordnum){
         basicRecordRepository.deleteById(recordnum);
         return true;
     }
 
     //修改保存某条记录
+    @Transactional
     public boolean updateByOneRecord(BasicRecord basicRecord){
         basicRecordRepository.save(basicRecord);
         return true;
@@ -85,7 +91,9 @@ public class RecordService {
         return records;
     }
 
+
     //查找给定时间起止内的记录，其中time_start更早，time_end更晚
+    @Transactional
     public List<BasicRecord> recordsOfSomeDays(List<BasicRecord> records,Calendar time_start,Calendar time_end){
         int i = 0;
         int j = 0;
@@ -110,6 +118,7 @@ public class RecordService {
     }
 
     //查找近三天记录
+    @Transactional
     public List<BasicRecord> recordsOfThreeDays(List<BasicRecord> records){
         Calendar time_end = Calendar.getInstance();
         Calendar time_start = Calendar.getInstance();
@@ -118,6 +127,7 @@ public class RecordService {
         return records;
     }
     //查找本星期记录
+    @Transactional
     public List<BasicRecord> recordsOfThisWeek(List<BasicRecord> records){
         Calendar time_end = Calendar.getInstance();
         Calendar time_start = Calendar.getInstance();
@@ -139,6 +149,7 @@ public class RecordService {
         return records;
     }  
     //查找本月记录
+    @Transactional
     public List<BasicRecord> recordsOfThisMonth(List<BasicRecord> records){
         Calendar time_end = Calendar.getInstance();
         Calendar time_start = Calendar.getInstance();
@@ -157,6 +168,7 @@ public class RecordService {
     }
 
     //查找本年记录
+    @Transactional
     public List<BasicRecord> recordsOfThisYear(List<BasicRecord> records){
         Calendar time_end = Calendar.getInstance();
         Calendar time_start = Calendar.getInstance();
