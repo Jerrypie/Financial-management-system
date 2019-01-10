@@ -28,10 +28,21 @@ public class RecordService {
         basicRecordRepository.save(basicRecord);
     }
 
-    //get特定user的records
+    // get特定user的records
     public List<BasicRecord> getAllRecordsOfUser(String username) {
         user = userservice.getByUsername(username);
         return user.getRecords();
+    }
+
+    //按类别查询
+    public List<BasicRecord> getAllCategoryRecord(List<BasicRecord> records,int type) {
+        List<BasicRecord> resRecords = new ArrayList<>();
+        for (BasicRecord basicRecord : records) {
+            if (basicRecord.getCategory() == type) {
+                resRecords.add(basicRecord);
+            }
+        }
+        return resRecords;
     }
 
     //计算所给记录的支出的总和
@@ -190,7 +201,6 @@ public class RecordService {
     public Page<BasicRecord> findAll(Pageable pageable) {
         return basicRecordRepository.findAll(pageable);
     }
-
 
 }
 
