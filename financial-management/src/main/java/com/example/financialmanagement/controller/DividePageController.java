@@ -29,7 +29,7 @@ public class DividePageController {
         User user = (User) session.getAttribute("UserObj");
 
         List<BasicRecord> records = mainService.getAllSortedRecordsByusername(user.getUsername());
-        PageList pageObj = mainService.getPage(records,currentPage,10);
+        PageList pageObj = mainService.getPage(records,currentPage,7);
         model.addAttribute("pageList",pageObj);
         return "main.html";
     }

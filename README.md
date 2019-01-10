@@ -11,7 +11,7 @@ Personal Financial Management System
 
 12.24 加入了**MainService**， 封装了返回按时间排序的user所有records，按类别查询，使用首先应该setUser
 
-
+1.10  数据可视化 问题：ie浏览器的支持度
 
 ## 项目结构
 
