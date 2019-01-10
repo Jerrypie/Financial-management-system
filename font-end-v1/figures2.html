@@ -113,12 +113,20 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-1">
 				<h2>可视化图表分析</h2>
-				<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm" data-link-field="dtp_input1">
-					<span class="input-group-addon">收入支出时间</span>
-					<input class="form-control" size="16" type="text" value="" placeholder="请选择年月" required>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+				<div class="row">
+					<div class="col-md-7 col-md-offset-2">
+						<div class="input-group date form_date" data-date-format="yyyy-mm" data-link-field="dtp_input1">
+							<span class="input-group-addon">收入支出时间</span>
+							<input class="form-control" size="16" type="text" value="" placeholder="请选择年月" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-success">确定</button>
+					</div>
 				</div>
+				&nbsp;
 				<!--分栏按钮组-->
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu1">收入项目</a></li>

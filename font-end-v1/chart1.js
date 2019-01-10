@@ -7,7 +7,7 @@ myChart.setOption({
     },
     tooltip:{},
     legend:{
-        data:['收入','支出']
+        data:['收入','支出','净收入']
 
     },
     xAxis:{
@@ -24,9 +24,15 @@ myChart.setOption({
             name:'支出',
             type:'bar',
             data2:[]
+        },
+        {
+            name:'净收入',
+            type:'bar',
+            data2:[]
         }
     ]
 })
+
 
 //打开loading动画
 myChart.showLoading();
@@ -38,11 +44,20 @@ function bindData(){
         //异步加载数据
         // json文件最后一行不能有逗号
         $.get('data.json').done(function (data) {
-            // data = eval('('+data+')');
-            // var data3=data.data1-data.data2;
+
+            var data3=[];
+            var data4=[];
+            var data5=[0,0,0,0,0,0,0,0,0,0,0,0];
+            data3=data.data1;
+            data4=data.data2;
+            for(var i = 0; i < data5.length; i++)
+            {
+                data5[i]=data3[i]-data4[i];
+            }
+
             myChart.setOption({
                 xAxis:{
-                    data:data.name
+                    data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
                 },
                 series:[
                     {
@@ -54,6 +69,11 @@ function bindData(){
                         //根据名字对应到相应的系列
                         name:"支出",
                         data:data.data2
+                    },
+                    {
+                        //根据名字对应到相应的系列
+                        name:"净收入",
+                        data:data5
                     }
                 ]
             })
