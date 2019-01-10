@@ -1,21 +1,18 @@
 package com.example.financialmanagement.controller;
 
-import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.User;
 import com.example.financialmanagement.service.MainService;
 import com.example.financialmanagement.service.RecordService;
 import com.example.financialmanagement.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 @Controller
 public class MainController {
@@ -65,8 +62,20 @@ public class MainController {
     }
 
     @GetMapping("/classStatic")
-    public String classPage(){
+    public String classPage() {
         return "classStatic";
     }
-    
+
+
+    @GetMapping("/figure1")
+    public String figure1() {
+        return "figure1";
+    }
+
+
+    @GetMapping("/figure2")
+    public String figure2() {
+        return "figure2";
+    }
+
 }//end controller
