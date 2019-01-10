@@ -191,12 +191,13 @@ public class MainDataController {
         return map;
     }
 
-    //返回某月各项收入支出和
+    //返回某月各项收入或支出和
     @GetMapping("/main/record/oneMonth")
     public Map<String, double[]> getMonthRecord(@RequestParam("year") int year, 
-                                    @RequestParam("month") int month, HttpServletRequest request) {
+                                                @RequestParam("month") int month,
+                                                @RequestParam("income") int income,  
+                                                HttpServletRequest request) {
         double[] categoryvalue = new double[6];
-        double[] name = new double[6];
         List<BasicRecord> category = new ArrayList<BasicRecord>();
         int i;
         Calendar timestart = Calendar.getInstance();
@@ -217,6 +218,7 @@ public class MainDataController {
 
         for(i = 0; i < 6; i++ ){
             category = recordService.getAllCategoryRecord(records,i+1);
+            category = recordService.sortIncomeOrExpenditure(category, income);
             categoryvalue[i] = recordService.getTotalValueOfRecords(category);
         }
 
