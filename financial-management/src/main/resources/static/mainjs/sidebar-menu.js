@@ -1,7 +1,7 @@
-$.sidebarMenu = function(menu) {
+
   var animationSpeed = 300;
   
-  $(menu).on('click', 'li a', function(e) {
+  $('.sidebar-menu').on('click', 'li a', function(e) {
     var $this = $(this);
     var checkElement = $this.next();
 
@@ -36,7 +36,6 @@ $.sidebarMenu = function(menu) {
       e.preventDefault();
     }
   });
-}
 
 // <!-- 可滑出侧边栏 -->
 $(document).ready(function () {
@@ -144,12 +143,12 @@ jQuery(function($) {
     });
 
      if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-             // $(".sidebar-content").mCustomScrollbar({
-             //          axis:"y",
-             //          autoHideScrollbar: true,
-             //          scrollInertia: 300
-             //  });
-             //  $(".sidebar-content").addClass("desktop");
+               $(".sidebar-content").mCustomScrollbar({
+                        axis:"y",
+                        autoHideScrollbar: true,
+                        scrollInertia: 300
+                });
+                $(".sidebar-content").addClass("desktop");
 
-      }
+        }
 });

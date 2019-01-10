@@ -3,7 +3,7 @@
 <head th:replace="~{fragment/header :: header}">
 </head>
 <body>
-<div th:replace="~{fragment/sidebar :: sidebar(activeUri='figure')}">
+<div th:replace="~{fragment/sidebar :: sidebar(activeUri='figure1')}">
 </div>
 
 <div class="Acontainer">
@@ -27,7 +27,9 @@
 				&nbsp;
 				<div class="panel panel-default">
 `          	        <div class="panel-body">
-						<div id="linechart1" style="width:800px; height: 400px;"></div>
+						<div class="table-responsive">
+							<div id="linechart1" style="width:800px; height: 400px;"></div>
+						</div>
 					</div>
 				</div>
 			</div>

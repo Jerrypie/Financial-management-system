@@ -1,39 +1,79 @@
+
+//默认
+var now =  new Date();
+var year  = now.getFullYear();
+var month = now.getMonth()+1;
+
+$("#time").val(now.getFullYear()+'-' + (now.getMonth()+1) );
+
 var myChart1 = echarts.init(document.getElementById('piechart2'));
+//触发click
+$("#btn").click(function () {
+    var time = $("#time").val();
+    var date = new Date(time);
+    year = date.getFullYear();
+    month = date.getMonth()+1;
+
+    echartRefresh(myChart1,year,month);
+});
 
 myChart1.setOption({
     title:{
         text:'收入项目比例图'
     },
     tooltip:{},
-    series:[
-        {
-            name:'收入',
-            type:'pie',
-            data:[]
-        }
-    ]
-})
+    series: {
+        type:'pie',
+        data:[
+            {name: "测试1", value: 120},
+            {name: "测试2", value: 120},
+            {name: "测试3", value: 120}
+        ]
+    }
+});
 
-myChart1.showLoading();
-function bindData(){
-    //定时，读取数据
-    setTimeout(function(){
-        //获取数据后，隐藏loading动画
-        myChart1.hideLoading();
-        //异步加载数据
-        // json文件最后一行不能有逗号
-        $.get('data2s.json').done(function (data) {
-            // data = eval('('+data+')');
-            myChart1.setOption({
-                series:[
-                    {
-                        //根据名字对应到相应的系列
-                        data:data.data
+echartRefresh(myChart1,year,month);
+
+// myChart1.showLoading();
+
+function echartRefresh(myChart,year,month) {
+//打开loading动画
+    myChart.showLoading();
+    $.ajax({
+        type: "get",
+        async: true, //异步请求数据
+        url: "/main/record/oneMonth",
+        data: {
+            income: 1,
+            year: year,
+            month: month
+        },
+        dataType: "json", // 返回json
+        success: function (result) {
+            if (result){
+                var dataArray =  result.data1;
+                myChart.hideLoading();
+
+                myChart.setOption({        //加载数据图表
+                    series: {
+                        type: 'pie',
+                        data: [
+                            {name: "网购", value: dataArray[0]},
+                            {name: "餐饮", value: dataArray[1]},
+                            {name: "娱乐", value: dataArray[2]},
+                            {name: "生活", value: dataArray[3]},
+                            {name: "学习", value: dataArray[4]},
+                            {name: "其他", value: dataArray[5]}
+                        ]
                     }
-                ]
-            })
-        })
-    },1500)
+                });
+            }//end if
+        },//end success
+
+        error: function (errorMsg) {
+            alert("请求图表数据失败");
+            myChart.hideLoading();
+        }
+    });
 }
 
-bindData()

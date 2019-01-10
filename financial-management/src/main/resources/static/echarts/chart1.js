@@ -1,12 +1,14 @@
-var year = 2018;
 
+
+//默认2018年
+var year = 2018;
 
 //初始化echarts实例
 var myChart = echarts.init(document.getElementById('linechart1'));
 
+//触发click
 $("#btn").click(function () {
     year = $("#year").val();
-    console.log(year);
     echartRefresh(myChart,year);
 });
 
@@ -61,7 +63,7 @@ function echartRefresh(myChart,year) {
         data: {year: year},
         dataType: "json", // 返回json
         success: function (result) {
-            if (true){
+            if (result){
                 income =  result.data1;
                 outcome = result.data2;
 
@@ -102,9 +104,7 @@ function echartRefresh(myChart,year) {
             alert("请求图表数据失败");
             myChart.hideLoading();
         }
-
     });
-
 }
 
 
