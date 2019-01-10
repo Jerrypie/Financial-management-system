@@ -192,39 +192,35 @@ public class MainDataController {
 
     }
 
-    // //返回某一年每月收入支出
-    // @GetMapping("/main/record/oneMonth")
-    // public double[] getMonthRecord( @RequestParam("year") int year, 
-    //                                 @RequestParam("month") int month, HttpServletRequest request) {
-    //     double[] totalvalue = new double[24];
-    //     int i;
-    //     List<BasicRecord> income = new ArrayList<BasicRecord>();
-    //     List<BasicRecord> outcome = new ArrayList<BasicRecord>();
-    //     Calendar timestart = Calendar.getInstance();
-    //     Calendar timeend = Calendar.getInstance();
-    //     timestart.set(year, month-1, 1, 0, 0, 0);
-    //     timestart.add(Calendar.MINUTE,-1);
-    //     timeend.set(year, month, 1, 0, 0, 0);
-    //     timeend.add(Calendar.MINUTE,-1);
+    //返回某月各项收入支出和
+    @GetMapping("/main/record/oneMonth")
+    public double[] getMonthRecord( @RequestParam("year") int year, 
+                                    @RequestParam("month") int month, HttpServletRequest request) {
+        double[] categoryvalue = new double[6];
+        List<BasicRecord> category = new ArrayList<BasicRecord>();
+        int i;
+        Calendar timestart = Calendar.getInstance();
+        Calendar timeend = Calendar.getInstance();
+        timestart.set(year, month-1, 1, 0, 0, 0);
+        timestart.add(Calendar.MINUTE,-1);
+        timeend.set(year, month, 1, 0, 0, 0);
+        timeend.add(Calendar.MINUTE,-1);
+            
+        //从session 中取出User
+        HttpSession session = request.getSession();
+        user = (User) session.getAttribute("UserObj");
+        mainService.setUser(user);
+        
+        List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
+        RecordService recordService = new RecordService();
+        records = recordService.recordsOfSomeDays(records, timestart, timeend);
 
-    //     //从session 中取出User
-    //     HttpSession session = request.getSession();
-    //     user = (User) session.getAttribute("UserObj");
-    //     mainService.setUser(user);
-    //     List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
-    //     RecordService recordService = new RecordService();
-    //     for(i = 0; i < 12; i++ ){
-    //         month = recordService.recordsOfSomeDays(records, timestart, timeend);
-    //         timeend.add(Calendar.MONTH,+1);
-    //         timestart.add(Calendar.MONTH,+1);
-    //         income = recordService.sortIncomeOrExpenditure(month, 1);
-    //         outcome = recordService.sortIncomeOrExpenditure(month, 0);
+        for(i = 0; i < 6; i++ ){
+            category = recordService.getAllCategoryRecord(records,i+1);
+            categoryvalue[i] = recordService.getTotalValueOfRecords(category);
+        }
 
-    //         totalvalue[i] = recordService.getTotalValueOfRecords(income);
-    //         totalvalue[i+12] = recordService.getTotalValueOfRecords(outcome);
-    //     }
-
-    //     return totalvalue;
-    // }
+        return categoryvalue;
+    }
 
 }
