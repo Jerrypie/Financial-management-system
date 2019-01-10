@@ -196,6 +196,7 @@ public class MainDataController {
     public Map<String, double[]> getMonthRecord(@RequestParam("year") int year, 
                                     @RequestParam("month") int month, HttpServletRequest request) {
         double[] categoryvalue = new double[6];
+        double[] name = new double[6];
         List<BasicRecord> category = new ArrayList<BasicRecord>();
         int i;
         Calendar timestart = Calendar.getInstance();
