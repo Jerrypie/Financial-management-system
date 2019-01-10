@@ -22,7 +22,7 @@ $("#btn").click(function () {
 
 myChart1.setOption({
     title:{
-        text:'支出项目比例图'
+        text:'收入项目比例图'
     },
     tooltip:{},
     series: {
@@ -37,7 +37,7 @@ myChart1.setOption({
 
 myChart2.setOption({
     title:{
-        text:'支出项目比例图'
+        text:'收入项目比例图'
     },
     tooltip:{},
     series: {
@@ -89,7 +89,7 @@ function echartRefresh(myChart,year,month,income) {
         },//end success
 
         error: function (errorMsg) {
-            alert("请求图表数据失败");
+            // alert("请求图表数据失败");
             myChart.hideLoading();
         }
     });

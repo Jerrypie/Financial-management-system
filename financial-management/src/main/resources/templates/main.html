@@ -52,7 +52,7 @@
 										</td>
 										<td th:text="${#dates.format( record.getRecordtime().getTime(), 'yyyy-MM-dd') }">4</td>
 										<td th:text="${record.getValue()}">3</td>
-										<td th:text="${record.getCategory()}">5</td>
+										<td class="category" th:text="${record.getCategory()}">5</td>
 										<td th:text="${record.getOther()}">2</td>
 										<td>
 											<button th:id="${record.getRecordnum()}" type="button" class="btn btn-default btn_edit" data-toggle="modal" data-target="#modalEdit">
@@ -211,8 +211,8 @@
 					<div class="form-group col-xs-12 col-md-6">
 						<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
 						<select class="form-control" id="modal_ca" name="mod_cal">
-								<option value=6>学习</option>
-		                        <option value=5>其他</option>
+								<option value=6>其他</option>
+		                        <option value=5>学习</option>
 							    <option value=4>生活</option>
                                 <option value=3>娱乐</option>
                                 <option value=2>餐饮</option>

@@ -101,7 +101,7 @@ function echartRefresh(myChart,year) {
         },//end success
 
         error: function (errorMsg) {
-            alert("请求图表数据失败");
+            // alert("请求图表数据失败");
             myChart.hideLoading();
         }
     });
