@@ -46,7 +46,7 @@ public class UserController {
 
         // 默认加载第一页
         List<BasicRecord> allrecords = mainService.getAllSortedRecordsByusername(user.getUsername());
-        PageList pageList = mainService.getPage(allrecords, 1, 10);
+        PageList pageList = mainService.getPage(allrecords, 1, 7);
         model.addAttribute("pageList", pageList);
         return "main.html";
     }

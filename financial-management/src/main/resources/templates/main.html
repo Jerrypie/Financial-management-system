@@ -129,8 +129,6 @@
 
 						</form>
 					</div>
-
-
 					<!--支出-->
 					<div id="menu2" class="tab-pane fade">
 						<form class="" method="post" action="/addOutcomeRecordOfUser.action">
@@ -235,44 +233,7 @@
 
 <script src="../static/js/jquery.min.js" type="text/javascript"></script>
 <script src='../static/bootstrap/js/bootstrap.min.js'></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".btn_edit").click(function(){
-			$("#modal_other").val($(this).parent().prev().text());
-			var a = $(this).parent().prev();
-			$("#modal_ca").val(a.prev().text());
-			$("#modal_val").val(a.prev().prev().text());
-			$("#modal_time").val(a.prev().prev().prev().text());
-			$("#mod_id").val( $(this).attr('id') );
-			// console.log($(this).attr('id'));
-		});
-
-		$(".btn_delete").click(function () {
-			var th = $(this);
-			var id = $(this).attr('value');
-
-			var a=confirm("是否删除?");
-			if(a){
-			  $.ajax({
-				  type: "post",
-				  url:"/main/record",
-				  dataType: "json",
-				  data:{
-				  	'_method':'delete',
-				  	"id":id
-				  },
-				  success: function (result) {
-					  // console.log(th.attr('value'));
-					  th.parent().parent().remove();
-				  }
-				})
-			}
-
-		});
-	});
-
-</script>
-
+<script src="../static/js/main.js"></script>
 <script src="../static/mainjs/choose.js" ></script>
 
 <!--bootstrap 时钟-->
@@ -280,16 +241,6 @@
 <script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.fr.js"></script>
 <!-- 时间插件 -->
 <script type="text/javascript">
-$('.form_datetime').datetimepicker({
-	//language:  'fr',
-	weekStart: 1,
-	todayBtn:  1,
-	autoclose: 1,
-	todayHighlight: 1,
-	startView: 2,
-	forceParse: 0,
-	showMeridian: 1
-});
 $('.form_date').datetimepicker({
 	language:  'fr',
 	weekStart: 1,
@@ -298,17 +249,6 @@ $('.form_date').datetimepicker({
 	todayHighlight: 1,
 	startView: 2,
 	minView: 2,
-	forceParse: 0
-});
-$('.form_time').datetimepicker({
-	language:  'fr',
-	weekStart: 1,
-	todayBtn:  1,
-	autoclose: 1,
-	todayHighlight: 1,
-	startView: 1,
-	minView: 0,
-	maxView: 1,
 	forceParse: 0
 });
 </script>
