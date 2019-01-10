@@ -153,6 +153,7 @@ public class MainDataController {
     //返回某一年每月收入支出
     @GetMapping("/main/record/everyMonth")
     public Map<String, double[]> getTotalValueOfMonth(@RequestParam("year") int year, HttpServletRequest request) {
+//        System.out.println(year);
         double[] incomevalue = new double[12];
         double[] outcomevalue = new double[12];
         int i;
