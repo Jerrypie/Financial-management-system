@@ -93,7 +93,7 @@ public class MainDataController {
 
     //返回本月收入支出和
     @GetMapping("/main/record/totalValue")
-    public double[] getTotalValue( HttpServletRequest request) {
+    public Map<String, double[]> getTotalValue(HttpServletRequest request) {
         double[] totalvalue = new double[2];
         //从session 中取出User
         HttpSession session = request.getSession();
@@ -109,7 +109,10 @@ public class MainDataController {
         totalvalue[0] = recordService.getTotalValueOfRecords(income);
         totalvalue[1] = recordService.getTotalValueOfRecords(outcome);
 
-        return totalvalue;
+        Map<String,double[]> map = new HashMap<String,double[]>();
+        map.put("data1", totalvalue);
+
+        return map;
     }
 
     //返回某一年每月收入支出

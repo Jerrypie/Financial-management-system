@@ -61,7 +61,7 @@ var incomeTableInit = function () {
                 field: 'recordtime',
                 title: '日期',
                 formatter: dateFormatter,
-                width: 150
+                // width: 150
             }, {
                 field: 'value',
                 title: '金额'

@@ -31,4 +31,17 @@ $(document).ready(function(){
         }
 
     });
+
+    $.ajax({
+        type: "get",
+        url:"/main/record/totalValue",
+        dataType: "json",
+        data:{},
+        success: function (result) {
+            // result.data1[0];
+            console.log(result.data1[0]);
+            $("#presentIncome").append("本月总收入："+ result.data1[0] + "元 ," + "总支出 "+ (-result.data1[1]) + "元");
+        }
+    })
+
 });
