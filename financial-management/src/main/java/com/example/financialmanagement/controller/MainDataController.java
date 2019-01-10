@@ -15,7 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -150,8 +152,9 @@ public class MainDataController {
 
     //返回某一年每月收入支出
     @GetMapping("/main/record/everyMonth")
-    public double[] getTotalValueOfMonth( @RequestParam("year") int year, HttpServletRequest request) {
-        double[] totalvalue = new double[24];
+    public Map<String, double[]> getTotalValueOfMonth(@RequestParam("year") int year, HttpServletRequest request) {
+        double[] incomevalue = new double[12];
+        double[] outcomevalue = new double[12];
         int i;
         List<BasicRecord> income = new ArrayList<BasicRecord>();
         List<BasicRecord> outcome = new ArrayList<BasicRecord>();
@@ -176,11 +179,50 @@ public class MainDataController {
             income = recordService.sortIncomeOrExpenditure(month, 1);
             outcome = recordService.sortIncomeOrExpenditure(month, 0);
 
-            totalvalue[i] = recordService.getTotalValueOfRecords(income);
-            totalvalue[i+12] = recordService.getTotalValueOfRecords(outcome);
+            incomevalue[i] = recordService.getTotalValueOfRecords(income);
+            outcomevalue[i] = recordService.getTotalValueOfRecords(outcome);
         }
-
-        return totalvalue;
+        //调整返回格式
+        Map<String,double[]> map1 = new HashMap<String,double[]>();  
+        map1.put("data1", incomevalue);
+        map1.put("data2", outcomevalue);
+        
+        return map1;
     }
+
+    // //返回某一年每月收入支出
+    // @GetMapping("/main/record/oneMonth")
+    // public double[] getMonthRecord( @RequestParam("year") int year, 
+    //                                 @RequestParam("month") int month, HttpServletRequest request) {
+    //     double[] totalvalue = new double[24];
+    //     int i;
+    //     List<BasicRecord> income = new ArrayList<BasicRecord>();
+    //     List<BasicRecord> outcome = new ArrayList<BasicRecord>();
+    //     Calendar timestart = Calendar.getInstance();
+    //     Calendar timeend = Calendar.getInstance();
+    //     timestart.set(year, month-1, 1, 0, 0, 0);
+    //     timestart.add(Calendar.MINUTE,-1);
+    //     timeend.set(year, month, 1, 0, 0, 0);
+    //     timeend.add(Calendar.MINUTE,-1);
+
+    //     //从session 中取出User
+    //     HttpSession session = request.getSession();
+    //     user = (User) session.getAttribute("UserObj");
+    //     mainService.setUser(user);
+    //     List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
+    //     RecordService recordService = new RecordService();
+    //     for(i = 0; i < 12; i++ ){
+    //         month = recordService.recordsOfSomeDays(records, timestart, timeend);
+    //         timeend.add(Calendar.MONTH,+1);
+    //         timestart.add(Calendar.MONTH,+1);
+    //         income = recordService.sortIncomeOrExpenditure(month, 1);
+    //         outcome = recordService.sortIncomeOrExpenditure(month, 0);
+
+    //         totalvalue[i] = recordService.getTotalValueOfRecords(income);
+    //         totalvalue[i+12] = recordService.getTotalValueOfRecords(outcome);
+    //     }
+
+    //     return totalvalue;
+    // }
 
 }
