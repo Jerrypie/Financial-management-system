@@ -183,16 +183,16 @@ public class MainDataController {
             outcomevalue[i] = recordService.getTotalValueOfRecords(outcome);
         }
         //调整返回格式
-        Map<String,double[]> map1 = new HashMap<String,double[]>();  
-        map1.put("data1", incomevalue);
-        map1.put("data2", outcomevalue);
+        Map<String,double[]> map = new HashMap<String,double[]>();  
+        map.put("data1", incomevalue);
+        map.put("data2", outcomevalue);
         
-        return map1;
+        return map;
     }
 
     //返回某月各项收入支出和
     @GetMapping("/main/record/oneMonth")
-    public double[] getMonthRecord( @RequestParam("year") int year, 
+    public Map<String, double[]> getMonthRecord(@RequestParam("year") int year, 
                                     @RequestParam("month") int month, HttpServletRequest request) {
         double[] categoryvalue = new double[6];
         List<BasicRecord> category = new ArrayList<BasicRecord>();
@@ -218,7 +218,11 @@ public class MainDataController {
             categoryvalue[i] = recordService.getTotalValueOfRecords(category);
         }
 
-        return categoryvalue;
+        //调整返回格式
+        Map<String,double[]> map = new HashMap<String,double[]>();  
+        map.put("data1", categoryvalue);
+
+        return map;
     }
 
 }
