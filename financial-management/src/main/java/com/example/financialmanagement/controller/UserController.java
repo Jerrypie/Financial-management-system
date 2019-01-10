@@ -130,48 +130,4 @@ public class UserController {
         return "redirect:/main";
     }
 
-
-    // // 按类别查询
-    // @RequestMapping("/type")
-    // public String EachTypePage(@RequestParam("inType") int type, HttpServletRequest request, Model model) {
-    //     // 从session 中取出User
-    //     HttpSession session = request.getSession();
-    //     user = (User) session.getAttribute("UserObj");
-    //     mainService.setUser(user);
-
-    //     //默认加载第一页
-    //     List<BasicRecord> records = mainService.getAllCategoryRecord(type);
-    //     PageList pageList = mainService.getPage(records,1,3);
-    //     model.addAttribute("pageList", pageList);
-    //     return "main.html";
-    // }
-    
-    // //按时间查询
-    // @RequestMapping("/time")
-    // public String EachTimePage(@RequestParam("inTime") int time,HttpServletRequest request, Model model) {
-    //     //从session 中取出User
-    //     HttpSession session = request.getSession();
-    //     user = (User) session.getAttribute("UserObj");
-    //     mainService.setUser(user);
-    //     List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
-    //     RecordService recordService = new RecordService();
-
-    //     if(time == 1){
-    //         records = recordService.recordsOfThreeDays(records);
-    //     }
-    //     else if(time == 2 ){
-    //         records = recordService.recordsOfThisWeek(records);
-    //     }
-    //     else if(time == 3){
-    //         records = recordService.recordsOfThisMonth(records);
-    //     }
-    //     else if(time == 4){
-    //         records = recordService.recordsOfThisYear(records);
-    //     }
-
-    //     PageList pageList = mainService.getPage(records,1,3);
-    //     model.addAttribute("pageList", pageList);
-    //     return "main.html";
-    // }
-
 }

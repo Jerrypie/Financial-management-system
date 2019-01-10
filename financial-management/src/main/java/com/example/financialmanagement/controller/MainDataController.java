@@ -1,16 +1,5 @@
 package com.example.financialmanagement.controller;
 
-import com.example.financialmanagement.model.BasicRecord;
-import com.example.financialmanagement.model.User;
-import com.example.financialmanagement.service.MainService;
-import com.example.financialmanagement.service.RecordService;
-import com.example.financialmanagement.service.UserService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +12,16 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.example.financialmanagement.model.BasicRecord;
+import com.example.financialmanagement.model.User;
+import com.example.financialmanagement.service.MainService;
+import com.example.financialmanagement.service.RecordService;
+import com.example.financialmanagement.service.UserService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainDataController {
@@ -45,44 +44,6 @@ public class MainDataController {
         return recordService.deleteByRecordnum(recordId);
     }
 
-    //按类型返回记录
-    @GetMapping("/main/record/type")
-    public List<BasicRecord> getByCategory(@RequestParam(value = "category") int category, HttpServletRequest request) {
-        // 从session 中取出User
-        HttpSession session = request.getSession();
-        user = (User) session.getAttribute("UserObj");
-        mainService.setUser(user);
-
-        List<BasicRecord> records = mainService.getAllCategoryRecord(category);
-
-        return records;
-    }
-
-    //按时间返回记录
-    @GetMapping("/main/record/time")
-    public List<BasicRecord> getByRecordtime(@RequestParam("inTime") int time, HttpServletRequest request) {
-        //从session 中取出User
-        HttpSession session = request.getSession();
-        user = (User) session.getAttribute("UserObj");
-        mainService.setUser(user);
-        List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
-        RecordService recordService = new RecordService();
-
-        if(time == 1){
-            records = recordService.recordsOfThreeDays(records);
-        }
-        else if(time == 2 ){
-            records = recordService.recordsOfThisWeek(records);
-        }
-        else if(time == 3){
-            records = recordService.recordsOfThisMonth(records);
-        }
-        else if(time == 4){
-            records = recordService.recordsOfThisYear(records);
-        }
-
-        return records;
-    }
 
     //输入日期的String格式，输出Calendar格式的日期
     private Calendar DateTransform(String Originrecordtime) throws Exception {
@@ -93,7 +54,7 @@ public class MainDataController {
         return recordtime;
     }
 
-    //按所给时间段返回数据
+    //按所给时间段返回记录
     @GetMapping("/main/record/someTime")
     public List<BasicRecord> getRecordsInTime(@RequestParam("timestart") String startrecordtime,
                                             @RequestParam("timeend") String endrecordtime,
@@ -129,6 +90,7 @@ public class MainDataController {
 
         return records;
     }
+
     //返回本月收入支出和
     @GetMapping("/main/record/totalValue")
     public double[] getTotalValue( HttpServletRequest request) {
@@ -153,7 +115,7 @@ public class MainDataController {
     //返回某一年每月收入支出
     @GetMapping("/main/record/everyMonth")
     public Map<String, double[]> getTotalValueOfMonth(@RequestParam("year") int year, HttpServletRequest request) {
-//        System.out.println(year);
+
         double[] incomevalue = new double[12];
         double[] outcomevalue = new double[12];
         int i;

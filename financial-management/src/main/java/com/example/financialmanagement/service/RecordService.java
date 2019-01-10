@@ -1,16 +1,19 @@
 package com.example.financialmanagement.service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
-import javax.persistence.Basic;
 import javax.transaction.Transactional;
 
 import com.example.financialmanagement.model.BasicRecord;
 import com.example.financialmanagement.model.BasicRecordRepository;
 import com.example.financialmanagement.model.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
