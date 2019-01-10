@@ -111,20 +111,27 @@
 <div class="Acontainer">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-1">
+			<div class="col-xs-12 col-md-9 col-md-offset-1">
 				<h2>可视化图表分析</h2>
-				<div class="input-group date form_date col-md-12" data-date-format="yyyy" data-link-field="dtp_input1">
-					<span class="input-group-addon">收入支出时间</span>
-					<input class="form-control" size="16" type="text" value="" placeholder="请选择年份" required>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+				<div class="row">
+					<div class="col-md-7 col-md-offset-2">
+							<div class="input-group date form_date" data-date-format="yyyy" data-link-field="dtp_input1">
+							<span class="input-group-addon">收入支出时间</span>
+							<input class="form-control" size="16" type="text" value="" placeholder="请选择年份" required>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-success">确定</button>
+					</div>
 				</div>
-                <div class="panel panel-default">
-           	         <div class="panel-body">
-						 <div id="linechart1" style="width:600px; height: 400px;"></div>
-						 <!--<div id="piechart1" style="width: 600px;height:400px;"></div>-->
-                    </div>
-                </div>
+				&nbsp;
+				<div class="panel panel-default">
+`          	        <div class="panel-body">
+						<div id="linechart1" style="width:800px; height: 400px;"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -159,16 +166,6 @@
 
 <!-- 时间插件 -->
 <script type="text/javascript">
-	// $('.form_datetime').datetimepicker({
-	// 	//language:  'fr',
-	// 	weekStart: 1,
-	// 	todayBtn:  1,
-	// 	autoclose: 1,
-	// 	todayHighlight: 1,
-	// 	startView: 2,
-	// 	forceParse: 0,
-	// 	showMeridian: 1
-	// });
 	$('.form_date').datetimepicker({
 		language:  'fr',
 		weekStart: 1,
@@ -179,20 +176,12 @@
 		minView: 4,
 		forceParse: 0
 	});
-	// $('.form_time').datetimepicker({
-	// 	language:  'fr',
-	// 	weekStart: 1,
-	// 	todayBtn:  1,
-	// 	autoclose: 1,
-	// 	todayHighlight: 1,
-	// 	startView: 1,
-	// 	minView: 0,
-	// 	maxView: 1,
-	// 	forceParse: 0
-	// });
 </script>
 
+<script type="text/javascript">
 
+
+</script>
 
 </body>
 </html>
