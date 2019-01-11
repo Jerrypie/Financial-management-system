@@ -14,9 +14,13 @@ $(function () {
         if (start > end){
             alert("开始日期不能超过截止日期");
             return false;
-        }else{
-            console.log(startTime);
-            console.log(endTime);
+        } else if (!startTime){
+            alert("请输入开始日期");
+        } else if(!endTime){
+            alert("请输入截止日期")
+        } else{
+            // console.log(startTime);
+            // console.log(endTime);
             $("#timeTable").bootstrapTable('destroy');
             var timeTable = new timeTableInit();
             timeTable.Init();

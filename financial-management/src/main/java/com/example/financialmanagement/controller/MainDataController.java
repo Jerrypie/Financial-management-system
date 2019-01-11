@@ -59,22 +59,24 @@ public class MainDataController {
     public List<BasicRecord> getRecordsInTime(@RequestParam("timestart") String startrecordtime,
                                             @RequestParam("timeend") String endrecordtime,
                                             HttpServletRequest request) throws Exception {
+        if (!startrecordtime.isEmpty() && !endrecordtime.isEmpty()) {
+            Calendar timestart = DateTransform(startrecordtime);
+            Calendar timeend = DateTransform(endrecordtime);
+            timestart.add(Calendar.MINUTE, -1);
+            timeend.add(Calendar.MINUTE, 1);
 
-        Calendar timestart = DateTransform(startrecordtime);
-        Calendar timeend = DateTransform(endrecordtime);
-        timestart.add(Calendar.MINUTE,-1);
-        timeend.add(Calendar.MINUTE,1);
+            //取出用户的记录
+            HttpSession session = request.getSession();
+            user = (User) session.getAttribute("UserObj");
+            mainService.setUser(user);
+            List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
+            RecordService recordService = new RecordService();
 
-        //取出用户的记录
-        HttpSession session = request.getSession();
-        user = (User) session.getAttribute("UserObj");
-        mainService.setUser(user);
-        List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
-        RecordService recordService = new RecordService();
+            records = recordService.recordsOfSomeDays(records, timestart, timeend);
 
-        records = recordService.recordsOfSomeDays(records,timestart,timeend);
-
-        return records;
+            return records;
+        }
+        return null;
     }
 
 

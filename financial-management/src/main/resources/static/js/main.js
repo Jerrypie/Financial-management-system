@@ -1,14 +1,4 @@
 $(document).ready(function(){
-    $(".btn_edit").click(function(){
-        $("#modal_other").val($(this).parent().prev().text());
-        var a = $(this).parent().prev();
-        $("#modal_ca").val(a.prev().text());
-        $("#modal_val").val(a.prev().prev().text());
-        $("#modal_time").val(a.prev().prev().prev().text());
-        $("#mod_id").val( $(this).attr('id') );
-        // console.log($(this).attr('id'));
-    });
-
     $(".btn_delete").click(function () {
         var th = $(this);
         var id = $(this).attr('value');
@@ -42,12 +32,12 @@ $(document).ready(function(){
             // console.log(result.data1[0]);
             $("#presentIncome").append("本月总收入："+ result.data1[0] + "元 ," + "总支出 "+ (-result.data1[1]) + "元");
         }
-    })
+    });
 
     var list = $(".category");
 
     list.each(function () {
-        console.log($(this).text());
+        // console.log($(this).text());
         var num = $(this).text();
         switch (num) {
             case "1":
@@ -71,7 +61,22 @@ $(document).ready(function(){
             default:
                 $(this).text("其他");
         }
+
+        $(this).attr("number",num);
     });
+
+    $(".btn_edit").click(function(){
+        $("#modal_other").val($(this).parent().prev().text());
+        var a = $(this).parent().prev();
+        console.log(a.prev().text());
+        console.log(a.prev().attr("number"));
+        $("#modal_ca").val(a.prev().attr("number"));
+        $("#modal_val").val(a.prev().prev().text());
+        $("#modal_time").val(a.prev().prev().prev().text());
+        $("#mod_id").val( $(this).attr('id') );
+        // console.log($(this).attr('id'));
+    });
+
 
 });
 
