@@ -4,6 +4,7 @@
 <head th:replace="~{fragment/header :: header}">
 
 
+
 </head>
 <link rel="stylesheet" th:href="@{/static/table/bootstrap-table.css}">
 
@@ -79,6 +80,12 @@
 <script th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/static/table/bootstrap-table.js}"></script>
 <script th:src="@{/static/table/bootstrap-table-zh-CN.js}"></script>
+
+<script th:src="@{/static/table/bootstrap-table-export.js}"></script>
+<script th:src="@{/static/table/FileSaver.min.js}"></script>
+<script th:src="@{/static/table/xlsx.core.min.js}"></script>
+<script th:src="@{/static/table/tableExport.min.js}"></script>
+
 <script th:src="@{/static/js/classStatic.js}"></script>
 
 
@@ -101,7 +108,6 @@
         forceParse: 0
     });
 </script>
-
 
 </body>
 

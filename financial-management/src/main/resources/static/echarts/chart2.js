@@ -11,13 +11,19 @@ var myChartOutcome = echarts.init(document.getElementById('piechartOutcome'));
 var myChartIncome = echarts.init(document.getElementById('piechartIncome'));
 //触发click
 $("#btn").click(function () {
-    var time = $("#time").val();
-    var date = new Date(time);
-    year = date.getFullYear();
-    month = date.getMonth()+1;
 
-    echartRefreshOutcome(myChartOutcome,year,month);
-    echartRefreshIncome(myChartIncome,year,month);
+    var valid = /^(19|20)\d{2}-((0[1-9])|([1-9])|10|11|12)$/;
+    var time = $("#time").val();
+    if (valid.test(time)){
+        var date = new Date(time);
+        year = date.getFullYear();
+        month = date.getMonth()+1;
+
+        echartRefreshOutcome(myChartOutcome,year,month);
+        echartRefreshIncome(myChartIncome,year,month);
+    }else{
+        alert("请输入正确的日期格式")
+    }
 });
 
 myChartIncome.setOption({

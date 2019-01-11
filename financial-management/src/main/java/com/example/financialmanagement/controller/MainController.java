@@ -78,4 +78,9 @@ public class MainController {
         return "figure2";
     }
 
+    @GetMapping("/figure3")
+    public String figure3() {
+        return "figure3";
+    }
+
 }//end controller

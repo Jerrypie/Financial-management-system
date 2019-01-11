@@ -7,8 +7,16 @@ var myChart = echarts.init(document.getElementById('linechart1'));
 
 //触发click
 $("#btn").click(function () {
+
+    var valid = /^(19|20)\d{2}$/;
+
     year = $("#year").val();
-    echartRefresh(myChart,year);
+
+    if (valid.test(year)) {
+        echartRefresh(myChart, year);
+    }else{
+        alert("请输入正确的日期格式");
+    }
 });
 
 //设置图标配置项

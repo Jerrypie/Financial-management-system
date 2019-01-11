@@ -27,7 +27,7 @@
 					<div id="table" class="tab-pane fade in active">
 						<!--<h3>收支概览</h3>-->
 
-							<form class="" action="/main/deleteRecord" method="post">
+							<form action="/main/deleteRecord" method="post">
 							<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
@@ -84,7 +84,7 @@
 
 					<!--收入-->
 					<div id="menu1" class="tab-pane fade" >
-						<form class="" method="post" action="/main/addIncomeRecord">
+						<form onsubmit="return checkFormatIn();" method="post" action="/main/addIncomeRecord">
                         <div class="col-md-6">
                             <br/>
                             <div class="input-group input-group-md form-group">
@@ -94,7 +94,7 @@
                             <br/>
                             <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
                                 <span class="input-group-addon">收入时间</span>
-                                <input class="form-control" size="16" type="text" name="inTime" value="" placeholder="请在这里填入时间: 2018-01-04" required>
+                                <input class="form-control" size="16" type="text" id="inTime" name="inTime" maxlength="10" placeholder="请在这里填入时间: 2018-01-04" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                             </div>
@@ -120,7 +120,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-xs-6 col-md-3 col-md-offset-3">
-                                        <button type="submit" class="btn btn-info btn-lg">添加</button>
+                                        <button id="inBtn" type="submit" class="btn btn-info btn-lg">添加</button>
                                     </div>
                                     <div class="col-xs-6 col-md-3 col-md-offset-1">
                                         <button type="reset" class="btn btn-info btn-lg">重置</button>
@@ -134,7 +134,7 @@
 
 					<!--支出-->
 					<div id="menu2" class="tab-pane fade">
-						<form class="" method="post" action="/main/addOutcomeRecord">
+						<form id="formOutcome" method="post" onsubmit="return checkFormatOut();" action="/main/addOutcomeRecord">
 							<div class="col-md-6">
 								<br/>
 								<div class="input-group input-group-md form-group">
@@ -144,7 +144,7 @@
 								<br/>
 								<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
 									<span class="input-group-addon">支出时间</span>
-									<input class="form-control" size="16" type="text" name="inTime" value="" placeholder="请在这里填入时间: 2018-01-04" required>
+									<input maxlength="10" class="form-control" size="16" type="text" id="outTime" name="inTime" placeholder="请在这里填入时间: 2018-01-04" required>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 								</div>
@@ -172,7 +172,7 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-xs-6 col-md-3 col-md-offset-3">
-											<button type="submit" class="btn btn-info btn-lg">添加</button>
+											<button id="outBtn" type="submit" class="btn btn-info btn-lg">添加</button>
 										</div>
 										<div class="col-xs-6 col-md-3 col-md-offset-1">
 											<button type="reset" class="btn btn-info btn-lg">重置</button>
@@ -189,7 +189,7 @@
 	</div>
 </div>
 
-<form class="row" method="post" action="/main/updateRecord">
+<form class="row" id="formMod" method="post" action="/main/updateRecord" onsubmit="return checkFormatMod();">
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -204,7 +204,7 @@
 					</div>
 					<div class="form-group col-xs-12 col-md-6">
 						<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
-							<input class="form-control" size="16" name="mod_time" type="text" id="modal_time" placeholder="时间" required>
+							<input maxlength="10" class="form-control" size="16" name="mod_time" type="text" id="modal_time" placeholder="时间" required>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 						</div>

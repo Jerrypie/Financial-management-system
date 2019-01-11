@@ -21,7 +21,6 @@ $(document).ready(function(){
                 }
             })
         }
-
     });
 
     $.ajax({
@@ -53,6 +52,37 @@ $(document).ready(function(){
         $("#modal_time").val(other.prev().prev().prev().text());
         $("#mod_id").val( $(this).attr('id') );
     });
+
+    //
+    // $("#inBtn").click(function () {
+    //     var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
+    //     var val = $("#inTime").val();
+    //     if (!valid.test(val)){
+    //         alert("请输入正确的日期格式");
+    //     }
+    // });
+
+
+    //
+    // $("#outBtn").click(function () {
+    //     var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
+    //     var val = $("#outTime").val();
+    //     if (!valid.test(val)){
+    //         alert("请输入正确的日期格式");
+    //         return false;
+    //     }
+    // });
+    //
+    // $("#modal_ca").click(function () {
+    //     var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
+    //     var val = $("#mod_time").val();
+    //     if (!valid.test(val)){
+    //         alert("请输入正确的日期格式");
+    //         return false;
+    //     }
+    // });
+
+
 });
 
 function changeType() {
@@ -157,4 +187,35 @@ function changeModalByValue(){
         changeModaloutcome(selectVal);
     }
 }
+
+
+function checkFormatOut() {
+    var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
+    var val = $("#outTime").val();
+    if (!valid.test(val)){
+        alert("请输入正确的日期格式");
+        return false;
+    }
+}
+
+
+function checkFormatIn() {
+    var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
+    var val = $("#inTime").val();
+    if (!valid.test(val)){
+        alert("请输入正确的日期格式");
+        return false;
+    }
+}
+
+
+function checkFormatMod() {
+    var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
+    var val = $("#modal_time").val();
+    if (!valid.test(val)){
+        alert("请输入正确的日期格式");
+        return false;
+    }
+}
+
 

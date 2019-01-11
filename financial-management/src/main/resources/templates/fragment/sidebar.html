@@ -22,7 +22,7 @@
                             <span>财务统计</span>
                         </a>
                     </li>
-                    <li class="treeview" th:class="${ (activeUri == 'figure2') or (activeUri == 'figure1')} ? 'active' : ''">
+                    <li class="treeview" th:class="${ (activeUri == 'figure2') or (activeUri == 'figure1') or (activeUri == 'figure3') } ? 'active' : ''">
                         <a href="#">
                             <i class="fa fa-pie-chart"></i>
                             <span>可视化图表</span>
@@ -32,6 +32,7 @@
                             <!--<li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>-->
                             <li th:class="${ (activeUri == 'figure1')} ? 'active' : ''"><a href="/figure1"><i class="fa fa-circle-o"></i> 条形图</a></li>
                             <li th:class="${ (activeUri == 'figure2')} ? 'active' : ''"><a href="/figure2"><i class="fa fa-circle-o"></i> 饼状图</a></li>
+                            <li th:class="${ (activeUri == 'figure3')} ? 'active' : ''"><a href="/figure3"><i class="fa fa-circle-o"></i> 折线图</a></li>
                             <!--<li><a href="#"><i class="fa fa-circle-o"></i> 更多</a></li>-->
                         </ul>
                     </li>
@@ -66,16 +67,16 @@
                                 <!-- <small class="label pull-right label-danger">3</small> -->
                             </a>
                         </li>
-                        <li class="treeview">
+                        <li class="treeview" th:class="${ (activeUri == 'figure2') or (activeUri == 'figure1') or (activeUri == 'figure3') } ? 'active' : ''">
                             <a href="/figure1">
                                 <i class="fa fa-pie-chart"></i>
                                 <span>可视化图表</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <!--<li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>-->
-                                <li><a href="/figure1"><i class="fa fa-circle-o"></i> 条形图</a></li>
-                                <li><a href="/figure2"><i class="fa fa-circle-o"></i> 饼状图</a></li>
+                                <!--<li><a href="#"><i class="fa fa-circle-o"></i> 折线图</a></li>--><li th:class="${ (activeUri == 'figure1')} ? 'active' : ''"><a href="/figure1"><i class="fa fa-circle-o"></i> 条形图</a></li>
+                                <li th:class="${ (activeUri == 'figure2')} ? 'active' : ''"><a href="/figure2"><i class="fa fa-circle-o"></i> 饼状图</a></li>
+                                <li th:class="${ (activeUri == 'figure3')} ? 'active' : ''"><a href="/figure3"><i class="fa fa-circle-o"></i> 折线图</a></li>
                                 <!--<li><a href="#"><i class="fa fa-circle-o"></i> 更多</a></li>-->
                             </ul>
                         </li>
