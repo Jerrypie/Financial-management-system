@@ -115,9 +115,9 @@
 				<h2>可视化图表分析</h2>
 				<div class="row">
 					<div class="col-md-7 col-md-offset-2 col-xs-9">
-							<div class="input-group date form_date" data-date-format="yyyy-mm" data-link-field="dtp_input1">
-							<span class="input-group-addon">收入支出时间</span>
-							<input class="form-control" size="16" type="text" value="" placeholder="请选择年月" required>
+							<div class="input-group date form_date" data-date-format="yyyy-mm" data-link-field="dtp_input1" >
+							<span class="input-group-addon">日期选择</span>
+							<input class="form-control" size="16" type="text" value="" placeholder="请选择年月" required maxlength="7" pattern="^(19|20)\d{2}-((0\d{1})|10|11|12)$" oninput="checkOnInputda3(this, '请输入正确的日期格式！')">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 						</div>
@@ -168,6 +168,17 @@
 
 <!--图表自适应div大小-->
 <script type="text/javascript" src="mainjs/jquery.ba-resize.min.js"></script>
+
+<!--对日期格式的验证-->
+<script>
+	function checkOnInputda3(input, tip) {
+		if (input.validity.patternMismatch === true) {
+			input.setCustomValidity(tip);
+		} else {
+			input.setCustomValidity('');
+		}
+	}
+</script>
 
 <!-- 时间插件 -->
 <script type="text/javascript">
