@@ -207,7 +207,7 @@ public class MainDataController {
 
     //返回某月每日收入支出和
     @GetMapping("/main/record/everyDay")
-    public Map<String, double[]> getTotalValueOfDay(@RequestParam("year") int year, 
+    public DayValue getTotalValueOfDay(@RequestParam("year") int year, 
                                                       @RequestParam("month") int month, HttpServletRequest request) {
 
         RecordService recordService = new RecordService();
@@ -231,12 +231,12 @@ public class MainDataController {
         int i_max = timeend.get(Calendar.DATE);
         double[] incomevalue = new double[i_max];
         double[] outcomevalue = new double[i_max];
-        double[] inday = new double[i_max];
+        int[] inday = new int[i_max];
         int i;
         
         timeend.set(year, month-1, 2, 0, 0, 0);
         timeend.add(Calendar.MINUTE,-1);
-
+        //获得每天的value及对应天数
         for(i = 0; i < i_max; i++ ){
             dayrecord = recordService.recordsOfSomeDays(monthrecord, timestart, timeend);
             timeend.add(Calendar.DATE,+1);
@@ -249,12 +249,41 @@ public class MainDataController {
             inday[i] = i + 1;
         }
         //调整返回格式
-        Map<String,double[]> map = new HashMap<String,double[]>();  
-        map.put("income", incomevalue);
-        map.put("outcome", outcomevalue);
-        map.put("day", inday);
+        DayValue dayvalue = new DayValue(); 
+        dayvalue.setIncome(incomevalue);
+        dayvalue.setOutcome(outcomevalue);
+        dayvalue.setDay(inday);
 
-        return map;
+        return dayvalue;
     }
-
+}
+//每日收入支出模型
+class DayValue{
+    private double[] income;
+    private double[] outcome;
+    private int[] day;
+	
+	public int[] getDay() {
+		return day;
+	}
+	
+	public void setDay(int[] day) {
+		this.day = day;
+	}
+	
+	public double[] getOutcome() {
+		return outcome;
+	}
+	
+	public void setOutcome(double[] outcome) {
+		this.outcome = outcome;
+	}
+	
+	public double[] getIncome() {
+		return income;
+	}
+	
+	public void setIncome(double[] income) {
+		this.income = income;
+	}
 }
