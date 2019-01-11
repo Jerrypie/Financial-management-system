@@ -205,4 +205,56 @@ public class MainDataController {
         return map;
     }
 
+    //返回某月每日收入支出和
+    @GetMapping("/main/record/everyDay")
+    public Map<String, double[]> getTotalValueOfDay(@RequestParam("year") int year, 
+                                                      @RequestParam("month") int month, HttpServletRequest request) {
+
+        RecordService recordService = new RecordService();
+        List<BasicRecord> dayrecord = new ArrayList<BasicRecord>();
+        List<BasicRecord> income = new ArrayList<BasicRecord>();
+        List<BasicRecord> outcome = new ArrayList<BasicRecord>();        
+        Calendar timestart = Calendar.getInstance();
+        Calendar timeend = Calendar.getInstance();
+        timestart.set(year, month-1, 1, 0, 0, 0);
+        timestart.add(Calendar.MINUTE,-1);
+        timeend.set(year, month, 1, 0, 0, 0);
+        timeend.add(Calendar.MINUTE,-1);
+
+        //从session 中取出User
+        HttpSession session = request.getSession();
+        user = (User) session.getAttribute("UserObj");
+        mainService.setUser(user);
+        List<BasicRecord> monthrecord = mainService.getAllSortedRecordsOfUser();
+        monthrecord = recordService.recordsOfSomeDays(monthrecord, timestart, timeend);
+
+        int i_max = timeend.get(Calendar.DATE);
+        double[] incomevalue = new double[i_max];
+        double[] outcomevalue = new double[i_max];
+        double[] inday = new double[i_max];
+        int i;
+        
+        timeend.set(year, month-1, 2, 0, 0, 0);
+        timeend.add(Calendar.MINUTE,-1);
+
+        for(i = 0; i < i_max; i++ ){
+            dayrecord = recordService.recordsOfSomeDays(monthrecord, timestart, timeend);
+            timeend.add(Calendar.DATE,+1);
+            timestart.add(Calendar.DATE,+1);
+            income = recordService.sortIncomeOrExpenditure(dayrecord, 1);
+            outcome = recordService.sortIncomeOrExpenditure(dayrecord, 0);
+
+            incomevalue[i] = recordService.getTotalValueOfRecords(income);
+            outcomevalue[i] = recordService.getTotalValueOfRecords(outcome);
+            inday[i] = i + 1;
+        }
+        //调整返回格式
+        Map<String,double[]> map = new HashMap<String,double[]>();  
+        map.put("income", incomevalue);
+        map.put("outcome", outcomevalue);
+        map.put("day", inday);
+
+        return map;
+    }
+
 }
