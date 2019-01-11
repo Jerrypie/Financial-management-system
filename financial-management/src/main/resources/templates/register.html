@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<!-- 用户界面缩放 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 
@@ -27,7 +27,7 @@
 		<div class="col-md-4 col-md-offset-4 ">
 			<div class="main">
 				<h3>个人财务管理系统</h3>
-				<form class="form-horizontal" id = "form-main" onsubmit="return Checked();" action="/register" method="post" name="myform">
+				<form accept-charset="utf-8" class="form-horizontal" id = "form-main" onsubmit="return Checked();" action="/register" method="post" name="myform">
 					<!-- 用户名 -->
 				  	<div class="form-group">
 				  		<div class="input-group">
@@ -35,7 +35,7 @@
 				  					<span class="glyphicon glyphicon-user"></span>
 				  				</div>
 				    				<!-- <label for="UserName">用户名</label> -->
-				    				<input type="text" class="form-control" id="UserName" placeholder="输入用户名" name="UserName" maxlength="10" pattern="^[A-Za-z0-9\u4e00-\u9fa5]+$" oninput="checkOnInput1(this, '请输入字母，汉字或者数字！')" required oninvalid="setCustomValidity('请填写用户名!')">
+				    				<input th:charset="utf-8" type="text" class="form-control" id="UserName" placeholder="输入用户名" name="UserName" maxlength="10" pattern="^[A-Za-z0-9\u4e00-\u9fa5]+$" oninput="checkOnInput1(this, '请输入字母，汉字或者数字！')" required oninvalid="setCustomValidity('请填写用户名!')">
 				    	</div>
 				  	</div>
 					<!-- 密码 -->

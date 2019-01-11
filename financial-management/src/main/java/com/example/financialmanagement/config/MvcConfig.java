@@ -1,8 +1,14 @@
 package com.example.financialmanagement.config;
 
 import com.example.financialmanagement.component.LoginHandlerInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.*;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 //扩展MVC功能
 @Configuration
@@ -35,4 +41,20 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
+
+    @Bean
+    public HttpMessageConverter<String> responseBodyStringConverter() {
+        StringHttpMessageConverter converter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
+        return converter;
+    }
+
+    /**
+     * 修改StringHttpMessageConverter默认配置
+     * @param converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters){
+        converters.add(responseBodyStringConverter());
+    }
+
 }
