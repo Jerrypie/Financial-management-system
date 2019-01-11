@@ -94,7 +94,7 @@ public class UserController {
                                HttpServletRequest request
     ) throws Exception {
         BasicRecord record = recordService.getByRecordId(id);
-        System.out.println(record.getRecordnum() + record.getRecordtime().toString() + record.getOther() + record.getValue());
+//        System.out.println(record.getRecordnum() + record.getRecordtime().toString() + record.getOther() + record.getValue());
 
         record.setCategory(category);
         record.setRecordtime(DateTransform(Originrecordtime));
