@@ -114,18 +114,19 @@ public class RecordService {
         int i_max = records.size();
         records = sortByDate(records);
 
-        BasicRecord record1 = records.get(0);
-        while(time_end.before(record1.getRecordtime()) && i<i_max-1){
-            i = i + 1;
-            record1 = records.get(i);
+        for (i = 0; i<i_max; i++){
+            if ( !time_end.before(records.get(i).getRecordtime() )){
+                break;
+            }
         }
-        //i值为第一个位于时间段内记录
-        j = i;
-        BasicRecord record2 = records.get(j);
-        while(time_start.before(record2.getRecordtime()) && j<i_max-1){
-            j = j + 1;
-            record2 = records.get(j);
+
+
+        for (j=i; j < i_max; j++){
+            if (!time_start.before(records.get(j).getRecordtime())){
+                break;
+            }
         }
+
         //j值为第一个不位于时间段内记录
         records = records.subList(i, j);
         return records;
@@ -176,8 +177,9 @@ public class RecordService {
         time_start.add(Calendar.HOUR_OF_DAY,-hour);
         time_start.add(Calendar.MINUTE,-minute-1);
         time_start.add(Calendar.SECOND,-second);
-
+//        System.out.println(records.size());
         records = recordsOfSomeDays(records,time_start,time_end);
+//        System.out.println(records.size());
         return records;
     }
 

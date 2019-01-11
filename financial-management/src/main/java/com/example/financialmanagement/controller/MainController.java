@@ -32,7 +32,7 @@ public class MainController {
     @PostMapping("/register")
     public String registerUser(String UserName, String Password, String Email, HttpServletRequest request)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        String[] msg = new String[2];
+        String[] msg;
         msg = userService.registerUser(UserName, Password, Email);
         request.setAttribute("msg", msg[1]);
         return msg[0];
@@ -48,7 +48,7 @@ public class MainController {
     @PostMapping("/login")
     public String login(String UserName, String Password, HttpServletRequest request)
             throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        String[] msg = new String[2];
+        String[] msg;
         msg = userService.login(UserName, Password, request);
         request.setAttribute("msg", msg[1]);
         return msg[0];

@@ -45,7 +45,6 @@ public class UserController {
         mainService.setUser(user);
 
         // 默认加载第一页
-        System.out.println(user.getUsername());
         List<BasicRecord> allrecords = mainService.getAllSortedRecordsByusername(user.getUsername());
         PageList pageList = mainService.getPage(allrecords, 1, 7);
         model.addAttribute("pageList", pageList);

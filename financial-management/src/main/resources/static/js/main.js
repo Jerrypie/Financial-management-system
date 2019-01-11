@@ -68,13 +68,12 @@ $(document).ready(function(){
     $(".btn_edit").click(function(){
         $("#modal_other").val($(this).parent().prev().text());
         var a = $(this).parent().prev();
-        console.log(a.prev().text());
-        console.log(a.prev().attr("number"));
+
         $("#modal_ca").val(a.prev().attr("number"));
         $("#modal_val").val(a.prev().prev().text());
         $("#modal_time").val(a.prev().prev().prev().text());
         $("#mod_id").val( $(this).attr('id') );
-        // console.log($(this).attr('id'));
+
     });
 
 

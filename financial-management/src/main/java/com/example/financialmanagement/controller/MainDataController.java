@@ -40,7 +40,6 @@ public class MainDataController {
     //删除某条记录
     @DeleteMapping(value = "/main/record")
     public boolean deleteRecord(@RequestParam("id") int recordId) {
-        System.out.println(recordId);
         return recordService.deleteByRecordnum(recordId);
     }
 
@@ -101,10 +100,11 @@ public class MainDataController {
         HttpSession session = request.getSession();
         user = (User) session.getAttribute("UserObj");
         mainService.setUser(user);
+
         List<BasicRecord> records = mainService.getAllSortedRecordsOfUser();
-        RecordService recordService = new RecordService();
 
         records = recordService.recordsOfThisMonth(records);
+
         List<BasicRecord> income = recordService.sortIncomeOrExpenditure(records, 1);
         List<BasicRecord> outcome = recordService.sortIncomeOrExpenditure(records, 0);
 
