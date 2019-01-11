@@ -27,7 +27,7 @@
 					<div id="table" class="tab-pane fade in active">
 						<!--<h3>收支概览</h3>-->
 
-							<form class="" action="/deleteRecordOfUser.action" method="post">
+							<form class="" action="/main/deleteRecord" method="post">
 							<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
@@ -84,7 +84,7 @@
 
 					<!--收入-->
 					<div id="menu1" class="tab-pane fade" >
-						<form class="" method="post" action="/addIncomeRecordOfUser.action">
+						<form class="" method="post" action="/main/addIncomeRecord">
                         <div class="col-md-6">
                             <br/>
                             <div class="input-group input-group-md form-group">
@@ -134,7 +134,7 @@
 					</div>
 					<!--支出-->
 					<div id="menu2" class="tab-pane fade">
-						<form class="" method="post" action="/addOutcomeRecordOfUser.action">
+						<form class="" method="post" action="/main/addOutcomeRecord">
 							<div class="col-md-6">
 								<br/>
 								<div class="input-group input-group-md form-group">
@@ -188,7 +188,7 @@
 	</div>
 </div>
 
-<form class="row" method="post" action="/main/record">
+<form class="row" method="post" action="/main/updateRecord">
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">

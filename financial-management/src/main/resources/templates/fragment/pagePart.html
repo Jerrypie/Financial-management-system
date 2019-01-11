@@ -10,10 +10,10 @@
     <div class="form-group">
         <!--处理一般情况-->
         <ul class="pagination pagination-sm" data-th-if="${pageList.getTotalPage() le 7}">
-            <li><a href="/dividePage.action?currentPage=1">首页</a></li>
+            <li><a href="/main/page?currentPage=1">首页</a></li>
             <!-- 上一页 -->
             <li th:class="${pageList.getCurrentPage()==1}?'disabled' : ''">
-                <a th:if="${pageList.getCurrentPage()!=1}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()-1}}" class="page-link">
+                <a th:if="${pageList.getCurrentPage()!=1}" th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()-1}}" class="page-link">
                     <span aria-hidden="true">上一页</span>
                 </a>
                 <span aria-hidden="true" th:if="${pageList.getCurrentPage()==1}">上一页</span>
@@ -21,28 +21,28 @@
 
             <div th:if="${(pageList.getTotalPage() le 7) and (pageList.getTotalPage() gt 0)}" th:remove="tag">
                 <div th:each="pagenum : ${#numbers.sequence(1,pageList.getTotalPage())}" th:remove="tag">
-                    <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/dividePage.action?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
+                    <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/main/page?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
                 </div>
             </div>
 
             <!--下一页-->
             <li th:class="${pageList.getCurrentPage()==pageList.getTotalPage() or pageList.TotalPage == 0 }?'disabled' : ''">
-                <a th:if="${ (pageList.getCurrentPage()!=pageList.getTotalPage()) and pageList.TotalPage != 0}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
+                <a th:if="${ (pageList.getCurrentPage()!=pageList.getTotalPage()) and pageList.TotalPage != 0}" th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
                     <span aria-hidden="true">下一页</span>
                 </a>
                 <span th:if="${(pageList.getCurrentPage()==pageList.getTotalPage()) or pageList.TotalPage ==0}" aria-hidden="true">下一页</span>
             </li>
 
-            <li><a th:if="${ pageList.TotalPage != 0 }" th:href="@{ '/dividePage.action?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
+            <li><a th:if="${ pageList.TotalPage != 0 }" th:href="@{ '/main/page?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
             <li th:class="disabled"><span th:if="${ pageList.TotalPage == 0 }">尾页</span></li>
         </ul>
 
         <!--处理页数大于7的情况-->
         <ul class="pagination pagination-sm" data-th-if="${pageList.getTotalPage() gt 7}">
-            <li><a href="/dividePage.action?currentPage=1">首页</a></li>
+            <li><a href="/main/page?currentPage=1">首页</a></li>
 
             <li th:class="${pageList.getCurrentPage()==1}?'disabled' : ''">
-                <a th:if="${pageList.getCurrentPage()!=1}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()-1}}" class="page-link">
+                <a th:if="${pageList.getCurrentPage()!=1}" th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()-1}}" class="page-link">
                     <span aria-hidden="true">上一页</span>
                 </a>
                 <span aria-hidden="true" th:if="${pageList.getCurrentPage()==1}">上一页</span>
@@ -51,7 +51,7 @@
             <!--如果小于4-->
             <div th:if="${(pageList.getCurrentPage() le 4) and (pageList.getTotalPage() gt 0)}" th:remove="tag">
                 <div th:each="pagenum : ${#numbers.sequence(1,4)}" th:remove="tag">
-                    <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/dividePage.action?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
+                    <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/main/page?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
 
             <div th:each="pagenum : ${#numbers.sequence(pageList.getCurrentPage(),pageList.getTotalPage())}" th:remove="tag"
                  th:if="${(pageList.getTotalPage() - pageList.getCurrentPage()) le 3}">
-                <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/dividePage.action?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
+                <li th:class="${pageList.getCurrentPage()==pagenum}? 'active' : '' "><a th:href="@{'/main/page?currentPage='+${pagenum}}" th:text="${pagenum}">3</a></li>
             </div>
 
             <!--最后一页与当前页大于等于3且当前页大于4-->
@@ -82,18 +82,18 @@
             </li>
 
             <li th:if="${(pageList.getCurrentPage() gt 4) and ( (pageList.getTotalPage() - pageList.getCurrentPage()) gt 3)}" class="active">
-                <a th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()}}" th:text="${pageList.getCurrentPage()}">
+                <a th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()}}" th:text="${pageList.getCurrentPage()}">
                 </a>
             </li>
 
             <li th:if="${(pageList.getCurrentPage() gt 4) and ( (pageList.getTotalPage() - pageList.getCurrentPage()) gt 3)}">
-                <a th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" th:text="${pageList.getCurrentPage()+1}">
+                <a th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()+1}}" th:text="${pageList.getCurrentPage()+1}">
                 </a>
             </li>
 
 
             <li th:if="${(pageList.getCurrentPage() gt 4) and ( (pageList.getTotalPage() - pageList.getCurrentPage()) gt 3)}">
-                <a th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+2} }" th:text="${pageList.getCurrentPage()+2}">
+                <a th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()+2} }" th:text="${pageList.getCurrentPage()+2}">
                 </a>
             </li>
 
@@ -105,13 +105,13 @@
 
             <!--下一页-->
             <li th:class="${pageList.getCurrentPage()==pageList.getTotalPage()}?'disabled' : ''">
-                <a th:if="${pageList.getCurrentPage()!=pageList.getTotalPage()}" th:href="@{'/dividePage.action?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
+                <a th:if="${pageList.getCurrentPage()!=pageList.getTotalPage()}" th:href="@{'/main/page?currentPage='+${pageList.getCurrentPage()+1}}" class="page-link">
                     <span aria-hidden="true">下一页</span>
                 </a>
                 <span th:if="${pageList.getCurrentPage()==pageList.getTotalPage()}" aria-hidden="true">下一页</span>
             </li>
 
-            <li><a th:if="${ pageList.TotalPage != 0 }" th:href="@{ '/dividePage.action?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
+            <li><a th:if="${ pageList.TotalPage != 0 }" th:href="@{ '/main/page?currentPage='+${pageList.getTotalPage()} }">尾页</a></li>
             <li><span th:if="${ pageList.TotalPage == 0 }">尾页</span></li>
         </ul>
 

@@ -23,7 +23,7 @@ public class DividePageController {
     private MainService mainService;
 
     //服务端分页，用于财务管理页面
-    @GetMapping("/dividePage.action")
+    @GetMapping("/main/page")
     public String dividePage(@RequestParam(value = "currentPage") int currentPage, Model model,
             HttpServletRequest request) {
         HttpSession session = request.getSession();

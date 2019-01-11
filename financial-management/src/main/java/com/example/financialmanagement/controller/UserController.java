@@ -62,7 +62,7 @@ public class UserController {
     }
 
     //添加收入
-    @PostMapping(value = "/addIncomeRecordOfUser.action")
+    @PostMapping(value = "/main/addIncomeRecord")
     public String addIncomeBasicRecord(@RequestParam("inValue") double value,
                                        @RequestParam("inTime") String Originrecordtime,
                                        @RequestParam("inType") int category,
@@ -85,7 +85,7 @@ public class UserController {
     }
 
     //修改记录
-    @PostMapping(value = "/main/record")
+    @PostMapping(value = "/main/updateRecord")
     public String updateRecord(@RequestParam("mod_value") double value,
                                @RequestParam("mod_time") String Originrecordtime,
                                @RequestParam("mod_cal") int category,
@@ -107,7 +107,7 @@ public class UserController {
     }
 
     //添加支出
-    @PostMapping(value = "/addOutcomeRecordOfUser.action")
+    @PostMapping(value = "/main/addOutcomeRecord")
     public String addOutcomeBasicRecord(@RequestParam("inValue") double value,
                                         @RequestParam("inTime") String Originrecordtime,
                                         @RequestParam("inType") int category,
@@ -116,7 +116,7 @@ public class UserController {
     }
 
     //删除记录
-    @RequestMapping(value = "/deleteRecordOfUser.action", method = RequestMethod.POST)
+    @RequestMapping(value = "/main/deleteRecord", method = RequestMethod.POST)
     public String deleteRecordOfUser(@RequestParam("inRecords") int[] records, HttpServletRequest request) throws Exception {
         if (records != null) {
             int i = 0;
