@@ -6,9 +6,9 @@ var month = now.getMonth()+1;
 
 $("#time").val(now.getFullYear()+'-' + (now.getMonth()+1) );
 //支出
-var myChart1 = echarts.init(document.getElementById('piechart1'));
+var myChartOutcome = echarts.init(document.getElementById('piechartOutcome'));
 //收入
-var myChart2 = echarts.init(document.getElementById('piechart2'));
+var myChartIncome = echarts.init(document.getElementById('piechartIncome'));
 //触发click
 $("#btn").click(function () {
     var time = $("#time").val();
@@ -16,11 +16,11 @@ $("#btn").click(function () {
     year = date.getFullYear();
     month = date.getMonth()+1;
 
-    echartRefresh(myChart1,year,month,0);
-    echartRefresh(myChart2,year,month,1);
+    echartRefreshOutcome(myChartOutcome,year,month);
+    echartRefreshIncome(myChartIncome,year,month);
 });
 
-myChart1.setOption({
+myChartIncome.setOption({
     title:{
         text:'收入项目比例图'
     },
@@ -35,9 +35,9 @@ myChart1.setOption({
     }
 });
 
-myChart2.setOption({
+myChartOutcome.setOption({
     title:{
-        text:'收入项目比例图'
+        text:'支出项目比例图'
     },
     tooltip:{},
     series: {
@@ -50,11 +50,11 @@ myChart2.setOption({
     }
 });
 
-echartRefresh(myChart1,year,month,0);
-echartRefresh(myChart2,year,month,1);
+echartRefreshOutcome(myChartOutcome,year,month);
+echartRefreshIncome(myChartIncome,year,month);
 // myChart1.showLoading();
 
-function echartRefresh(myChart,year,month,income) {
+function echartRefreshOutcome(myChart,year,month) {
 //打开loading动画
     myChart.showLoading();
     $.ajax({
@@ -62,7 +62,7 @@ function echartRefresh(myChart,year,month,income) {
         async: true, //异步请求数据
         url: "/main/record/oneMonth",
         data: {
-            income: income,
+            income: 0,
             year: year,
             month: month
         },
@@ -76,12 +76,53 @@ function echartRefresh(myChart,year,month,income) {
                     series: {
                         type: 'pie',
                         data: [
-                            {name: "网购", value: (income*2-1)*dataArray[0]},
-                            {name: "餐饮", value: (income*2-1)*dataArray[1]},
-                            {name: "娱乐", value: (income*2-1)*dataArray[2]},
-                            {name: "生活", value: (income*2-1)*dataArray[3]},
-                            {name: "学习", value: (income*2-1)*dataArray[4]},
-                            {name: "其他", value: (income*2-1)*dataArray[5]}
+                            {name: "网络购物", value: -dataArray[0]},
+                            {name: "餐饮食品", value: -dataArray[1]},
+                            {name: "人情往来", value: -dataArray[2]},
+                            {name: "娱乐休闲", value: -dataArray[3]},
+                            {name: "生活居家", value: -dataArray[4]},
+                            {name: "学习进修", value: -dataArray[5]},
+                            {name: "其他支出", value: -dataArray[5]}
+                        ]
+                    }
+                });
+            }//end if
+        },//end success
+
+        error: function (errorMsg) {
+            // alert("请求图表数据失败");
+            myChart.hideLoading();
+        }
+    });
+}
+
+function echartRefreshIncome(myChart,year,month) {
+//打开loading动画
+    myChart.showLoading();
+    $.ajax({
+        type: "get",
+        async: true, //异步请求数据
+        url: "/main/record/oneMonth",
+        data: {
+            income: 1,
+            year: year,
+            month: month
+        },
+        dataType: "json", // 返回json
+        success: function (result) {
+            if (result){
+                var dataArray =  result.data1;
+                myChart.hideLoading();
+
+                myChart.setOption({        //加载数据图表
+                    series: {
+                        type: 'pie',
+                        data: [
+                            {name: "其它收入", value: dataArray[0]},
+                            {name: "兼职收入", value: dataArray[1]},
+                            {name: "奖金收入", value: dataArray[2]},
+                            {name: "工资收入", value: dataArray[3]},
+                            {name: "理财收入", value: dataArray[4]}
                         ]
                     }
                 });

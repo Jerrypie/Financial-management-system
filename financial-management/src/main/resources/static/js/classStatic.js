@@ -64,7 +64,7 @@ var incomeTableInit = function () {
                 // },{
                 field: 'recordtime',
                 title: '日期',
-                formatter: dateFormatter,
+                formatter: dateFormatter
                 // width: 150
             }, {
                 field: 'value',
@@ -230,28 +230,54 @@ var timeTableInit = function () {
 };
 
 function otherFormatter(value) {
-    var otherstr;
+    var otherStr="";
     switch (value) {
         case 1:
-            otherstr = "网购";
+            otherStr="网络购物";
             break;
         case 2:
-            otherstr = "餐饮";
+            otherStr="餐饮食品";
             break;
         case 3:
-            otherstr = "娱乐";
+            otherStr="人情往来";
             break;
         case 4:
-            otherstr = "生活";
+            otherStr="娱乐休闲";
             break;
         case 5:
-            otherstr = "学习";
+            otherStr="生活居家";
             break;
+        case 6:
+            otherStr="学习进修";
+            break;
+        case 7:
+            otherStr="其他支出";
+            break;
+
+        case 11:
+            otherStr="其它收入";
+            break;
+        case 12:
+            otherStr="兼职收入";
+            break;
+
+        case 13:
+            otherStr="奖金收入";
+            break;
+
+        case 14:
+            otherStr="工资收入";
+            break;
+
+        case 15:
+            otherStr="理财收入";
+            break;
+
         default:
-            otherstr = "其他";
+            otherStr="其他";
     }
 
-    return otherstr;
+    return otherStr;
 }
 
 function outcomeFormatter(value, row, index){

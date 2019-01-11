@@ -160,11 +160,12 @@ public class MainDataController {
 
     //返回某月各项收入或支出和
     @GetMapping("/main/record/oneMonth")
-    public Map<String, double[]> getMonthRecord(@RequestParam("year") int year, 
+    public Map<String, List<Double>> getMonthRecord(@RequestParam("year") int year,
                                                 @RequestParam("month") int month,
                                                 @RequestParam("income") int income,  
                                                 HttpServletRequest request) {
-        double[] categoryvalue = new double[6];
+//        double[] categoryvalue = new double[6];
+        List<Double> categoryvalue = new ArrayList<Double>();
         List<BasicRecord> category = new ArrayList<BasicRecord>();
         int i;
         Calendar timestart = Calendar.getInstance();
@@ -183,14 +184,22 @@ public class MainDataController {
         RecordService recordService = new RecordService();
         records = recordService.recordsOfSomeDays(records, timestart, timeend);
 
-        for(i = 0; i < 6; i++ ){
-            category = recordService.getAllCategoryRecord(records,i+1);
-            category = recordService.sortIncomeOrExpenditure(category, income);
-            categoryvalue[i] = recordService.getTotalValueOfRecords(category);
+        if (income == 0) {
+            for (i = 0; i < 7; i++) {
+                category = recordService.getAllCategoryRecord(records, i + 1);
+                category = recordService.sortIncomeOrExpenditure(category, income);
+                categoryvalue.add(recordService.getTotalValueOfRecords(category));
+            }
+        } else {
+            for (i = 0; i < 5; i++) {
+                category = recordService.getAllCategoryRecord(records, i + 11);
+                category = recordService.sortIncomeOrExpenditure(category, income);
+                categoryvalue.add(recordService.getTotalValueOfRecords(category));
+            }
         }
 
         //调整返回格式
-        Map<String,double[]> map = new HashMap<String,double[]>();  
+        Map< String,List<Double> > map = new HashMap<String,List<Double>>();
         map.put("data1", categoryvalue);
 
         return map;

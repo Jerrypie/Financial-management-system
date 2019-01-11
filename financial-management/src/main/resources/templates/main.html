@@ -52,7 +52,7 @@
 										</td>
 										<td th:text="${#dates.format( record.getRecordtime().getTime(), 'yyyy-MM-dd') }">4</td>
 										<td th:text="${record.getValue()}">3</td>
-										<td class="category" th:text="${record.getCategory()}">5</td>
+										<td class="category" th:attr="category=${record.getCategory()}"></td>
 										<td th:text="${record.getOther()}">2</td>
 										<td>
 											<button th:id="${record.getRecordnum()}" type="button" class="btn btn-default btn_edit" data-toggle="modal" data-target="#modalEdit">
@@ -70,7 +70,7 @@
 
 							</div>
 
-							<div id="presentIncome" class="col-md-8 col-xs-8 col-md-offset-8 col-xs-offset-2">
+							<div id="presentIncome" class="col-md-8 col-xs-12 col-md-offset-8">
 							</div>
 							<div th:replace="~{fragment/pagePart :: pagePart}"></div>
 							<div class="form-group">
@@ -104,12 +104,11 @@
 								<span class="input-group-addon" id="">收入类型</span>
 								<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
 								<select name="inType" class="form-control">
-	                                <option value=6>其他</option>
-									<option value=5>学习</option>
-	                                <option value=4>生活</option>
-	                                <option value=3>娱乐</option>
-	                                <option value=2>餐饮</option>
-	                                <option value=1>网购</option>
+	                                <option value=15>理财收入</option>
+									<option value=14>工资收入</option>
+	                                <option value=13>奖金收入</option>
+	                                <option value=12>兼职收入</option>
+	                                <option value=11>其它收入</option>
     	                        </select>
 							</div>
 							<br/>
@@ -132,18 +131,19 @@
 
 						</form>
 					</div>
+
 					<!--支出-->
 					<div id="menu2" class="tab-pane fade">
 						<form class="" method="post" action="/main/addOutcomeRecord">
 							<div class="col-md-6">
 								<br/>
 								<div class="input-group input-group-md form-group">
-									<span class="input-group-addon" id="outvalue">收入金额</span>
+									<span class="input-group-addon" id="outvalue">支出金额</span>
 									<input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
 								</div>
 								<br/>
 								<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
-									<span class="input-group-addon">收入时间</span>
+									<span class="input-group-addon">支出时间</span>
 									<input class="form-control" size="16" type="text" name="inTime" value="" placeholder="请在这里填入时间: 2018-01-04" required>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -151,15 +151,16 @@
 								<br/>
 								<br/>
 								<div class="input-group input-group-md form-group">
-									<span class="input-group-addon">收入类型</span>
+									<span class="input-group-addon">支出类型</span>
 									<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
 									<select name="inType" class="form-control">
-		                                <option value=6>其他</option>
-										<option value=5>学习</option>
-		                                <option value=4>生活</option>
-		                                <option value=3>娱乐</option>
-		                                <option value=2>餐饮</option>
-		                                <option value=1>网购</option>
+		                                <option value=7>其他支出</option>
+										<option value=6>学习进修</option>
+		                                <option value=5>生活居家</option>
+		                                <option value=4>娱乐休闲</option>
+		                                <option value=3>人情往来</option>
+		                                <option value=2>餐饮食品</option>
+		                                <option value=1>网络购物</option>
 	    	                        </select>
 								</div>
 								<br/>
@@ -199,7 +200,7 @@
 			</div>
 			<div class="modal-body">
 					<div class="form-group col-xs-12 col-md-6">
-						<input type="number" name="mod_value" step="0.01" placeholder="金额" id="modal_val" class="form-control"  required/>
+						<input type="number" onchange="changeModalByValue()" name="mod_value" step="0.01" placeholder="金额" id="modal_val" class="form-control" required/>
 					</div>
 					<div class="form-group col-xs-12 col-md-6">
 						<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
@@ -211,12 +212,13 @@
 					<div class="form-group col-xs-12 col-md-6">
 						<!--<input type="number"  name="inType" class="form-control" aria-describedby="sizing-addon1" placeholder="在这里输入类型">-->
 						<select class="form-control" id="modal_ca" name="mod_cal">
-								<option value=6>其他</option>
-		                        <option value=5>学习</option>
-							    <option value=4>生活</option>
-                                <option value=3>娱乐</option>
-                                <option value=2>餐饮</option>
-                                <option value=1>网购</option>
+							<option value=7>其他支出</option>
+							<option value=6>学习进修</option>
+                            <option value=5>生活居家</option>
+                            <option value=4>娱乐休闲</option>
+                            <option value=3>人情往来</option>
+                            <option value=2>餐饮食品</option>
+                            <option value=1>网络购物</option>
                         </select>
 					</div>
 					<div class="form-group col-xs-12 col-md-6">

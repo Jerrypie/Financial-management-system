@@ -1,8 +1,7 @@
+//默认当前年份
+var year  = new Date().getFullYear();
 
-
-//默认2018年
-var year = 2018;
-
+$("#year").val(year);
 //初始化echarts实例
 var myChart = echarts.init(document.getElementById('linechart1'));
 
