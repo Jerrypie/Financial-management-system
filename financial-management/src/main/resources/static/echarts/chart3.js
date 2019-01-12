@@ -39,16 +39,23 @@ myChart.setOption({
         trigger: 'axis'
     },
     legend:{
+        x: 200,
         data:['当日收入','当日支出','当月结余']
     },
 
+
+
     toolbox: {
         show : true,
+        x: 500,
         feature : {
             mark : {show: true},
             dataView : {show: true, readOnly: false},
             magicType : {show: true, type: ['line', 'bar']},
             restore : {show: true},
+            dataZoom: { //数据缩放视图
+                show: true
+            },
             saveAsImage : {show: true}
         }
     },
@@ -61,6 +68,13 @@ myChart.setOption({
     yAxis: {
         type : 'value'
     },
+
+    dataZoom: [
+        {
+            type: 'inside'
+        }
+    ],
+
     series:[
         {
             name:'当日收入',

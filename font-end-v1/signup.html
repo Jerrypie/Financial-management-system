@@ -32,7 +32,7 @@
 				  					<span class="glyphicon glyphicon-user"></span>
 				  				</div>
 				    				<!-- <label for="UserId">用户名</label> -->
-				    				<input type="text" class="form-control" id="UserId" placeholder="输入用户名" name="UserId" maxlength="10" pattern="^[A-Za-z0-9\u4e00-\u9fa5]+$" oninput="checkOnInput1(this, '用户名只能是字母，汉字或者数字！')" required oninvalid="setCustomValidity('请填写用户名!')" oninput="setCustomValidity('')">
+				    				<input type="text" class="form-control" id="UserId" placeholder="输入用户名" name="UserId" maxlength="10" pattern="^[A-Za-z0-9\u4e00-\u9fa5]+$" oninput="checkOnInput(this, '用户名只能是字母，汉字或者数字！')" required oninvalid="setCustomValidity('请填写用户名!')" oninput="setCustomValidity('')">
 				    	</div>
 				  	</div>
 					<!-- 密码 -->
@@ -41,7 +41,7 @@
 							<div class="input-group-addon">	
 								<span class="glyphicon glyphicon-lock"></span>
 							</div>
-							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="Password" maxlength="20" pattern="^[A-Za-z0-9]{8,20}$" oninput="checkOnInput3(this, '请输入8-20位之间，字母或者是数字的密码！')" required oninvalid="setCustomValidity('请填写密码!')" oninput="setCustomValidity('')">
+							<input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="Password" maxlength="20" pattern="^[A-Za-z0-9]{8,20}$" oninput="checkOnInput(this, '请输入8-20位之间，字母或者是数字的密码！')" required oninvalid="setCustomValidity('请填写密码!')" oninput="setCustomValidity('')">
 							
 						</div>
 					    <!-- <label for="password">密码</label> -->
@@ -53,7 +53,7 @@
 							<div class="input-group-addon">	
 								<span class="glyphicon glyphicon-lock"></span>
 							</div>
-							<input type="password" class="form-control" id="password2" placeholder="请再次输入您的密码" name="Password2" maxlength="20" onsubmit="return Checked();"  pattern="^[A-Za-z0-9]{8,20}$" oninput="checkOnInput4(this, '请输入8-20位之间，字母或者是数字的密码！')" required oninvalid="setCustomValidity('请填写密码!')" oninput="setCustomValidity('')">
+							<input type="password" class="form-control" id="password2" placeholder="请再次输入您的密码" name="Password2" maxlength="20" pattern="^[A-Za-z0-9]{8,20}$" oninput="checkOnInput(this, '请输入8-20位之间，字母或者是数字的密码！')" required oninvalid="setCustomValidity('请填写密码!')" oninput="setCustomValidity('')">
 						</div>
 					    <!-- <label for="password">密码</label> -->
 					</div>
@@ -63,7 +63,7 @@
 							<div class="input-group-addon">	
 								<span class="glyphicon glyphicon-envelope"></span>
 							</div>
-							<input type="text" class="form-control" id="email" placeholder="请输入您的邮箱" name="Email" maxlength="20" pattern="^[-.-_A-Za-z0-9]+@([_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$" oninput="checkOnInput2(this, '请输入正确的邮箱格式！')" required oninvalid="setCustomValidity('请填写邮箱!')" oninput="setCustomValidity('')">
+							<input type="text" class="form-control" id="email" placeholder="请输入您的邮箱" name="Email" maxlength="20" pattern="^[-.-_A-Za-z0-9]+@([_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$" oninput="checkOnInput(this, '请输入正确的邮箱格式！')" required oninvalid="setCustomValidity('请填写邮箱!')" oninput="setCustomValidity('')">
 						</div>
 					    <!-- <label for="password">密码</label> -->
 					</div>
