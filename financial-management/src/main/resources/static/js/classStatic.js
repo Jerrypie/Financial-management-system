@@ -257,6 +257,8 @@ var timeTableInit = function () {
                 title: '备注'
             }],
 
+
+
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
             exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'xlsx'],           //导出文件类型
