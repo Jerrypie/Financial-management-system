@@ -86,8 +86,10 @@ public class MainDataController {
         HttpSession session = request.getSession();
         user = (User) session.getAttribute("UserObj");
         mainService.setUser(user);
+        RecordService recordService = new RecordService();
 
         List<BasicRecord> records = mainService.getAllValueRecord(income);
+        records = recordService.sortByDate(records);
 
         return records;
     }
