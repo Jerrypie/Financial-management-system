@@ -17,5 +17,7 @@ function Checked()
 function checkOnInput(input, tip) {//对用户名的验证（开头不能是数字）
     if (input.validity.patternMismatch === true) {
         input.setCustomValidity(tip);
+    } else {
+        input.setCustomValidity('');
     }
 }
