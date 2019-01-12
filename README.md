@@ -48,7 +48,7 @@ Personal Financial Management System
 
 
 
-## API
+## API（最初设计）
 
 ```
 login:登录页面
@@ -122,6 +122,173 @@ main:
     	category:种类
     	other:备注
 ```
+
+
+
+## API（最新）
+
+```
+index:登录页面
+	-/login:GET方法，获取登录页面
+		input:
+		
+		return:
+			"index.html":返回登录页面
+			
+	-/login:POST方法，提交表单登录
+		input:
+			String UserName:用户名
+			Sting Password:密码
+		return:
+			"index.html":登录失败，用户密码输入错误或用户名（密码）为空，返回登录页面并提示
+			"redirect:/main":登录成功，用户名及密码正确，重定向到main页面
+			
+register:注册页面
+	-/register:GET方法，获取注册页面
+		input:
+		
+		return:
+			"register.html":返回注册页面
+			
+	-/register:POST方法，提交表单注册
+        input:
+            String UserName:用户名
+            String Password:密码
+            String Email:邮箱
+        return:
+        	"register.html":注册失败，输入的用户名已存在或用户名（密码）为空，返回注册页面并提示
+        	"redirect:/index":注册成功，重定向到登录页面
+		
+main:财务管理页面
+	-/main:GET方法，获取该用户按时间排序的所有记录的概览页面，并返回第一页记录
+		input:
+		return:
+			"main.html":返回财务概览页面与第一页数据
+		
+	-/main/page:GET方法，获取某一分页记录
+        input:
+            int currentPage:所需记录的页数位置
+        return:
+        	"main.html":返回财务概览页面与所需页面数据
+		
+	-/main/addIncomeRecord:POST方法，增加一条收入记录
+        input:
+            String inTime:收支时间
+            String inOther:备注
+            double inValue:花的钱
+            int inType:种类
+        return:
+        	"redirect:/main":重定向到财务概览页面第一页
+    	
+    -/main/addOutcomeRecord:POST方法，增加一条支出记录
+        input:
+            String inTime:收支时间
+            String inOther:备注
+            double inValue:花的钱
+            int inType:种类
+        return:
+        	"redirect:/main":重定向到财务概览页面第一页
+    	
+    -/main/updateRecord: POST方法，修改某一条记录
+        input:
+            int mod_id:记录的id
+            double mod_value:花的钱
+            int mod_cal:种类
+            String mod_time:收支时间
+            String mod_other:备注
+        return:
+        	"redirect:/main":重定向到财务概览页面第一页
+    	
+    -/main/deleteRecord: POST方法，同步方式删除一条记录（勾选）
+        input:
+            int[] inRecords：需删除的记录id
+        return:
+        	"redirect:/main":重定向到财务概览页面第一页
+    	
+    -/main/record:DELETE方法，异步请求删除一条记录（右侧框）
+        input:
+            int id:记录的id
+        return:
+        	boolean:josn格式，删除成功为1
+    	
+    -/main/record/totalValue:GET方法，异步请求获取本月合计支出与收入（本月1日至今日）
+        input:
+        return:
+        	double[] data1:json格式，其中data1[0]为收入，data1[1]为支出
+    	
+classStatic:财务统计页面
+
+	-/classStatic:GET方法，获取财务统计页面
+		input:
+		return:
+			"classStatic.html":返回财务统计页面
+				
+	-/main/record/value:GET方法，按请求参数获取支出或者收入记录
+        input:
+            int income:为1时获取收入记录，为0时获取支出记录
+        return:
+        	List<BasicRecord> records:json格式，支出或收入记录的列表
+	
+	-/main/record/someTime:GET方法，按请求参数获取某段时间内的记录
+        input:
+            String timestart:所需记录的开始日期
+            String timeend:所需记录的结束日期
+        return:
+        	List<BasicRecord> records:json格式，时间段内记录的列表
+
+
+figure1:条形图
+	-/figure1:GET方法，获取条形图页面
+		input:
+		return:
+			"figure1.html":返回条形图页面
+	
+	-/main/record/everyMonth:GET方法，获取某一年的每月合计支出与收入
+        input:
+            int year:所需记录数据的年份
+        return:
+        	double[] data1:json格式，每月的合计收入
+        	double[] data2:json格式，每月的合计支出
+
+figure2:饼状图
+	-/figure2:GET方法，获取饼状图页面
+        input:
+        return:
+        	"figure2.html":返回饼状图页面
+	
+	-/main/record/oneMonth:GET方法，获取某月各类型收入或支出和
+        input:
+            int year:所需记录数据的年份
+            int month:所需记录数据的月份
+            int income:所需支出或收入，为1时获取各类型收入记录，为0时获取各类型支出记录
+        return:
+        	List<Double> data1:json格式，各类型收入或支出和的列表
+
+figure3:折线图
+	-/figure3:GET方法，获取折线图页面
+		input:
+		return:
+			"figure3.html":返回折线图页面
+	
+	-/main/record/everyDay:GET方法，获取某月每日收入、支出和与对应日期
+		input:
+            int year:所需记录数据的年份
+            int month:所需记录数据的月份
+        return:
+        	double[] income:json格式,每日收入
+    		double[] outcome:json格式，每日支出
+    		int[] day:json格式，对应日期
+		
+sidebar:侧边菜单栏
+	-/logout:用户登出
+		input:
+		return:
+			"index.html":返回登录页面
+		
+	
+```
+
+
 
 
 
