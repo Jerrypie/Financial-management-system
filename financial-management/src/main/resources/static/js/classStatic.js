@@ -27,7 +27,6 @@ $(function () {
         }
     });
 
-
 });
 
 var incomeTableInit = function () {
@@ -39,6 +38,7 @@ var incomeTableInit = function () {
             method: 'get',                      //请求方式（*）
             // toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
+            mobileResponsive: true,
             mobileResponsive:true,
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）
@@ -66,16 +66,20 @@ var incomeTableInit = function () {
                 // },{
                 field: 'recordtime',
                 title: '日期',
+                align: "center",
                 formatter: dateFormatter
                 // width: 150
             }, {
+                align: "center",
                 field: 'value',
                 title: '金额'
             }, {
+                align: "center",
                 formatter: otherFormatter,
                 field: 'category',
                 title: '类型'
             }, {
+                align: "center",
                 field: 'other',
                 title: '备注'
             }],
@@ -125,7 +129,7 @@ var outTableInit = function () {
             pageNumber:1,                       //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
             pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            search: true,                       //
             strictSearch: false,
             showColumns: true,                  //是否显示所有的列
             showRefresh: true,                  //是否显示刷新按钮
@@ -136,22 +140,27 @@ var outTableInit = function () {
             showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
-            columns: [{
+            columns: [
+            {
                 // checkbox: false
                 // },{
                 field: 'recordtime',
                 title: '日期',
-                width: 150,
+                align: "center",
                 formatter: dateFormatter
             }, {
                 field: 'value',
                 formatter: outcomeFormatter,
+                width: 150,
+                align: "center",
                 title: '金额'
             }, {
                 formatter: otherFormatter,
+                align: "center",
                 field: 'category',
                 title: '类型'
             }, {
+                align: "center",
                 field: 'other',
                 title: '备注'
             }],
@@ -181,7 +190,13 @@ var outTableInit = function () {
 };
 
 function dateFormatter(value, row, index) {
+    /*
     var formattedDate = new Date(value);
+    return (formattedDate.getFullYear() +'-' + ('0' + (formattedDate.getMonth()+1)).slice(-2) +'-' + ('0' + formattedDate.getDate()).slice(-2));
+    */
+
+    var trans = value.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/(-)/g, '/');
+    var formattedDate = new Date(trans);
     return (formattedDate.getFullYear() +'-' + ('0' + (formattedDate.getMonth()+1)).slice(-2) +'-' + ('0' + formattedDate.getDate()).slice(-2));
 }
 
@@ -204,10 +219,11 @@ var timeTableInit = function () {
             sortOrder: "asc",                   //排序方式
             queryParams: timeObj.queryParams(),//传递参数（*）
             sidePagination: "client",           //分页方式
+
             pageNumber:1,                       //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
             pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            search: true,                       //是否显示表格搜索
             strictSearch: false,                //模糊查询
             showColumns: true,                  //是否显示所有的列
             showRefresh: true,                  //是否显示刷新按钮
@@ -227,37 +243,39 @@ var timeTableInit = function () {
                 // },{
                 field: 'recordtime',
                 title: '日期',
-                width: 150,
+                // width: 100,
+                align: "center",
                 formatter: dateFormatter
             }, {
                 field: 'value',
                 title: '金额',
+                align: "center",
                 footerFormatter: function (val) {
-                    var count = 0.0;
-                    var income = 0.0;
-                    var outcome = 0.0;
+                    var  countVal = 0.0;
+                    var  incomeVal = 0.0;
+                    var  outcomeVal = 0.0;
                     for (var i in val) {
 
                         if (val[i].value > 0){
-                            income += val[i].value;
+                            incomeVal += val[i].value;
                         } else {
-                            outcome += val[i].value;
+                            outcomeVal += val[i].value;
                         }
                         // count += val[i].value;
                     }
-                    count = income + outcome;
-                    return "总计 "+ count+"元" +"&nbsp;"+"&nbsp;"+"&nbsp;" + "支出 "+ (-outcome) + " 元"+"&nbsp;"+"&nbsp;"+"&nbsp;" +  "收入 "+income +"元"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;";
+                    countVal = incomeVal + outcomeVal;
+                    return "支出 "+ (-outcomeVal) + " 元"+"&nbsp;"+"&nbsp;"+"&nbsp;" +  "收入 "+incomeVal +"元"+"&nbsp;"+"&nbsp;"+ "总计 "+ countVal+"元" +"&nbsp;" + "&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;";
                 }
             }, {
                 formatter: otherFormatter,
                 field: 'category',
-                title: '类型'
+                title: '类型',
+                align: "center"
             }, {
+                align: "center",
                 field: 'other',
                 title: '备注'
             }],
-
-
 
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
@@ -268,7 +286,10 @@ var timeTableInit = function () {
                 worksheetName: 'sheet1',  //表格工作区名称
                 tableName: '用户信息报表',
                 excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
-            }
+            },
+
+
+
         });
     };
 
