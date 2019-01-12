@@ -182,15 +182,7 @@ var outTableInit = function () {
 
 function dateFormatter(value, row, index) {
     var formattedDate = new Date(value);
-    var d = formattedDate.getDate();
-    var m =  formattedDate.getMonth();
-    m += 1;  // JavaScript months are 0-11
-    var y = formattedDate.getFullYear();
-
-
-    return formattedDate.getFullYear()
-        +'-' + ('0' + (formattedDate.getMonth()+1)).slice(-2)
-        +'-' + ('0' + formattedDate.getDate()).slice(-2);
+    return (formattedDate.getFullYear() +'-' + ('0' + (formattedDate.getMonth()+1)).slice(-2) +'-' + ('0' + formattedDate.getDate()).slice(-2));
 }
 
 
@@ -264,8 +256,6 @@ var timeTableInit = function () {
                 field: 'other',
                 title: '备注'
             }],
-
-
 
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
