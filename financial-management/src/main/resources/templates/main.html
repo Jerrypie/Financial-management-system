@@ -92,9 +92,9 @@
                                 <input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
                             </div>
                             <br/>
-                            <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                            <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd">
                                 <span class="input-group-addon">收入时间</span>
-                                <input class="form-control" size="16" type="text" id="inTime" name="inTime" maxlength="10" placeholder="请在这里填入时间: 2018-01-04" required>
+                                <input style="ime-mode:disabled" class="form-control" size="16" type="text" id="inTime" name="inTime" maxlength="10" placeholder="请在这里填入时间: 2018-01-04" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                             </div>
@@ -142,9 +142,9 @@
 									<input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
 								</div>
 								<br/>
-								<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+								<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd">
 									<span class="input-group-addon">支出时间</span>
-									<input maxlength="10" class="form-control" size="16" type="text" id="outTime" name="inTime" placeholder="请在这里填入时间: 2018-01-04" required>
+									<input style="ime-mode:disabled" maxlength="10" class="form-control" size="16" type="text" id="outTime" name="inTime" placeholder="请在这里填入时间: 2018-01-04" required>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 								</div>
@@ -203,8 +203,8 @@
 						<input type="number" onchange="changeModalByValue()" name="mod_value" step="0.01" placeholder="金额" id="modal_val" class="form-control" required/>
 					</div>
 					<div class="form-group col-xs-12 col-md-6">
-						<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
-							<input maxlength="10" class="form-control" size="16" name="mod_time" type="text" id="modal_time" placeholder="时间" required>
+						<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd">
+							<input style="ime-mode:disabled" maxlength="10" class="form-control" size="16" name="mod_time" type="text" id="modal_time" placeholder="时间" required>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 						</div>

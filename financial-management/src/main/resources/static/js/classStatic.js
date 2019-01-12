@@ -81,7 +81,7 @@ var incomeTableInit = function () {
 
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
-            exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'xlsx'],           //导出文件类型
+            exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'xlsx'],           //导出文件类型
             exportDataType: "all",             //basic当前页', 'all所有, 'selected'.
             exportOptions: {
                 fileName: '个人财务记录',  //文件名称设置
@@ -156,7 +156,7 @@ var outTableInit = function () {
 
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
-            exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'xlsx'],           //导出文件类型
+            exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'xlsx'],           //导出文件类型
             exportDataType: "all",             //basic当前页', 'all所有, 'selected'.
             exportOptions: {
                 fileName: '个人财务记录',  //文件名称设置
@@ -164,8 +164,6 @@ var outTableInit = function () {
                 tableName: '用户信息报表',
                 excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
             }
-
-
         });
     };
 
@@ -268,7 +266,7 @@ var timeTableInit = function () {
 
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
-            exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'xlsx'],           //导出文件类型
+            exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'xlsx'],           //导出文件类型
             exportDataType: "all",             //basic当前页', 'all所有, 'selected'.
             exportOptions: {
                 fileName: '个人财务记录',  //文件名称设置

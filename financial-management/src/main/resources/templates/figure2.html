@@ -15,9 +15,9 @@
 				<h2>可视化图表分析</h2>
 				<div class="row">
 					<div class="col-md-7 col-xs-8 col-md-offset-2">
-						<div class="input-group date form_date" data-date-format="yyyy-mm" data-link-field="dtp_input1">
+						<div class="input-group date form_date" data-date-format="yyyy-mm">
 							<span class="input-group-addon">时间</span>
-							<input id="time" class="form-control" size="16" type="text"  placeholder="请选择年月" required>
+							<input style="ime-mode:disabled" id="time" class="form-control" size="16" type="text"  placeholder="请选择年月" required>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 						</div>
@@ -73,13 +73,11 @@
 
 <script th:src="@{/static/echarts/chart2.js}"></script>
 
-
 <!--bootstrap 时钟-->
 <script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="../static/mainjs/bootstrap-datetimepicker.fr.js"></script>
 <!-- 时间插件 -->
 <script type="text/javascript">
-
 	$('.form_date').datetimepicker({
 		language:  'fr',
 		weekStart: 1,

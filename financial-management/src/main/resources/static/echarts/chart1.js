@@ -24,7 +24,26 @@ myChart.setOption({
     title:{
         text:'收入支出月份统计图'
     },
-    tooltip:{},
+    tooltip:{
+
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+
+
+    toolbox: {
+        show: true,
+        right: 50,
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {},
+            magicType : {show: true, type: ['line', 'bar']}
+        }
+    },
+
     legend:{
         data:['收入','支出','净收入']
     },
@@ -32,6 +51,12 @@ myChart.setOption({
         data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
     },
     yAxis:{},
+
+    dataZoom: [
+        {
+            type: 'inside'
+        }
+    ],
     series:[
         {
             name:'收入',

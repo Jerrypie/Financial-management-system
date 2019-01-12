@@ -31,8 +31,39 @@ myChartIncome.setOption({
         text:'收入项目比例图'
     },
     tooltip:{},
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {
+                show: true,
+                type: ['pie', 'funnel']
+            },
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    legend:{
+        type: 'scroll',
+        orient: 'vertical',
+        right: 0,
+        // top: 3,
+        bottom: 10,
+        data:['其它收入','兼职收入','奖金收入','工资收入','理财收入']
+    },
+
     series: {
             type:'pie',
+            selectedMode: 'single',
+            radius: [0, '65%'],
+        label: {
+            normal: {
+                formatter: '{b|{b}：}{c}  {per|{d}%}  ',
+                rich: {
+                }
+            }
+        },
             data:[
                 {name: "测试1", value: 120},
                 {name: "测试2", value: 120},
@@ -46,8 +77,38 @@ myChartOutcome.setOption({
         text:'支出项目比例图'
     },
     tooltip:{},
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {
+                show: true,
+                type: ['pie', 'funnel']
+            },
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    legend:{
+        type: 'scroll',
+        orient: 'vertical',
+        right: 0,
+        // top: 3,
+        bottom: 10,
+        data:['网络购物','餐饮食品','人情往来','娱乐休闲','生活居家','学习进修','其他支出']
+    },
     series: {
         type:'pie',
+        selectedMode: 'single',
+        radius: [0, '65%'],
+        label: {
+            normal: {
+                formatter: '{b|{b}：}{c}  {per|{d}%}  ',
+                rich: {
+                }
+            }
+        },
         data:[
             {name: "测试1", value: 120},
             {name: "测试2", value: 120},

@@ -53,35 +53,6 @@ $(document).ready(function(){
         $("#mod_id").val( $(this).attr('id') );
     });
 
-    //
-    // $("#inBtn").click(function () {
-    //     var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
-    //     var val = $("#inTime").val();
-    //     if (!valid.test(val)){
-    //         alert("请输入正确的日期格式");
-    //     }
-    // });
-
-
-    //
-    // $("#outBtn").click(function () {
-    //     var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
-    //     var val = $("#outTime").val();
-    //     if (!valid.test(val)){
-    //         alert("请输入正确的日期格式");
-    //         return false;
-    //     }
-    // });
-    //
-    // $("#modal_ca").click(function () {
-    //     var valid  = /^(\d{1,4})(-)(\d{1,2})\2(\d{1,2})$/;
-    //     var val = $("#mod_time").val();
-    //     if (!valid.test(val)){
-    //         alert("请输入正确的日期格式");
-    //         return false;
-    //     }
-    // });
-
 
 });
 

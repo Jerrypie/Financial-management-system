@@ -66,37 +66,40 @@ myChart.setOption({
             name:'当日收入',
             type:'line',
             data:[],
+            smooth: true,
             markPoint : {
                 data : [
                     {type : 'max', name: '最大值'},
                     // {type : 'min', name: '最小值'}
                 ]
-            },
-            // markLine : {
-            //     data : [
-            //         {type : 'average', name: '平均值'}
-            //     ]
-            // }
+            }
         },
         {
             name:'当日支出',
             type:'line',
+            smooth: true,
             data:[],
             markPoint : {
                 data : [
                     {type : 'max', name: '最大值'},
                     // {type : 'min', name: '最小值'}
                 ]
-            },
-            // markLine : {
-            //     data : [
-            //         {type : 'average', name: '平均值'}
-            //     ]
-            // }
+            }
         },
         {
             name:'当月结余',
+            color: 'green',
             type:'line',
+            smooth: true,
+
+            itemStyle:{
+                normal:{
+                    lineStyle:{
+                        width:2,
+                        type:'dotted'  //'dotted'虚线 'solid'实线
+                    }
+                }
+            },
             data:[]
         }
     ]
