@@ -3,6 +3,10 @@ $(function () {
     var IncomeTable = new incomeTableInit();
     IncomeTable.Init();
 
+    window.outcomeValue = 0.0;
+    window.incomeValue = 0.0;
+    window.sumValue = 0.0;
+
     var OutcomeTable = new outTableInit();
     OutcomeTable.Init();
 
@@ -26,6 +30,8 @@ $(function () {
             timeTable.Init();
         }
     });
+
+
 
 });
 
@@ -263,7 +269,13 @@ var timeTableInit = function () {
                         }
                         // count += val[i].value;
                     }
+
+                    outcomeValue = outcomeVal;
+                    incomeValue = incomeVal;
+                    sumValue = incomeVal+outcomeVal;
+
                     countVal = incomeVal + outcomeVal;
+                    presentinfo();
                     return "支出 "+ (-outcomeVal) + " 元"+"&nbsp;"+"&nbsp;"+"&nbsp;" +  "收入 "+incomeVal +"元"+"&nbsp;"+"&nbsp;"+ "总计 "+ countVal+"元" +"&nbsp;" + "&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;"+"&nbsp;";
                 }
             }, {
@@ -277,6 +289,10 @@ var timeTableInit = function () {
                 title: '备注'
             }],
 
+            onLoadSuccess: function () {
+                presentinfo();
+            },
+
             buttonsAlign:"right",  //按钮位置
             Icons:'glyphicon-export',
             exportTypes:['json', 'xml', 'csv', 'txt', 'sql', 'xlsx'],           //导出文件类型
@@ -287,6 +303,8 @@ var timeTableInit = function () {
                 tableName: '用户信息报表',
                 excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
             },
+
+
 
 
 
@@ -303,6 +321,24 @@ var timeTableInit = function () {
 
     return timeObj;
 };
+
+function presentinfo() {
+    $("#presentInfo").empty();
+    var str = "";
+    var newSumValue = 0;
+    if (sumValue > 0){
+        str = "收入";
+        newSumValue = sumValue;
+    } else {
+        str= "支出";
+        newSumValue = -sumValue;
+    }
+    $("#presentInfo").append("<div>您的查询结果为： 支出 "
+        + (-outcomeValue) + " 元"+"&nbsp;"+"&nbsp;"+"&nbsp;"
+        +  "收入 "+incomeValue +"元"+"&nbsp;"+"&nbsp;"
+        + "总计"+"&nbsp;" + str + newSumValue+"元"
+        +"</div>");
+}
 
 function otherFormatter(value) {
     var otherStr="";
