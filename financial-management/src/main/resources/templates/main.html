@@ -89,7 +89,7 @@
                             <br/>
                             <div class="input-group input-group-md form-group">
                                 <span class="input-group-addon" id="in-value">收入金额</span>
-                                <input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
+                                <input type="number" id="inVal" onchange="changeInVal()" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
                             </div>
                             <br/>
                             <div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd">
@@ -139,7 +139,7 @@
 								<br/>
 								<div class="input-group input-group-md form-group">
 									<span class="input-group-addon" id="outvalue">支出金额</span>
-									<input type="number" class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
+									<input type="number" id="outVal" onchange="changeOutVal()"  class="form-control" name="inValue" placeholder="请在这里填入金额" aria-describedby="sizing-addon1"  step="0.01"  required>
 								</div>
 								<br/>
 								<div class="input-group date form_date col-md-12" data-date-format="yyyy-mm-dd">

@@ -53,8 +53,30 @@ $(document).ready(function(){
         $("#mod_id").val( $(this).attr('id') );
     });
 
+    $("#inBtn").click(changeInVal());
+
+
+    $("#outBtn").click(changeOutVal());
+
 
 });
+
+
+function changeInVal() {
+    var inVal = $("#inVal").val();
+
+    if (inVal < 0){
+        $("#inVal").val(-inVal);
+    }
+}
+
+function changeOutVal() {
+    var outVal = $("#outVal").val();
+    // console.log(outVal);
+    if (outVal > 0){
+        $("#outVal").val(-outVal);
+    }
+}
 
 function changeType() {
     var list = $(".category");
@@ -149,12 +171,12 @@ function changeModalByValue(){
     if (changeval >= 0 ){
         // 变为收入
         selectVal = (selectVal > 10) ? selectVal : 11;
-        console.log(selectVal);
+        // console.log(selectVal);
         changeModalIncome(selectVal);
     } else {
         //变为支出
         selectVal = (selectVal < 10) ? selectVal : 7;
-        console.log(selectVal);
+        // console.log(selectVal);
         changeModaloutcome(selectVal);
     }
 }
