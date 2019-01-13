@@ -24,7 +24,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/register.html").setViewName("register");
 //        registry.addViewController("/signup.html").setViewName("signup");
         registry.addViewController("/main.html").setViewName("main");
-        registry.addViewController("/404.html").setViewName("error");
+        // registry.addViewController("/404.html").setViewName("error");
 
     }
 
@@ -33,7 +33,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         LoginHandlerInterceptor loginHandlerInterceptor = new LoginHandlerInterceptor();
         registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
-                .excludePathPatterns( "/main/**","/figure**","/main/record/", "/register","/classStatic",  "/dividePage.**" ,"/static/**" ,"/error**",  "/index.html","/","/index","/login","/test","/*.action","/test.**");
+                .excludePathPatterns( "/register", "/static/**" ,"/error**",  "/index.html","/","/index","/login");
     }
 
 
