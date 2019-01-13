@@ -336,7 +336,7 @@ function presentinfo() {
     $("#presentInfo").append("<div>您的查询结果为： 支出 "
         + (-outcomeValue) + " 元"+"&nbsp;"+"&nbsp;"+"&nbsp;"
         +  "收入 "+incomeValue +"元"+"&nbsp;"+"&nbsp;"
-        + "总计"+"&nbsp;" + str + newSumValue+"元"
+        + "总计"+"&nbsp;" + str + "&nbsp;" + newSumValue+"元"
         +"</div>");
 }
 
