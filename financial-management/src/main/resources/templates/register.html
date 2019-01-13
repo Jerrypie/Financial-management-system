@@ -46,8 +46,8 @@
 								<span class="glyphicon glyphicon-lock"></span>
 							</div>
 							<input type="password" class="form-control" id="password" placeholder="请输入您的密码"
-								   name="Password" maxlength="20" pattern="^[A-Za-z0-9]{8,20}$"
-								   oninvalid="checkOnInput(this, '请输入8-20位之间，字母或者是数字的密码！')" required>
+								   name="Password" maxlength="20" pattern="^[A-Za-z0-9!@#$%^&*_-]{8,20}$"
+								   oninvalid="checkOnInput(this, '请输入8-20位之间，字母、数字特殊字符的密码！')" required>
 						</div>
 					    <!-- <label for="password">密码</label> -->
 					</div>
@@ -60,7 +60,7 @@
 							</div>
 							<input type="password" class="form-control" id="password2"
 								   placeholder="请再次输入您的密码" name="Password2" maxlength="20"
-								   pattern="^[A-Za-z0-9]{8,20}$" oninvalid="checkOnInput(this, '请输入8-20位之间，字母或者是数字的密码！')" title="请输入8-20位之间，字母或者是数字的密码！" required>
+								   pattern="^[A-Za-z0-9!@#$%^&*_-]{8,20}$" oninvalid="checkOnInput(this, '请输入8-20位之间，字母、数字或者特殊字符的密码！')" title="请输入8-20位之间，字母或者是数字的密码！" required>
 						</div>
 					    <!-- <label for="password">密码</label> -->
 					</div>

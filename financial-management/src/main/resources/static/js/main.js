@@ -73,7 +73,7 @@ function changeInVal() {
 function changeOutVal() {
     var outVal = $("#outVal").val();
     // console.log(outVal);
-    if (outVal > 0){
+    if (outVal < 0){
         $("#outVal").val(-outVal);
     }
 }
